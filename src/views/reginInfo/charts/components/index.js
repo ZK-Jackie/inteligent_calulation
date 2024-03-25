@@ -1,0 +1,6 @@
+export { default as Bar } from './bar.vue'
+export { default as iLine } from './iline.vue'
+export { default as Ring } from './pie-ring'
+export { default as Rose } from './pie-rose'
+export { default as Gauge } from './gauge'
+export { default as Error } from './error'

@@ -1,0 +1,39 @@
+@font-face {
+        font-family: "Founder-Kaiti";
+        src: url("../fonts/Founder-Kaiti.eot"); /* IE9*/
+        src: url("../fonts/Founder-Kaiti.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+             url("../fonts/Founder-Kaiti.woff2") format("woff2"),
+             url("../fonts/Founder-Kaiti.woff") format("woff"),
+             url("../fonts/Founder-Kaiti.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+             url("../fonts/Founder-Kaiti.svg#Founder-Kaiti") format("svg"); /* iOS 4.1- */
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+}
+
+@font-face {
+    font-family: "IconFont";
+    src: url("../fonts/IconFont.eot"); /* IE9*/
+    src: url("../fonts/IconFont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+         url("../fonts/IconFont.woff2") format("woff2"),
+         url("../fonts/IconFont.woff") format("woff"),
+         url("../fonts/IconFont.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+         url("../fonts/IconFont.svg#IconFont") format("svg"); /* iOS 4.1- */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.founder-kaiti {
+   font-family: "Founder-Kaiti";
+   font-style: normal;
+   font-weight: normal;
+}
+
+[class^="icon-"], [class*="icon-"] {
+    font-family: "IconFont" !important;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
