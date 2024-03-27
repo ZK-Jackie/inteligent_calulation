@@ -1,17 +1,46 @@
 <script>
-import * as echarts from "echarts";
 import {arraySum} from "@/utils/array";
+import {UUID} from "@/utils/string";
 
 export default {
-  // functional: true,
   props: {
     data: {
       type: Object,
-      required: true
-    },
-    name: {
-      type: String,
       required: true,
+      default: [
+        {
+          dataId: 1,
+          displayMode: "gauge",
+          startTime: null,
+          endTime: null,
+          predictStartTime: null,
+          predictEndTime: null,
+          chartOption: {
+            dataId: 1,
+            dataName: "gauge1",
+            displayableMode: ["gauge"],
+            keyLabel: null,
+            keyUnit: null,
+            valueLabel: null,
+            valueUnit: null,
+            numPrecision: 1.0,
+            maxValue: 100,
+            minValue: 0,
+            dataColor: ['#7CFFB2', '#58D9F9', '#FDDD60', '#FF6E76'],
+            isPredict: true,
+            isInfo: false,
+            data: [
+              ["2024-3-28T00:25:52"],
+              [80]
+            ]
+          }
+        },
+      ]
+    },
+    id: {
+      type: String,
+      required: false,
+      default: UUID()
     }
   },
   mounted() {
@@ -29,9 +58,8 @@ export default {
     },
     loadChart() {
       const that = this;
-      const eCharts = echarts.init(document.getElementById('chart-item-' + that.chartTitle));
+      const eCharts = this.$echarts.init(document.getElementById('chart-item-gauge-' + that.id));
       const data = JSON.parse(JSON.stringify(that.data));
-      const pointer = arraySum(data.values[0]) / 100;
       const option = {
         series: [
           {
@@ -47,10 +75,10 @@ export default {
               lineStyle: {
                 width: 6,
                 color: [
-                  [0.25, '#7CFFB2'],
-                  [0.5, '#58D9F9'],
-                  [0.75, '#FDDD60'],
-                  [1, '#FF6E76']
+                  [0.25, data[0].chartOption.dataColor[0]],
+                  [0.5, data[0].chartOption.dataColor[1]],
+                  [0.75, data[0].chartOption.dataColor[2]],
+                  [1, data[0].chartOption.dataColor[3]]
                 ]
               }
             },
@@ -110,8 +138,8 @@ export default {
             },
             data: [
               {
-                value: pointer,
-                name: data.seriesName[0]
+                value: data[0].chartOption.data[1][0],
+                name: data[0].chartOption.dataName
               }
             ]
           }
@@ -130,7 +158,7 @@ export default {
 <template>
   <div
       class="chart-item-gauge"
-      :id="'chart-item-gauge-'+ name"
+      :id="'chart-item-gauge-'+ id"
       style="width: 100%; height: 100%;">
   </div>
 </template>

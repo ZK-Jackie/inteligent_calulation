@@ -24,7 +24,7 @@
 
 <script>
 import Block from "@/components/hoc/block.vue";
-import Chart from "@/views/reginInfo/charts/index.vue";
+import Chart from "@/components/charts/index.vue";
 
 export default {
   components: {

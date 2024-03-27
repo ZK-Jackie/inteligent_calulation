@@ -1,5 +1,5 @@
 <script>
-import { Bar, Gauge, iLine, Ring, Rose, Error } from "./components"
+import { Bar, Gauge, iLine, Ring, Rose, Error } from "./index"
 export default {
   name: "chart-component",
   props: {

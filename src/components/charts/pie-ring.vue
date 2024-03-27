@@ -1,17 +1,46 @@
 <script>
-import * as echarts from "echarts";
-// import {getCharts} from '@/api/charts'
+import {UUID} from "@/utils/string";
 
 export default {
-  name: 'chartItem',
+  name: 'RingPieChart',
   props: {
     data: {
       type: Object,
-      required: true
-    },
-    name: {
-      type: String,
       required: true,
+      default: [
+        {
+          dataId: 1,
+          displayMode: "ring",
+          startTime: "2020",
+          endTime: "2026",
+          predictStartTime: "2024",
+          predictEndTime: "2026",
+          chartOption: {
+            dataId: 1,
+            dataName: "series1",
+            displayableMode: ["ring"],
+            keyLabel: "x",
+            keyUnit: "年",
+            valueLabel: "y",
+            valueUnit: "元",
+            numPrecision: 1.0,
+            maxValue: 800,
+            minValue: 0,
+            dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+            isPredict: false,
+            isInfo: false,
+            data: [
+              [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+              [100, 200, 300, 400, 500, 600, 700]
+            ]
+          }
+        },
+      ]
+    },
+    id: {
+      type: String,
+      required: false,
+      default: UUID()
     }
   },
   mounted() {
@@ -29,7 +58,7 @@ export default {
     },
     loadChart() {
       const that = this;
-      const eCharts = echarts.init(document.getElementById('chart-item-' + that.chartTitle));
+      const eCharts = this.$echarts.init(document.getElementById('chart-item-ring-' + that.id));
       const data = JSON.parse(JSON.stringify(that.data));
       // console.log(that.chartData);
       const option = {
@@ -63,7 +92,7 @@ export default {
         type: 'pie',
         center: ['50%', '42%'],
         radius: ['40%', '60%'],
-        color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+        color: data[0].dataColor,
         label: {show: false},
         labelLine: {show: false},
         data: data0
@@ -78,7 +107,7 @@ export default {
           type: 'pie',
           center: ['50%', '42%'],
           radius: ['15%', '30%'],
-          color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+          color: data[0].dataColor,
           label: {show: false},
           labelLine: {show: false},
           data: data1
@@ -98,7 +127,7 @@ export default {
 <template>
   <div
       class="chart-item-ring"
-      :id="'chart-item-ring-'+ name"
+      :id="'chart-item-ring-'+ id"
       style="width: 100%; height: 100%;">
   </div>
 </template>
