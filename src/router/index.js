@@ -58,10 +58,10 @@ const routes = [
       {
         path: '/test3',
         name: 'test3',
-        component: () => import('@/views/reginInfo/charts/components/bar.vue'),
+        component: () => import('@/views/PoliciesInfo/index.vue'),
         meta: {
-          title: '模块信息',
-          miniTitle: '模块',
+          title: '政策信息',
+          miniTitle: '政策',
         }
       }
     ]
