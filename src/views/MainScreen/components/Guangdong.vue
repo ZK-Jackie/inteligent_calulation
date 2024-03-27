@@ -28,16 +28,19 @@ export default {
         },
         visualMap: {
           left: 'right',
-          min: 0,
-          max: 60000,
+          min: 200,
+          max: 15000,
           inRange: {
             color: [
-              '#75ddff',
-               '#0e94eb'
+              '#e0f7fa',
+              '#b2ebf2',
+              '#80deea',
+              '#4dd0e1',
+              '#26c6da'
             ]
           },
           text: ['High', 'Low'],
-          calculable: true
+          calculable:true
         },
         series: [
           {

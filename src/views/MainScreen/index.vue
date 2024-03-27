@@ -2,20 +2,16 @@
   <div class="main-box">
     <ul class="clearfix">
       <li>
-        <div class="all-box" style="height: 4.9rem">
-          <div class="all-title">模块标题样式</div>
-          <div class="allnav" id="echart1" style="width: 100%; height: 100%"></div>
-          <div class="all-box-foot"></div>
-        </div>
-        <div class="all-box" style="height: 4.3rem">
-          <div class="all-title">广东省地图展示</div>
-<!--展示有关广东地图的活动-->
-          <Guangdong/>
-<!-- 导入对应的模块，给对应的echart方法，便于个性化线性不同省份的情况-->
-          <div class="all-box-foot"></div>
-        </div>
+          <Block height="4.9rem" title="模块标题样式">
+            <div class="allnav" id="echart1" style="width: 100%; height: 100%"></div>
+          </Block>
+        <Block height="4.3 rem" title="养老基金安全指数">
+          <!--展示有关广东地图的活动-->
+<!--          <Guangdong/>-->
+          <Gauge name="基金安全指数" data="20%"></Gauge>
+          <!-- 导入对应的模块，给对应的echart方法，便于个性化线性不同省份的情况-->
+        </Block>
       </li>
-
       <li>
         <div class="bar">
           <div class="barbox">
@@ -35,27 +31,22 @@
         </div>
 
         <div class="map">
-<!--展示地图的地方-->
-          <div class="map1"><img src="@/assets/lbx.png"/></div>
+        <!--展示地图的地方-->
+          <Map/>
           <div class="map2"><img src="@/assets/jt.png"/></div>
-          <div class="map3"><img src="@/assets/map.png"/></div>
-          <div class="map4" id="map_1"></div>
         </div>
       </li>
 
       <li>
-        <div class="all-box" style="height: 4.9rem">
+        <Block height="4.9 rem" title="舆情资讯动态展示">
           <PublicSentiment/>
-         <!--展示有关词语图，简单实验一下-->
-<!-- 结果表明如果小部分使用词云图，要么效果突兀，要么就是字体无法渲染-->
-<!--          <WorldCloud/>-->
-          <div class="all-box-foot"></div>
-        </div>
-
-        <div class="all-box" style="height: 4.3rem">
-           <Annuity_bar/>
-          <div class="all-box-foot"></div>
-        </div>
+          <!--展示有关词语图，简单实验一下-->
+          <!-- 结果表明如果小部分使用词云图，要么效果突兀，要么就是字体无法渲染-->
+          <!--          <WorldCloud/>-->
+        </Block>
+        <Block height="4.3rem" title="专业养老保险公司年金业务情况">
+          <Annuity_bar/>
+        </Block>
       </li>
     </ul>
   </div>
@@ -63,12 +54,15 @@
 
 <script>
 import * as echarts from "echarts";
-import PublicSentiment from "@/views/MainScreen/PublicSentiment.vue";
-import Annuity_bar from "@/views/MainScreen/Annuity_bar.vue";
-import Guangdong from "@/views/MainScreen/Guangdong.vue";
+import PublicSentiment from "@/views/MainScreen/components/PublicSentiment.vue";
+import Annuity_bar from "@/views/MainScreen/components/Annuity_bar.vue";
+import Guangdong from "@/views/MainScreen/components/Guangdong.vue";
+import Block from "@/components/hoc/block.vue";
+import Map from '@/views/MainScreen/components/Map.vue';
+import Gauge from'@/views/reginInfo/charts/components/gauge.vue';
 
 export default {
-  components: {Guangdong, Annuity_bar, PublicSentiment},
+  components: {Gauge,Map,Block,Guangdong, Annuity_bar, PublicSentiment},
   methods: {
     echarts_1() {
       var that = this;
@@ -264,13 +258,13 @@ export default {
 
 .map {
   position: relative;
-  height: 7.2rem;
+  height: 7.3rem;
   z-index: 9;
 }
 
 .map4 {
   width: 200%;
-  height: 7rem;
+  height: 8rem;
   position: relative;
   left: -50%;
   top: 4%;
@@ -305,9 +299,5 @@ export default {
   top: 1.0rem;
   left: 1.75rem;
   z-index: 1;
-}
-.gd-map{
-  width: 100%;
-  height: 4rem;
 }
 </style>

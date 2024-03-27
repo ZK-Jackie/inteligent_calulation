@@ -1,6 +1,5 @@
 <template>
   <div >
-    <div class="all-title">舆情资讯动态展示</div>
       <vue-seamless-scroll :data="listData" :class-option="optionSingleHeight" class="seamless-warp">
         <div class="list">
           <div class="item" v-for="(item,index) in listData" :key="index" @click="click_item(item)">

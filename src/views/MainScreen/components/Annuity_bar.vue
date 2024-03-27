@@ -1,6 +1,5 @@
 <template>
   <div id="scope">
-    <div class="all-title">专业养老保险公司年金业务情况</div>
     <div class="allnav" id="echart"  style="width: 100%; height: 100%"></div>
   </div>
 </template>
@@ -74,7 +73,7 @@ export default {
 <style scoped>
 #scope{
   width: 100%;
-  height: 100%;
+  height: 98%;
 }
 </style>
 

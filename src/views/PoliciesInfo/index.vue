@@ -35,7 +35,7 @@
 
 <script>
 import * as echarts from "echarts";
-import PopularDocument from "@/views/PoliciesInfo/PopularDocument.vue";
+import PopularDocument from "@/views/PoliciesInfo/components/PopularDocument.vue";
 
 export default {
   components:{
