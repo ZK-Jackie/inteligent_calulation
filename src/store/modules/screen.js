@@ -101,7 +101,7 @@ const screen = {
             numPrecision: 1.0,
             maxValue: 800,
             minValue: 0,
-            dataColor: "#494d4d",
+            dataColor: '#2f89cf',
             isPredict: true,
             isInfo: false,
             data: [
@@ -120,7 +120,7 @@ const screen = {
             numPrecision: 1.00,
             maxValue: 700,
             minValue: 100,
-            dataColor: "#3c8686",
+            dataColor: '#27d08a',
             isPredict: false,
             isInfo: false,
             data: [
