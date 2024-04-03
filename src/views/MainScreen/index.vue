@@ -8,7 +8,7 @@
         <Block height="4.3 rem" title="养老基金安全指数">
           <!--展示有关广东地图的活动-->
 <!--          <Guangdong/>-->
-          <Gauge name="基金安全指数" data="20%"></Gauge>
+          <Gauge :data="gaugeData"></Gauge>
           <!-- 导入对应的模块，给对应的echart方法，便于个性化线性不同省份的情况-->
         </Block>
       </li>
@@ -17,11 +17,25 @@
           <div class="barbox">
              <!--下述区域属于显示对应收入的区域-->
             <ul class="clearfix">
-              <li class="pulll_left counter" style="font-family: 'DS DIGHTAL'">12581189</li>
-              <li class="pulll_left counter" style="font-family: 'DS DIGHTAL'">3912410</li>
+              <li class="pulll_left counter" style="font-family: 'DS DIGHTAL'">{{counter1}}
+                <!--嵌套对应的环比的数据-->
+                <transition name="fade">
+                <div class="icon-color" v-if="showElement">环比
+                  <img src="@/assets/icondown.png" height="12">
+                  4.7%
+                </div>
+                </transition>
+              </li>
+              <li class="pulll_left counter" style="font-family: 'DS DIGHTAL'">{{counter2}}
+                <transition name="fade">
+                  <div class="icon-color" v-if="showElement">环比
+                    <img src="@/assets/iconup.png" height="12">
+                    3.5%
+                  </div>
+                </transition>
+              </li>
             </ul>
           </div>
-
           <div class="barbox2">
             <ul class="clearfix">
               <li class="pulll_left">2023年养老保险总收入情况</li>
@@ -56,14 +70,68 @@
 import * as echarts from "echarts";
 import PublicSentiment from "@/views/MainScreen/components/PublicSentiment.vue";
 import Annuity_bar from "@/views/MainScreen/components/Annuity_bar.vue";
-import Guangdong from "@/views/MainScreen/components/Guangdong.vue";
+import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 import Block from "@/components/hoc/block.vue";
 import Map from '@/views/MainScreen/components/Map.vue';
-import Gauge from'@/views/reginInfo/charts/components/gauge.vue';
+import Gauge from '@/components/charts/gauge.vue';
 
 export default {
   components: {Gauge,Map,Block,Guangdong, Annuity_bar, PublicSentiment},
+  data()　{
+    return {
+      gaugeData: {
+        dataId: 1,
+        displayMode: "gauge",
+        startTime: null,
+        endTime: null,
+        predictStartTime: null,
+        predictEndTime: null,
+        chartOption: {
+          dataId: 1,
+          dataName: "gauge1",
+          displayableMode: ["gauge"],
+          keyLabel: null,
+          keyUnit: null,
+          valueLabel: null,
+          valueUnit: null,
+          numPrecision: 1.0,
+          maxValue: 100,
+          minValue: 0,
+          dataColor: ['#7CFFB2', '#58D9F9', '#FDDD60', '#FF6E76'],
+          isPredict: true,
+          isInfo: false,
+          data: [
+            ["2024-3-28T00:25:52"],
+            [80]
+          ]
+        }
+      },
+      counter1: 0,
+      counter2: 0,
+      maxCounter1: 125811899,//有关最终养老金收入和支出的情况
+      maxCounter2: 39124108,//有关最终养老金收入和支出的情况
+      showElement: false,
+    }
+  },
   methods: {
+    startCounter() {
+      setInterval(() => {//设置动态数字的加载间隔
+        if (this.counter1 < this.maxCounter1) {
+          if (this.maxCounter1 - this.counter1 < 12000) { // 如果接近最大值
+            this.counter1 = this.maxCounter1; // 直接设置为最大值
+          }else {
+            this.counter1 += 100000;
+          }
+        }
+        if(this.counter2 < this.maxCounter2) {
+          if (this.maxCounter2 - this.counter2 < 8000) { // 如果接近最大值
+            this.counter2 = this.maxCounter2; // 直接设置为最大值
+          } else {
+            this.counter2 += 8000;
+          }
+        }
+      },0.1)
+    },
     echarts_1() {
       var that = this;
       // 基于准备好的dom，初始化echarts实例
@@ -166,16 +234,49 @@ export default {
       setTimeout(()=>{
         this.echarts_1();
       },1000)
+        setTimeout(() => {
+          this.showElement = true;
+        }, 500);
     }
   },
   mounted() {
     this.load();
+    this.startCounter();
   }
 }
 </script>
 
 <style scoped>
 
+.fade-enter-active {
+  animation: zoomInOut .5s;
+}
+.fade-enter {
+  opacity: 0;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.icon-color{
+  color:#2f89cf;
+  font-size: 11px;
+  position: absolute;
+  top:0;
+  right:0;
+}
 .main-box > ul {
 }
 
@@ -300,4 +401,5 @@ export default {
   left: 1.75rem;
   z-index: 1;
 }
+
 </style>

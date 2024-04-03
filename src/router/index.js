@@ -80,7 +80,22 @@ const routes = [
         }
       }
     ]
-  }
+  },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      {
+        path: '/test5',
+        name: 'test5',
+        component: () => import('@/views/GDProvince/index.vue'),
+        meta: {
+          title: '广东省区域大屏信息',
+          miniTitle: '广东省',
+        }
+      }
+    ]
+  },
 ]
 
 const router = new VueRouter({

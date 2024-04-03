@@ -62,7 +62,7 @@ export default {
   computed: {
     optionSingleHeight () {
       return {
-        singleHeight: 43.5
+        singleHeight: 43.8
       }
     }
   },

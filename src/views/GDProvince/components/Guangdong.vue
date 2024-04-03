@@ -27,9 +27,10 @@ export default {
           transitionDuration: 2,
         },
         visualMap: {
-          left: 'right',
-          min: 200,
-          max: 15000,
+          right: '2%',
+          bottom: '15%',
+          min: 2000,
+          max: 150000,
           inRange: {
             color: [
               '#e0f7fa',
@@ -40,6 +41,10 @@ export default {
             ]
           },
           text: ['High', 'Low'],
+          textStyle: {
+            color: 'lightblue',
+            fontSize: 12,
+          },
           calculable:true
         },
         series: [
@@ -147,16 +152,16 @@ export default {
         myChart.resize();
       })
     },
-    handleChartClick(params) {
-      // params.data 包含了用户点击的数据
-      var data = params.data;
-      console.log(data);
-    }
+    // handleChartClick(params) {
+    //   // params.data 包含了用户点击的数据
+    //   var data = params.data;
+    //   console.log(data);
+    // }
   },
   mounted() {
     this.$nextTick(() => {
       this.map();
-      this.myChart.on('click', this.handleChartClick);
+      //this.myChart.on('click', this.handleChartClick);
     });
   }
 }
@@ -166,6 +171,6 @@ export default {
 <style scoped>
 #gd-map {
   width: 100%;
-  height: 3.7rem;
+  height: 6.8rem;
 }
 </style>
