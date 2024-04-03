@@ -1,11 +1,10 @@
-DROP DATABASE IF EXISTS intelligent_cal;
-CREATE DATABASE intelligent_cal;
-USE intelligent_cal;
+DROP DATABASE IF EXISTS calc;
+CREATE DATABASE calc;
+USE calc;
 /****************************************************
   *                                                 *
   *         养老保险大数据测算平台数据库设计v1           *
   *                                                 *
-  *  数据库名称：intelligent_cal  代码撰写者：Jackie    *
   *    数据库编码：UTF-8        数据库引擎：InnoDB      *
 *****************************************************/
 
@@ -218,8 +217,8 @@ CREATE TABLE t_yctxcs_plan_index_age_his
 -- -------------------------
 -- 9 测算城镇化率参数表
 -- -------------------------
-DROP TABLE IF EXISTS t_yctxcs_plan_urban;
-CREATE TABLE t_yctxcs_plan_urban
+DROP TABLE IF EXISTS t_yctxcs_plan_index_urban;
+CREATE TABLE t_yctxcs_plan_index_urban
 (
     id                  BIGINT(20)    NOT NULL AUTO_INCREMENT COMMENT '主键id',
     year                INT           NOT NULL COMMENT '年份',
@@ -474,6 +473,8 @@ CREATE TABLE screen_detail_data
     display_mode        VARCHAR(20) NOT NULL COMMENT '图表类型，参照CHART_TYPE字典',
     start_time          DATETIME    NOT NULL COMMENT '数据开始时间',
     end_time            DATETIME    NOT NULL COMMENT '数据结束时间',
+    -- predict switch is decided by the screen user
+    -- is_predict          VARCHAR(1)  NOT NULL COMMENT '是否是预测数据，N-否，Y-是',
     predict_start_time  DATETIME    NOT NULL COMMENT '预测数据开始时间',
     predict_end_time    DATETIME    NOT NULL COMMENT '预测数据结束时间',
     last_update_user_id BIGINT(20) COMMENT '最后更新人id',
