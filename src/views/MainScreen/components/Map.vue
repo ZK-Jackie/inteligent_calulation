@@ -1,5 +1,9 @@
 <template>
-  <div id="china-map"></div>
+  <div id="china-map">
+<!--    <div>-->
+<!--      审图号：GS（2024）0568号-->
+<!--    </div>-->
+  </div>
 </template>
 
 <script>
@@ -25,7 +29,8 @@ export default {
             axisType: 'category',
             autoPlay: true,
             playInterval: 1500,
-            bottom:'20%',
+            bottom:'23%',
+            left:'15%',
             animationDurationUpdate: 1000, // 动画的持续时间，单位为毫秒
             animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
             data: [
@@ -40,6 +45,12 @@ export default {
                 return new Date(s).getFullYear();
               }
             },
+            controlStyle:{
+              showNextBtn: false,
+              showPrevBtn: false,//是否展示时间轴左右的箭头
+              itemSize:30,//设置暂停键的大小
+              itemGap: 35,//设置暂停键与时间轴之间的间距
+            }
           },
           tooltip: {
             trigger: 'item',

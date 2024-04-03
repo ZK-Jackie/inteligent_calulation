@@ -115,22 +115,26 @@ export default {
   },
   methods: {
     startCounter() {
-      setInterval(() => {//设置动态数字的加载间隔
+      let time = 0;
+      setInterval(() => {
+        time += 19;
         if (this.counter1 < this.maxCounter1) {
-          if (this.maxCounter1 - this.counter1 < 12000) { // 如果接近最大值
+          const increment = time * time; // 使用二次函数来计算增量
+          if (this.maxCounter1 - this.counter1 < increment) { // 如果接近最大值
             this.counter1 = this.maxCounter1; // 直接设置为最大值
-          }else {
-            this.counter1 += 100000;
+          } else {
+            this.counter1 += increment;
           }
         }
         if(this.counter2 < this.maxCounter2) {
-          if (this.maxCounter2 - this.counter2 < 8000) { // 如果接近最大值
+          const increment = time * time; // 使用二次函数来计算增量
+          if (this.maxCounter2 - this.counter2 < increment) { // 如果接近最大值
             this.counter2 = this.maxCounter2; // 直接设置为最大值
           } else {
-            this.counter2 += 8000;
+            this.counter2 += increment;
           }
         }
-      },0.1)
+      }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
     echarts_1() {
       var that = this;

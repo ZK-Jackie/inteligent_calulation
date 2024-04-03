@@ -74,7 +74,7 @@ import Block from "@/components/hoc/block.vue";
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 
 export default {
-  components: {Map, Block,Guangdong},
+  components: {Block,Guangdong},
   data() {
     return{
       num1: 0,
@@ -82,26 +82,31 @@ export default {
       maxNum1: 38581413,//有关最终养老金收入和支出的情况
       maxNum2: 33136439,//有关最终养老金收入和支出的情况
       showElement: false,
+
     }
   },
   methods: {
     startCounter() {
-      setInterval(() => {//设置动态数字的加载间隔
+      let time = 0;
+      setInterval(() => {
+        time += 13;
         if (this.num1 < this.maxNum1) {
-          if (this.maxNum1- this.num1 < 12000) { // 如果接近最大值
+          const increment = time * time; // 使用二次函数来计算增量
+          if (this.maxNum1 - this.num1 < increment) { // 如果接近最大值
             this.num1 = this.maxNum1; // 直接设置为最大值
-          }else {
-            this.num1 += 10000;
+          } else {
+            this.num1 += increment;
           }
         }
         if(this.num2 < this.maxNum2) {
-          if (this.maxNum2 - this.num2 < 8000) { // 如果接近最大值
+          const increment = time * time; // 使用二次函数来计算增量
+          if (this.maxNum2- this.num2 < increment) { // 如果接近最大值
             this.num2 = this.maxNum2; // 直接设置为最大值
           } else {
-            this.num2 += 8000;
+            this.num2 += increment;
           }
         }
-      },0.1)
+      }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
     echarts_1() {
       var that = this;

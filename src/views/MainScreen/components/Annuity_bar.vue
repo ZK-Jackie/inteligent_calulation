@@ -33,7 +33,14 @@ export default {
             type: 'shadow'
           }
         },
-        legend: {},
+        legend: {
+          textStyle: {
+            color: function (params) {
+              var colorList = ['#26c6da', '#909fe6'];
+              return colorList[params.dataIndex];
+            }
+          },
+        },
         grid: {
           left: '0%',
           right: '2%',
