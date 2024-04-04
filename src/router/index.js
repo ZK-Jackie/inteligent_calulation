@@ -96,6 +96,21 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      {
+        path: '/test',
+        name: 'test',
+        component: () => import('@/components/example.vue'),
+        meta: {
+          title: '测试专用',
+          miniTitle: '测试',
+        }
+      }
+    ]
+  },
 ]
 
 const router = new VueRouter({
