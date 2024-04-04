@@ -29,6 +29,9 @@ export default {
       deep: true
     }
   },
+  mounted() {
+    this.loadChartData();
+  },
   methods: {
     loadChartData() {
       this.loadChart();

@@ -12,8 +12,7 @@ export default {
      */
     detail: {
       type: Array,
-      required: false,
-      default: () => testData[3]  /** 2. switching test data */
+      required: true
     },
     /**
      * the type of the chart,
@@ -21,7 +20,7 @@ export default {
      */
     type: {
       type: String,
-      required: false,
+      required: true,
       default: "error"
     },
     /**
@@ -37,12 +36,12 @@ export default {
   },
   mounted() {
     // step1: get and formatter the type of the chart
-    // const chosenType = this.type.toLowerCase();
-    // if (['bar', 'gauge', 'line', 'ring', 'rose'].includes(chosenType)) {
-    //   this.chartType = chosenType;
-    // }else{
-    //   this.chartType = 'error';
-    // }
+    const chosenType = this.type.toLowerCase();
+    if (['bar', 'gauge', 'line', 'ring', 'rose'].includes(chosenType)) {
+      this.chartType = chosenType;
+    }else{
+      this.chartType = 'error';
+    }
     // step2: transform the data to the option of the chart
     this.chartOption = toOptions(this.detail);
   },
@@ -53,7 +52,7 @@ export default {
     return {
       chartData: testData,
       chartOption: [],
-      chartType: 'rose'     /** 1. switching test type */
+      chartType: ''     /** 1. switching test type */
     }
   },
 }

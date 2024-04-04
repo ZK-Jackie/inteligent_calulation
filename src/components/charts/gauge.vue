@@ -18,7 +18,8 @@ export default {
       required: true,
       default: []
     }
-  },watch: {
+  },
+  watch: {
     options: {
       handler: function (newVal) {
         if (newVal) {
@@ -28,11 +29,15 @@ export default {
       deep: true
     }
   },
+  mounted() {
+    this.loadChartData();
+  },
   methods: {
     loadChartData() {
       this.loadChart();
     },
     loadChart() {
+      alert()
       const that = this;
       const chart = this.$echarts.init(document.getElementById('chart-item-gauge-' + that.id));
       const option = {
@@ -76,7 +81,7 @@ export default {
               }
             },
             axisLabel: {
-              color: '#464646',
+              color: 'rgba(255,255,255,.6)',
               fontSize: 20,
               distance: -60,
               rotate: 'tangential',
