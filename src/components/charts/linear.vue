@@ -1,77 +1,35 @@
 <script>
-import {UUID} from "@/utils/string";
+import {UUID} from '@/utils/string'
+import {formatNumber} from "@/utils/number";
 
 export default {
-  name: 'LinearChart',
+  name: 'BarChart',
   props: {
-    data: {
-      type: Object,
-      required: true,
-      default: [
-        {
-          dataId: 1,
-          displayMode: "linear",
-          startTime: "2020",
-          endTime: "2026",
-          predictStartTime: "2024",
-          predictEndTime: "2026",
-          chartOption: {
-            dataId: 1,
-            dataName: "series1",
-            displayableMode: ["bar", "linear"],
-            keyLabel: "x",
-            keyUnit: "年",
-            valueLabel: "y",
-            valueUnit: "元",
-            numPrecision: 1.0,
-            maxValue: 800,
-            minValue: 0,
-            dataColor: '#2f89cf',
-            isPredict: true,
-            isInfo: false,
-            data: [
-              [2020, 2021, 2022, 2023, 2024, 2025, 2026],
-              [100, 200, 300, 400, 500, 600, 700]
-            ]
-          }
-        },
-        {
-          dataId: 2,
-          displayMode: "linear",
-          startTime: "2020",
-          endTime: "2026",
-          predictStartTime: "2024",
-          predictEndTime: "2026",
-          chartOption: {
-            dataId: 2,
-            dataName: "series2",
-            displayableMode: ["bar", "linear"],
-            keyLabel: "x",
-            keyUnit: "年",
-            valueLabel: "y",
-            valueUnit: "元",
-            numPrecision: 1.00,
-            maxValue: 700,
-            minValue: 100,
-            dataColor: '#27d08a',
-            isPredict: false,
-            isInfo: false,
-            data: [
-              [2020, 2021, 2022, 2023, 2024, 2025, 2026],
-              [700, 600, 500, 400, 300, 200, 100]
-            ]
-          }
-        }
-      ]
-    },
     id: {
       type: String,
       required: false,
       default: UUID()
+    },
+    /**
+     * the specific data and style of the chart
+     * @type {Array} Need an array consists of max to two JSON elements
+     */
+    options: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    options: {
+      handler: function (newVal) {
+        if (newVal) {
+          this.loadChartData();
+        }
+      },
+      deep: true
     }
   },
   mounted() {
-    this.loadChartData();
   },
   methods: {
     loadChartData() {
@@ -79,28 +37,31 @@ export default {
     },
     loadChart() {
       const that = this;
-      const eCharts = this.$echarts.init(document.getElementById('chart-item-linear' + that.id));
-      const data = JSON.parse(JSON.stringify(that.data));
-      const option = {
+      const chart = this.$echarts.init(document.getElementById('chart-item-linear-' + that.id));
+      let option = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
             lineStyle: {
               color: '#dddc6b'
             }
-          }
+          },
+          formatter: ''           /**设置项1：数据提示悬浮框内容**/
         },
         legend: {
           top: '0%',
-          data: [],
-          color: 'rgba(255,255,255,.5)',
+          data: [],               /**设置项2：图例**/
+          inactiveColor: 'rgba(255,255,255,.2)',  // 未激活时的颜色
+          textStyle: {
+            color: "rgba(255,255,255,.6)"  // 激活时的颜色
+          },
           fontSize: '12',
         },
         grid: {
-          left: '10',
-          top: '30',
-          right: '10',
-          bottom: '10',
+          left: '1%',
+          top: '4%',
+          right: '1%',
+          bottom: '5%',
           containLabel: true
         },
         xAxis: [{
@@ -115,19 +76,18 @@ export default {
               color: 'rgba(255,255,255,.2)'
             }
           },
-          data: []
-        }, {
-          axisPointer: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
+          data: []            /**设置项3：x轴标签**/
+        },
+        {
+          axisPointer: {show: false},
+          axisLine: {show: false},
           position: 'bottom',
           offset: 20,
         }],
         yAxis: [{
           type: 'value',
+          min: -1,             /**设置项4：y轴最值*/
+          max: -1,
           axisTick: {
             show: false
           },
@@ -137,6 +97,7 @@ export default {
             }
           },
           axisLabel: {
+            formatter: '{value}',    /**设置项5：y轴数据单位**/
             color: "rgba(255,255,255,.6)",
             fontSize: 12,
           },
@@ -146,130 +107,182 @@ export default {
             }
           }
         }],
-        series: []
+        series: []                /**设置项6：图标数据**/
       };
       // 填充数据
-      // 横坐标标签
-      option.xAxis[0].data = data[0].data[0]
+      /***************纵坐标轴***************/
+      // 单位
+      // option.yAxis[0].axisLabel.formatter += that.options[0].valueUnit
+      // 最值
+      option.yAxis[0].min = that.options[0].minValue;
+      option.yAxis[0].max = that.options[0].maxValue;
+      /*************纵坐标轴结束*************/
+
+      /***************横坐标轴***************/
+      // 标签
+      option.xAxis[0].data = that.options[0].xAxisTags;
+      /*************横坐标轴结束*************/
+
+      /************数据提示悬浮框************/
+      option.tooltip.formatter =  function (params) {
+        let res = params[0].name + that.options[0].keyUnit + '<br/>';
+        for (let i = 0, l = params.length; i < l; i++) {
+          let seriesName = params[i].seriesName.split('预测')[0];
+          let isPredict = params[i].seriesName.includes('预测');
+          // 1. 有该系列且当前还要新增该系列的预测，不允许，跳过；
+          if(res.includes(seriesName) && isPredict) continue;
+          // 2. 从第2,3个参数中获取精度和单位
+          res += params[i].marker + params[i].seriesName + ' : <b>' + formatNumber(params[i].value[1], params[i].value[2]) + params[i].value[3] + '</b><br/>';
+        }
+        return res;
+      }
+      /**********数据提示悬浮框结束**********/
+
+      option.legend.data = [];
+      option.series = [];
+      /**************数据系列1**************/
       // 1. 系列名字
-      option.legend[0] = data[0].dataName
+      option.legend.data.push(that.options[0].dataName);
       // 2. 系列样式及数据
-      option.series[0] = {
-        name: data[0].dataName,
-        data: data[0].data[1],
+      option.series.push({
+        name: that.options[0].dataName,
         type: 'line',
         smooth: true,
         symbol: 'circle',
         symbolSize: 5,
         showSymbol: false,
         lineStyle: {
-          color: data[0].dataColor,
+          color: that.options[0].dataColor[0],
           width: 2
         },
         areaStyle: {
           color: new that.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
             color: 'rgba(1, 132, 213, 0.4)'
-          }, {
-            offset: 0.8,
-            color: 'rgba(1, 132, 213, 0.1)'
-          }], false),
+          },
+            {
+              offset: 0.8,
+              color: 'rgba(1, 132, 213, 0.1)'
+            }], false),
           shadowColor: 'rgba(0, 0, 0, 0.1)',
         },
         itemStyle: {
-          color: data[0].dataColor,
-          borderColor: 'rgba(221, 220, 107, .1)',
+          color: that.options[0].dataColor[0],
+          borderColor: 'rgba(221,220,107,.1)',
           borderWidth: 12
         },
-      };
+        data: that.options[0].data.slice()  // copy list instead of reference
+      });
       // 3. 若为预测数据，则设置虚线样式
-      if (data[0].isPredict) {
-        option.series[0] = {
-          name: data[0].dataName,
-          type: 'line',
-          data: data[0].data[1].slice(0, 1), // 取前三个数据点
-          lineStyle: {
-            type: 'solid' // 实线
-          }
-        };
-
-        option.series[1] = {
-          name: data[0].dataName,
-          type: 'line',
-          data: data[0].data[1].slice(1), // 取剩余的数据点
-          lineStyle: {
-            type: 'dashed' // 虚线
-          }
-        };
-      }
-
-      if (data.series > 1) {
-        // 1. 系列名字
-        option.legend[1] = data[1].dataName
-        // 2. 系列样式及数据
-        option.series[1] = {
-          name: data[1].dataName,
+      if (that.options[0].isPredict) {
+        // 3.1 系列名字
+        option.legend.data.push(that.options[0].dataName + "预测");
+        // 3.2 系列样式及数据
+        let tempArr = [];
+        for (let i = 0; i < that.options[0].data.length - 1; i++) {
+          tempArr.push(null);
+        }
+        tempArr.push(that.options[0].data[that.options[0].data.length - 1]);
+        tempArr = tempArr.concat(that.options[0].predictData);
+        option.series.push({
+          name: that.options[0].dataName + '预测',
           type: 'line',
           smooth: true,
           symbol: 'circle',
           symbolSize: 5,
           showSymbol: false,
           lineStyle: {
-            color: data[1].dataColor,
+            color: that.options[0].dataColor[0],
+            width: 2,
+            type: 'dotted'
+          },
+          data: tempArr,
+          itemStyle: {
+            color: that.options[0].dataColor[0],
+            width: 2
+          }
+        })
+      }
+      /************数据系列1结束************/
+
+      /*************数据系列2*************/
+      if (that.options[1] !== undefined || that.options[1] !== null) {
+        // 1. 系列名字
+        option.legend.data.push(that.options[1].dataName);
+        // 2. 系列样式及数据
+        option.series.push({
+          name: that.options[1].dataName,
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 5,
+          showSymbol: false,
+          lineStyle: {
+            color: that.options[1].dataColor[0],
             width: 2
           },
           areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            color: new that.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
               offset: 0,
-              color: 'rgba(0, 216, 135, 0.4)'
-            }, {
+              color: 'rgba(1, 132, 213, 0.4)'
+            },
+            {
               offset: 0.8,
-              color: 'rgba(0, 216, 135, 0.1)'
+              color: 'rgba(1, 132, 213, 0.1)'
             }], false),
             shadowColor: 'rgba(0, 0, 0, 0.1)',
           },
           itemStyle: {
-            color: data[1].dataColor,
-            borderColor: 'rgba(221, 220, 107, .1)',
+            color: that.options[1].dataColor[0],
+            borderColor: 'rgba(221,220,107,.1)',
             borderWidth: 12
           },
-        };
+          data: that.options[1].data.slice()  // copy list instead of reference
+        });
         // 3. 若为预测数据，则设置虚线样式
-        if (data[1].isPredict) {
-          option.series[1] = {
-            name: data[1].dataName,
+        if (that.options[1].isPredict) {
+          // 3.1 系列名字
+          option.legend.data.push(that.options[1].dataName + "预测");
+          // 3.2 系列样式及数据
+          let tempArr = [];
+          for (let i = 0; i < that.options[1].data.length - 1; i++) {
+            tempArr.push(null);
+          }
+          tempArr.push(that.options[1].data[that.options[1].data.length - 1]);
+          tempArr = tempArr.concat(that.options[1].predictData);
+          option.series.push({
+            name: that.options[1].dataName + '预测',
             type: 'line',
-            data: data[1].data[1].slice(0, 1), // 取前三个数据点
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 5,
+            showSymbol: false,
             lineStyle: {
-              type: 'solid' // 实线
+              color: that.options[1].dataColor[0],
+              width: 2,
+              type: 'dotted'
+            },
+            data: tempArr,
+            itemStyle: {
+              color: that.options[1].dataColor[0],
+              width: 2
             }
-          };
-
-          option.series[1] = {
-            name: data[1].dataName,
-            type: 'line',
-            data: data[1].data[1].slice(1), // 取剩余的数据点
-            lineStyle: {
-              type: 'dashed' // 虚线
-            }
-          };
+          })
         }
       }
-
-      // 使用刚指定的配置项和数据显示图表。
-      eCharts.setOption(option);
+      /************数据系列2结束************/
+      chart && chart.setOption(option);
       window.addEventListener("resize", function () {
-        eCharts.resize();
+        chart.resize();
       });
-    }
+    },
   },
 }
 </script>
 
 <template>
-  <div
-      class="chart-item-line"
-      :id="'chart-item-linear-'+ id"
-      style="width: 100%; height: 100%;">
+  <div class="chart-item-linear"
+       :id="'chart-item-linear-' + id"
+       style="width: 100%; height: 100%;">
   </div>
 </template>

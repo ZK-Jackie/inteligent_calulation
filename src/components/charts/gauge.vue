@@ -1,65 +1,40 @@
 <script>
-import {arraySum} from "@/utils/array";
 import {UUID} from "@/utils/string";
+import {formatNumber} from "@/utils/number";
 
 export default {
   props: {
-    data: {
-      type: Object,
-      required: true,
-      default: [
-        {
-          dataId: 1,
-          displayMode: "gauge",
-          startTime: null,
-          endTime: null,
-          predictStartTime: null,
-          predictEndTime: null,
-          chartOption: {
-            dataId: 1,
-            dataName: "gauge1",
-            displayableMode: ["gauge"],
-            keyLabel: null,
-            keyUnit: null,
-            valueLabel: null,
-            valueUnit: null,
-            numPrecision: 1.0,
-            maxValue: 100,
-            minValue: 0,
-            dataColor: ['#7CFFB2', '#58D9F9', '#FDDD60', '#FF6E76'],
-            isPredict: true,
-            isInfo: false,
-            data: [
-              ["2024-3-28T00:25:52"],
-              [80]
-            ]
-          }
-        },
-      ]
-    },
     id: {
       type: String,
       required: false,
       default: UUID()
+    },
+    /**
+     * the specific data and style of the chart
+     * @type {Array} Need an array consists of max to two JSON elements
+     */
+    options: {
+      type: Array,
+      required: true,
+      default: []
     }
-  },
-  mounted() {
-    this.loadChartData();
+  },watch: {
+    options: {
+      handler: function (newVal) {
+        if (newVal) {
+          this.loadChartData();
+        }
+      },
+      deep: true
+    }
   },
   methods: {
     loadChartData() {
-      // getCharts()
-      /* TODO 图表数据校验
-      * 1. series数量对应情况：series.length === seriesName.length，series.length === values.length
-      * 2. key&value数量对应：keys.length === values[].length
-      * 若出错，返回感叹号错误提示和错误码
-      * */
       this.loadChart();
     },
     loadChart() {
       const that = this;
-      const eCharts = this.$echarts.init(document.getElementById('chart-item-gauge-' + that.id));
-      const data = JSON.parse(JSON.stringify(that.data));
+      const chart = this.$echarts.init(document.getElementById('chart-item-gauge-' + that.id));
       const option = {
         series: [
           {
@@ -74,12 +49,7 @@ export default {
             axisLine: {
               lineStyle: {
                 width: 6,
-                color: [
-                  [0.25, data[0].chartOption.dataColor[0]],
-                  [0.5, data[0].chartOption.dataColor[1]],
-                  [0.75, data[0].chartOption.dataColor[2]],
-                  [1, data[0].chartOption.dataColor[3]]
-                ]
+                color: [] // 设置项1：色系
               }
             },
             pointer: {
@@ -110,18 +80,7 @@ export default {
               fontSize: 20,
               distance: -60,
               rotate: 'tangential',
-              formatter: function (value) {
-                if (value === 0.875) {
-                  return '危险';
-                } else if (value === 0.625) {
-                  return '一般';
-                } else if (value === 0.375) {
-                  return '良好';
-                } else if (value === 0.125) {
-                  return '极佳';
-                }
-                return '';
-              }
+              formatter: ''  // 设置项2：刻度标签
             },
             title: {
               offsetCenter: [0, '-10%'],
@@ -136,19 +95,42 @@ export default {
               },
               color: 'inherit'
             },
-            data: [
-              {
-                value: data[0].chartOption.data[1][0],
-                name: data[0].chartOption.dataName
-              }
-            ]
+            data: []
           }
         ]
       };
-      // 使用刚指定的配置项和数据显示图表。
-      eCharts.setOption(option);
+      // 填充数据
+      /**********色系***********/
+      option.series[0].axisLine.lineStyle.color = [
+        [0.25, that.options[0].dataColor[0]],
+        [0.5, that.options[0].dataColor[1]],
+        [0.75, that.options[0].dataColor[2]],
+        [1, that.options[0].dataColor[3]]
+      ];
+      /*********刻度标签*********/
+      option.series[0].axisLabel.formatter = function (value) {
+        if (value === 0.875) {
+          return that.options[0].xAxisTags[3];
+        } else if (value === 0.625) {
+          return that.options[0].xAxisTags[2];
+        } else if (value === 0.375) {
+          return that.options[0].xAxisTags[1];
+        } else if (value === 0.125) {
+          return that.options[0].xAxisTags[0];
+        }
+        return '';
+      }
+      /*********数据*********/
+      option.series[0].data = [
+        {
+          value: formatNumber(that.options[0].data[1], that.options[0].numPrecision),
+          name: that.options[0].data[0]
+        }
+      ];
+      // 使用刚指定的配置项和数据显示图表
+      chart.setOption(option);
       window.addEventListener("resize", function () {
-        eCharts.resize();
+        chart.resize();
       });
     }
   },

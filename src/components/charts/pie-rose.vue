@@ -1,82 +1,105 @@
 <script>
-import * as echarts from "echarts";
-// import {getCharts} from '@/api/charts'
+import {formatNumber} from "@/utils/number";
+import {UUID} from "@/utils/string";
 
 export default {
-  name: 'chartItem',
+  name: 'RosePieChart',
   props: {
-    data: {
-      type: Object,
-      required: true
-    },
-    name: {
+    id: {
       type: String,
-      required: true,
+      required: false,
+      default: UUID()
+    },
+    /**
+     * the specific data and style of the chart
+     * @type {Array} Need an array consists of max to two JSON elements
+     */
+    options: {
+      type: Array,
+      required: true
     }
   },
-  mounted() {
-    this.loadChartData();
+  watch: {
+    options: {
+      handler: function (newVal) {
+        if (newVal) {
+          this.loadChartData();
+        }
+      },
+      deep: true
+    }
   },
   methods: {
     loadChartData() {
-      // getCharts()
-      /* TODO 图表数据校验
-      * 1. series数量对应情况：series.length === seriesName.length，series.length === values.length
-      * 2. key&value数量对应：keys.length === values[].length
-      * 若出错，返回感叹号错误提示和错误码
-      * */
       this.loadChart();
     },
     loadChart() {
       const that = this;
-      const eCharts = echarts.init(document.getElementById('chart-item-' + that.chartTitle));
-      const data = JSON.parse(JSON.stringify(that.data));
+      const chart = this.$echarts.init(document.getElementById('chart-item-rose-' + that.id));
       const option = {
         tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
+          formatter: '',           /**设置项1：数据提示悬浮框内容**/
           position: function (p) {   //其中p为当前鼠标的位置
             return [p[0] + 10, p[1] - 10];
           }
         },
         legend: {
-          top: '85%',
-          itemWidth: 10,
-          itemHeight: 10,
-          data: data.keys,
+          top: '0%',
+          // itemWidth: 10,
+          // itemHeight: 10,
+          data: [],               /**设置项2：图例**/
+          inactiveColor: 'rgba(255,255,255,.2)',  // 未激活时的颜色
           textStyle: {
-            color: 'rgba(255,255,255,.5)',
-            fontSize: '12',
-          }
+            color: "rgba(255,255,255,.6)",  // 激活时的颜色
+          },
+          fontSize: '12',
         },
-        series: [
-          {
-            name: data.seriesName[0],
-            type: 'pie',
-            radius: ['20%', '80%'],
-            center: ['50%', '42%'],
-            color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
-            roseType: 'area',
-            label: {show: false},
-            labelLine: {show: false},
-            itemStyle: {
-              borderRadius: 8
-            },
-            data: []
-          }
-        ]
+        series: []
       };
       // 填充数据
-      option.series[0].data = data.keys.map((key, index) => {
-        return {
-          value: data.values[0][index],
-          name: key
-        }
+      /************数据提示悬浮框************/
+      option.tooltip.formatter = function (params){
+        let res = params.seriesName + '<br/>';
+        res += params.marker + params.data.name + ': <b>' + formatNumber(params.data.value, params.data.numPrecision) + params.data.valueUnit + ' (' + params.percent + '%)</b>';
+        return res;
+      };
+      /**********数据提示悬浮框结束**********/
+
+      /**************数据系列**************/
+      let tempArr = [];
+      for (let i = 0; i < that.options[0].data.length; i++) {
+        option.legend.data.push(that.options[0].xAxisTags[that.options[0].data[i][0]]+"");
+        tempArr.push({
+          value: that.options[0].data[i][1],
+          name: that.options[0].xAxisTags[that.options[0].data[i][0]],
+          numPrecision: that.options[0].numPrecision,
+          valueUnit: that.options[0].valueUnit
+        });
+      }
+      option.series.push({
+        name: that.options[0].dataName,
+        type: 'pie',
+        center: ['50%', '40%'],
+        radius: ['20%', '70%'],
+        color: that.options[0].dataColor,
+        roseType: 'area',
+        label: {
+          show: false
+        },
+        labelLine: {
+          show: false
+        },
+        itemStyle:{
+          borderRadius: 10,
+          borderWidth: 2
+        },
+        data: tempArr
       });
-      // 使用刚指定的配置项和数据显示图表。
-      eCharts.setOption(option);
+      /**************数据系列**************/
+      chart && chart.setOption(option);
       window.addEventListener("resize", function () {
-        eCharts.resize();
+        chart.resize();
       });
     }
   },
@@ -86,7 +109,7 @@ export default {
 <template>
   <div
       class="chart-item-rose"
-      :id="'chart-item-rose-'+ name"
+      :id="'chart-item-rose-' + id"
       style="width: 100%; height: 100%;">
   </div>
 </template>

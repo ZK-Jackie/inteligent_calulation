@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Hoc',
+  name: 'HocBlock',
   props: {
     height: {
       type: String,

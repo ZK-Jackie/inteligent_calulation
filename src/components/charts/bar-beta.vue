@@ -120,7 +120,7 @@ export default {
       // 填充数据
       /***************纵坐标轴***************/
       // 单位
-      option.yAxis[0].axisLabel.formatter += that.options[0].valueUnit
+      // option.yAxis[0].axisLabel.formatter += that.options[0].valueUnit
       // 最值
       option.yAxis[0].min = that.options[0].minValue
       option.yAxis[0].max = that.options[0].maxValue
@@ -146,87 +146,112 @@ export default {
       }
       /**********数据提示悬浮框结束**********/
 
+      option.legend.data = [];
+      option.series = [];
       /**************数据系列1**************/
       // 1. 系列名字
-      option.legend.data[0] = that.options[0].dataName
+      option.legend.data.push(that.options[0].dataName);
       // 2. 系列样式及数据
-      option.series[0] = {
+      option.series.push({
         type: 'bar',
         name: that.options[0].dataName,
         data: that.options[0].data.slice(), // copy list instead of reference
         barWidth: '35%', //柱子宽度
-        barCategoryGap: '35%',
+        barGap: '0%',
+        // barCategoryGap: '35%',
         itemStyle: {
           color: that.options[0].dataColor[0],
           opacity: 1,
           borderRadius: 5,
         },
-      };
-      // 3. 若为预测数据，则设置渐变样式
+      });
+      // 3. 若为预测数据
       if (that.options[0].isPredict) {
-        let predictStyle = {
-          color: new this.$echarts.graphic.LinearGradient(
-              0, 1, 0, 0,
-              [
-                {offset: 0, color: '#83bff6'},
-                {offset: 0.5, color: '#188df0'},
-                {offset: 1, color: '#188df0'}
-              ]
-          ),
-          opacity: 1,
-          borderRadius: 5
+        // 3.1 系列名字
+        option.legend.data.push(that.options[0].dataName + "预测");
+        // 3.2 系列样式及数据（与折线图不同之处不用把最后一个数据塞入temp中）
+        let tempArr = [];
+        for (let i = 0; i < that.options[0].data.length; i++) {
+          option.series[0].data.push(NaN);
+          tempArr.push(NaN);
         }
-        for(let i = 0; i < that.options[0].predictData.length; i++){
-          option.series[0].data.push({
-            value: that.options[0].predictData[i],
-            itemStyle: predictStyle
-          })
-        }
+        tempArr = tempArr.concat(that.options[0].predictData);
+        option.series.push({
+          type: 'bar',
+          name: that.options[0].dataName + "预测",
+          data: tempArr,
+          barGap: '0%',
+          barWidth: '35%', //柱子宽度
+          // barCategoryGap: '35%',
+          itemStyle: {
+            color: new this.$echarts.graphic.LinearGradient(
+                0, 1, 0, 0,
+                [
+                  {offset: 0, color: '#83bff6'},
+                  {offset: 0.5, color: '#188df0'},
+                  {offset: 1, color: '#188df0'}
+                ]
+            ),
+            opacity: 1,
+            borderRadius: 5
+          }
+        });
       }
       /************数据系列1结束************/
 
       /*************数据系列2*************/
       if (that.options[1] !== undefined || that.options[1] !== null) {
         // 1. 系列名字
-        option.legend.data[1] = that.options[1].dataName
+        option.legend.data.push(that.options[1].dataName);
         // 2. 系列样式及数据
-        option.series[1] = {
+        option.series.push({
           type: 'bar',
           name: that.options[1].dataName,
           data: that.options[1].data.slice(), // copy list instead of reference
           barWidth: '35%', //柱子宽度
-          barCategoryGap: '35%',
+          barGap: '0%',
+          // barCategoryGap: '35%',
           itemStyle: {
             color: that.options[1].dataColor[0],
             opacity: 1,
             borderRadius: 5,
           }
-        };
+        });
+        // 3. 若为预测数据
         if (that.options[1].isPredict) {
-          let predictStyle = {
-            color: new this.$echarts.graphic.LinearGradient(
-                0, 1, 0, 0,
-                [
-                  {offset: 0, color: '#97fad1'},
-                  {offset: 0.5, color: '#53ecac'},
-                  {offset: 1, color: '#04b76e'}
-                ]
-            ),
-            opacity: 1,
-            borderRadius: 5
+          // 3.1 系列名字
+          option.legend.data.push(that.options[1].dataName + "预测");
+          // 3.2 系列样式及数据
+          let tempArr = [];
+          for (let i = 0; i < that.options[1].data.length - 1; i++) {
+            tempArr.push(NaN);
           }
-          for(let i = 0; i < that.options[1].predictData.length; i++){
-            option.series[1].data.push({
-              value: that.options[1].predictData[i],
-              itemStyle: predictStyle
-            })
-          }
+          tempArr = tempArr.concat(that.options[1].predictData);
+          option.series.push({
+            type: 'bar',
+            name: that.options[1].dataName + "预测",
+            data: tempArr,
+            barWidth: '35%', //柱子宽度
+            barGap: '0%',
+            // barCategoryGap: '35%',
+            itemStyle: {
+              color: new this.$echarts.graphic.LinearGradient(
+                  0, 1, 0, 0,
+                  [
+                    {offset: 0, color: '#83bff6'},
+                    {offset: 0.5, color: '#188df0'},
+                    {offset: 1, color: '#188df0'}
+                  ]
+              ),
+              opacity: 1,
+              borderRadius: 5
+            }
+          });
         }
       }
       /***********数据系列2结束***********/
 
-      // 使用刚指定的配置项和数据显示图表。
-      chart.setOption(option);
+      chart && chart.setOption(option);
       window.addEventListener("resize", function () {
         chart.resize();
       });
