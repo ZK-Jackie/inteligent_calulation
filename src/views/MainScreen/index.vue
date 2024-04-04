@@ -71,12 +71,11 @@ import * as echarts from "echarts";
 import PublicSentiment from "@/views/MainScreen/components/PublicSentiment.vue";
 import Annuity_bar from "@/views/MainScreen/components/Annuity_bar.vue";
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
-import Block from "@/components/hoc/block.vue";
 import Map from '@/views/MainScreen/components/Map.vue';
 import Gauge from '@/components/charts/gauge.vue';
 
 export default {
-  components: {Gauge,Map,Block,Guangdong, Annuity_bar, PublicSentiment},
+  components: {Gauge,Map,Guangdong, Annuity_bar, PublicSentiment},
   data()　{
     return {
       gaugeData: {

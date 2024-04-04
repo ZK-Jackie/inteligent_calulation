@@ -70,11 +70,10 @@
 
 <script>
 import * as echarts from "echarts";
-import Block from "@/components/hoc/block.vue";
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 
 export default {
-  components: {Block,Guangdong},
+  components: {Guangdong},
   data() {
     return{
       num1: 0,
