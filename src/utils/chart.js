@@ -2,16 +2,10 @@ export function toOptions(details) {
   // 0. check if the data is basically valid
   isValid(details);
   let ret = [];
-  // try {
-  //   details[0].startTime;
-  //   details[0].endTime;
-  //   details[0].predictStartTime;
-  //   details[0].predictEndTime;
-  // } catch (e) {
-  //   console.warn('[ChartMapper] ChartDetailWarning: Data limit is undefined');
-  //   ret.push(details[0].chartOption);
-  //   return ret;
-  // }
+  if(details[0].chartOption.isInfo){
+    ret.push(details[0].chartOption);
+    return ret;
+  }
   // 1. truncate the keys
   truncateKeys(details);
   // 2. merge keys and max/min value res
