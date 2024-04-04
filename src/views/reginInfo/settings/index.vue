@@ -30,7 +30,7 @@
 import Selector from "./parts/selector.vue";
 import Preview from "./parts/preview.vue";
 import Modifier from "./parts/modifier.vue";
-import Block from "@/components/hoc/block.vue";
+import Block from "@/components/block.vue";
 import Plan from "@/views/reginInfo/settings/parts/plan.vue";
 
 export default {

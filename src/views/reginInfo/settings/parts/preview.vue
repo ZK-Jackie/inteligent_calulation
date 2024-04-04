@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Block from "@/components/hoc/block.vue";
-import Chart from "@/components/charts/index.vue";
+import Block from "@/components/block.vue";
+import Chart from "@/components/chart.vue";
 
 export default {
   components: {
