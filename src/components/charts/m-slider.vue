@@ -1,0 +1,129 @@
+<template>
+  <div class="modifier-slider">
+    <el-select v-model="selectorValue"
+               placeholder="请选择"
+    style="margin: 0.1rem">
+      <el-option
+          v-for="item in selectorOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+      </el-option>
+    </el-select>
+    <el-slider
+        :id="'modifier-slider-' + id"
+        style="width: 100%; margin: 0.1rem"
+        v-model="sliderValue"
+        v-bind="sliderProps"
+        show-stops>
+    </el-slider>
+  </div>
+</template>
+
+<script>
+import {UUID} from "@/utils/string";
+import {countTrailingZeros} from "@/utils/number";
+import selector from "@/views/reginInfo/settings/selector.vue";
+
+export default {
+  name: 'ModifierSlider',
+  computed: {
+    selector() {
+      return selector
+    }
+  },
+  props: {
+    id: {
+      type: String,
+      default: () => UUID()
+    },
+    options: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    options: {
+      handler: function (newVal) {
+        if (newVal) {
+          this.loadChart();
+        }
+      },
+      deep: true
+    },
+  },
+  mounted() {
+    this.loadChart();
+  },
+  methods: {
+    loadChart() {
+      const that = this;
+      let tempArr = [];
+      tempArr.push(this.options[0].data[0][1] + 1);
+      tempArr.push(this.options[0].data[1][1] - 1);
+      this.sliderValue = tempArr;
+      this.sliderProps.min = this.options[0].data[0][1];
+      this.sliderProps.max = this.options[0].data[1][1];
+      this.sliderProps.step = Math.pow(1, countTrailingZeros(that.options[0].numPrecision));
+    }
+  },
+  data() {
+    return {
+      sliderProps: {
+        min: -1,
+        max: -1,
+        step: 1,
+        disabled: false,
+        // showInput: true,
+        // showInputControls: true,
+        // inputSize: 'small',
+        showStops: true,
+        showTooltip: true,
+        // formatTooltip: null,
+        range: true,
+        // vertical: false,
+        // height: '200',
+        // label: '',
+        // debounce: 300,
+        // tooltipClass: '',
+        // marks: {
+        //   0: '0%',
+        //   100: '100%'
+        // }
+      },
+      sliderValue: [200, 300],
+      selectorValue: '',
+      selectorOptions: [
+        {
+          value: '1',
+          label: '选项1'
+        },
+        {
+          value: '2',
+          label: '选项2'
+        },
+        {
+          value: '3',
+          label: '选项3'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style>
+.modifier-slider{
+  margin: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.el-tooltip__popper.is-dark {
+  background-color: whitesmoke;
+}
+
+.el-tooltip__popper.is-dark .el-tooltip__content {
+  color: white;
+}
+</style>

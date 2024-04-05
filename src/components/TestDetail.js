@@ -91,6 +91,7 @@ export const gaugeData = [
         [0.8]
       ],
       xAxisTags: ['低', '中', '高', '极高'],
+      // 经过index.vue处理过后，仅作基本的内容和合法性校验，数据层面不会发生任何变更
     }
   },
 ]
@@ -111,7 +112,7 @@ export const lineData = [
       keyUnit: "年",
       valueLabel: "y",
       valueUnit: "元",
-      numPrecision: '1.00',
+      numPrecision: '0.1',
       maxValue: 600,
       minValue: 0,
       dataColor: ['#2f89cf'],
@@ -147,7 +148,7 @@ export const lineData = [
       keyUnit: "年",
       valueLabel: "y",
       valueUnit: "元",
-      numPrecision: '1.00',
+      numPrecision: '1',
       maxValue: 700,
       minValue: 100,
       dataColor: ['#27d08a'],
@@ -200,4 +201,84 @@ export const pieData = [
   }
 ]
 
-export const testData= [barData, gaugeData, lineData, pieData];
+export const mLineData = [
+  {
+    dataId: 1,
+    displayMode: "line",
+    startTime: "2020",
+    endTime: "2026",
+    predictStartTime: "2024",
+    predictEndTime: "2026",
+    chartOption: {
+      dataId: 1,
+      dataName: "series1",
+      displayableMode: ["bar", "line"],
+      keyLabel: "x",
+      keyUnit: "年",
+      valueLabel: "y",
+      valueUnit: "元",
+      numPrecision: '0.1',
+      maxValue: 600,
+      minValue: 0,
+      dataColor: ['#2f89cf'],
+      isPredict: false,
+      isInfo: false,
+      isDefault: true,
+      data: [
+        [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+        [100, 200, 300, 400, 500, 600, 700]
+      ],
+      // 经过index.vue处理过后新增的属性，其中——
+      // 1. xAxisTags只放在第0个数据中,
+      // 2. predictData出现过的内容不会再出现在上面的data中，第1个数据中同理
+      // 3. data 和 predictData 都会变成 [[xAxisTagIndex1, 值1],[xAxisTagIndex2, 值2], ...]的形式
+      // xAxisTags: [],
+      // predictData: [
+      //   [2024, 2025, 2026],
+      //   [500, 400, 300]
+      // ]
+    }
+  }
+]
+
+export const mSliderData = [
+  {
+    dataId: 1,
+    displayMode: "mslider",
+    startTime: null,
+    endTime: null,
+    predictStartTime: null,
+    predictEndTime: null,
+    chartOption: {
+      dataId: 1,
+      dataName: "series1",
+      displayableMode: ["bar", "line"],
+      keyLabel: "x",
+      keyUnit: "年",
+      valueLabel: "y",
+      valueUnit: "元",
+      numPrecision: '0.1',
+      maxValue: 600,
+      minValue: 0,
+      dataColor: ['#2f89cf'],
+      isPredict: false,
+      isInfo: false,
+      isDefault: true,
+      data: [
+        ['起始年份', '终止年份'],
+        [2020, 2026]
+      ],
+      // 经过index.vue处理过后新增的属性，其中——
+      // 1. xAxisTags只放在第0个数据中,
+      // 2. predictData出现过的内容不会再出现在上面的data中，第1个数据中同理
+      // 3. data 和 predictData 都会变成 [[xAxisTagIndex1, 值1],[xAxisTagIndex2, 值2], ...]的形式
+      // xAxisTags: [],
+      // predictData: [
+      //   [2024, 2025, 2026],
+      //   [500, 400, 300]
+      // ]
+    }
+  }
+]
+
+export const testData= [barData, gaugeData, lineData, pieData, mLineData, mSliderData];
