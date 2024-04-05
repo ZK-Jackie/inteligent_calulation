@@ -18,3 +18,11 @@ export function UUID() {
     return v.toString(16);
   });
 }
+
+/**
+ * @param {string} str 字符串
+ * @return {string} 移除非字母字符后的字符串
+ */
+export function removeNonLetters(str) {
+  return str.replace(/[^a-zA-Z]/g, '');
+}
