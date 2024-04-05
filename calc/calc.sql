@@ -69,8 +69,8 @@ CREATE TABLE t_yctxcs_plan_history
 -- -------------------------
 -- 3 延迟退休测算方案默认参数表
 -- -------------------------
-DROP TABLE IF EXISTS y_yctxcs_index;
-CREATE TABLE y_yctxcs_index
+DROP TABLE IF EXISTS t_yctxcs_index;
+CREATE TABLE t_yctxcs_index
 (
     plan_area       INT           NOT NULL COMMENT '统筹区域，对应t_yctxcs_area_code_dict的code值',
     year            INT           NOT NULL COMMENT '年份',
