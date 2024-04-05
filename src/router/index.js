@@ -103,7 +103,7 @@ const routes = [
       {
         path: '/test',
         name: 'test',
-        component: () => import('@/components/example.vue'),
+        component: () => import('@/components/chart.vue'),
         meta: {
           title: '测试专用',
           miniTitle: '测试',
