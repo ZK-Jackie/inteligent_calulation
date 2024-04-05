@@ -27,7 +27,7 @@ export function formatNumber(value, format) {
  * @param {string} str 字符串
  * @returns {number} 多余的零的数量
 * */
-function countTrailingZeros(str) {
+export function countTrailingZeros(str) {
   // 检查字符串是否包含小数点
   if (str.includes('.')) {
     // 分割字符串为整数部分和小数部分
