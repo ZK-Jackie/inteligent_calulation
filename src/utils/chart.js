@@ -5,28 +5,36 @@ export function toOptions(details) {
   if(details[0].chartOption.isInfo){
     ret.push(details[0].chartOption);
     return ret;
-  }
-  // 1. truncate the keys
-  truncateKeys(details);
-  // 2. merge keys and max/min value res
-  mergeData(details);
-  // 3. extract predict data
-  extractPredict(details);
-  // 4. modify extremum
-  modifyExtremum(details);
-  // 5. formatter the data that echarts can directly use
-  if(details[0].isInfo) return details[0].chartOption;
+  }else if(details[0].chartOption.isDefault){
+    truncateKeys(details);
+    mergeData(details);
+    modifyExtremum(details);
     details[0].chartOption.data = toEchartsData(details[0].chartOption.data, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
-  if (details[0].chartOption.isPredict && typeof details[0].chartOption.predictData !== null && typeof details[0].chartOption.predictData !== undefined)
-    details[0].chartOption.predictData = toEchartsData(details[0].chartOption.predictData, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
-  ret.push(details[0].chartOption);
-  if (details.length === 2) {
-    details[1].chartOption.data = toEchartsData(details[1].chartOption.data, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
-    if (details[0].chartOption.isPredict && typeof details[1].chartOption.predictData !== null && typeof details[1].chartOption.predictData !== undefined)
-      details[1].chartOption.predictData = toEchartsData(details[1].chartOption.predictData, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
-    ret.push(details[1].chartOption);
+    ret.push(details[0].chartOption);
+    return ret;
+  }else{
+    // 1. truncate the keys
+    truncateKeys(details);
+    // 2. merge keys and max/min value res
+    mergeData(details);
+    // 3. extract predict data
+    extractPredict(details);
+    // 4. modify extremum
+    modifyExtremum(details);
+    // 5. formatter the data that echarts can directly use
+    if(details[0].isInfo) return details[0].chartOption;
+    details[0].chartOption.data = toEchartsData(details[0].chartOption.data, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
+    if (details[0].chartOption.isPredict && typeof details[0].chartOption.predictData !== null && typeof details[0].chartOption.predictData !== undefined)
+      details[0].chartOption.predictData = toEchartsData(details[0].chartOption.predictData, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
+    ret.push(details[0].chartOption);
+    if (details.length === 2) {
+      details[1].chartOption.data = toEchartsData(details[1].chartOption.data, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
+      if (details[0].chartOption.isPredict && typeof details[1].chartOption.predictData !== null && typeof details[1].chartOption.predictData !== undefined)
+        details[1].chartOption.predictData = toEchartsData(details[1].chartOption.predictData, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
+      ret.push(details[1].chartOption);
+    }
+    return ret;
   }
-  return ret;
 }
 
 export function toEchartsData(data, keyIndexMap, valuePrecision, valueUnit, isMapping = true) {
@@ -105,7 +113,7 @@ function mergeData(details) {
 
 function extractPredict(details) {
   details.forEach((detail) => {
-    if(detail.isInfo) return ;
+    if(!detail.isPredict) return ;
     let start = detail.predictStartTime;
     let end = detail.predictEndTime;
     detail.chartOption.predictData = getBetweenKV(detail.chartOption.data, start, end, false, true);
@@ -113,6 +121,7 @@ function extractPredict(details) {
 }
 
 function getBetweenKV(data, start, end, isDirect = true, isExtract = false) {
+  if(start === null || start === undefined || end === null || end === undefined) return ;
   let keys = data[0];
   let values = data[1];
   let isContain = false;
@@ -140,7 +149,7 @@ function getBetweenKV(data, start, end, isDirect = true, isExtract = false) {
     }
   }
   if (isContain) {
-    throw new Error('Data out of range');
+    console.warn('[ChartMapper] Warning: Data out of range');
   }
   if (isExtract) {
     data[0] = keys;
@@ -155,8 +164,7 @@ function getBetweenKV(data, start, end, isDirect = true, isExtract = false) {
 }
 
 function modifyExtremum(details) {
-  if(details.length === 1)
-    return ;
+  if(details.length === 1)  return ;
   details[0].chartOption.maxValue = Math.max(details[0].chartOption.maxValue, details[1].chartOption.maxValue);
   details[0].chartOption.minValue = Math.min(details[0].chartOption.minValue, details[1].chartOption.minValue);
 }
