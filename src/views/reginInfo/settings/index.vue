@@ -27,15 +27,14 @@
 </template>
 
 <script>
-import Selector from "./parts/selector.vue";
-import Preview from "./parts/preview.vue";
-import Modifier from "./parts/modifier.vue";
+import Selector from "./selector.vue";
+import Preview from "./preview.vue";
 import Block from "@/components/block.vue";
-import Plan from "@/views/reginInfo/settings/parts/plan.vue";
+import Plan from "@/views/reginInfo/settings/plan.vue";
 
 export default {
   components: {
-    Block, Selector, Preview, Modifier, Plan
+    Block, Selector, Preview, Plan
   },
   data() {
     return {
