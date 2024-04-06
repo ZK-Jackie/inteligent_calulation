@@ -502,6 +502,7 @@ CREATE TABLE screen_data
     data_color          VARCHAR(7)     NOT NULL COMMENT '数据颜色',
     is_predict          VARCHAR(1)     NOT NULL COMMENT '是否是预测的数据，N-否，Y-是',
     is_info             VARCHAR(1)     NOT NULL COMMENT '是否是资讯类数据，N-否，Y-是',
+    is_default          VARCHAR(1)     NOT NULL COMMENT '是否是默认数据，N-否，Y-是',
     last_update_user_id BIGINT(20) COMMENT '最后更新人id',
     last_update_time    DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
     PRIMARY KEY (data_id)
