@@ -1,13 +1,8 @@
 <template>
-  <div>
-    <div v-for="(component, index) in $slots.default" :key="index">
-      <div class="all-box" :style="{height: height, width: width}">
-        <div class="all-title" v-if="title !== ''">{{ title }}</div>
-        <!--<component :is="component"></component>-->
-        <slot> {{component}} </slot>
-        <div class="all-box-foot"></div>
-      </div>
-    </div>
+  <div class="all-box" :style="{height: height, width: width}">
+    <div class="all-title" v-if="title !== ''">{{ title }}</div>
+    <slot></slot>
+    <div class="all-box-foot"></div>
   </div>
 </template>
 
@@ -25,15 +20,14 @@ export default {
       required: false,
       default: 'auto'
     },
-    title:{
+    title: {
       type: String,
       required: false,
       default: ''
     }
   },
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>

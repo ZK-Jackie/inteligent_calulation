@@ -20,7 +20,7 @@ export default {
             left: 'center',
             top: 'center',
             style: {
-              text: '智算古稀',
+              text: 'Intelligent Calculation',
               fontSize: 80,
               fontWeight: 'bold',
               lineDash: [0, 200],

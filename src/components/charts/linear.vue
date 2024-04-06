@@ -3,7 +3,7 @@ import {UUID} from '@/utils/string'
 import {formatNumber} from "@/utils/number";
 
 export default {
-  name: 'BarChart',
+  name: 'LinearChart',
   props: {
     id: {
       type: String,

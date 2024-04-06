@@ -204,7 +204,7 @@ export const pieData = [
 export const mLineData = [
   {
     dataId: 1,
-    displayMode: "line",
+    displayMode: "mlinear",
     startTime: "2020",
     endTime: "2026",
     predictStartTime: "2024",
@@ -243,6 +243,7 @@ export const mLineData = [
 
 export const mSliderData = [
   {
+    detailId: 1,
     dataId: 1,
     displayMode: "mslider",
     startTime: null,

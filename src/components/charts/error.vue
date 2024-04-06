@@ -1,6 +1,7 @@
 <script>
 export default {
   functional: true,
+  name: 'ErrorChart',
   render(h) {
     let vnodes = []
 

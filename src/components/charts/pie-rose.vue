@@ -3,7 +3,7 @@ import {formatNumber} from "@/utils/number";
 import {UUID} from "@/utils/string";
 
 export default {
-  name: 'RosePieChart',
+  name: 'RoseChart',
   props: {
     id: {
       type: String,

@@ -15,5 +15,7 @@ export { default as Error } from './error'
 // export { default as Tree } from './tree'
 // export { default as Sunburst } from './sunburst'
 
-export { default as MLinear } from './m-linear'
-export { default as MSlider } from './m-slider'
+export { default as Mlinear } from './m-linear'
+export { default as Mslider } from './m-slider'
+
+export { default as Loading } from './loading'

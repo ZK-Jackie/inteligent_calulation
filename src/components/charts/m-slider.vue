@@ -1,23 +1,12 @@
 <template>
-  <div class="modifier-slider">
-    <el-select v-model="selectorValue"
-               placeholder="请选择"
-    style="margin: 0.1rem">
-      <el-option
-          v-for="item in selectorOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-      </el-option>
-    </el-select>
-    <el-slider
-        :id="'modifier-slider-' + id"
-        style="width: 100%; margin: 0.1rem"
-        v-model="sliderValue"
-        v-bind="sliderProps"
-        show-stops>
-    </el-slider>
-  </div>
+  <el-slider
+      class="modifier-slider"
+      :id="'modifier-slider-' + id"
+      style="width: 100%; margin: 0.1rem"
+      v-model="sliderValue"
+      v-bind="sliderProps"
+      show-stops>
+  </el-slider>
 </template>
 
 <script>
@@ -26,7 +15,7 @@ import {countTrailingZeros} from "@/utils/number";
 import selector from "@/views/reginInfo/settings/selector.vue";
 
 export default {
-  name: 'ModifierSlider',
+  name: 'MsliderChart',
   computed: {
     selector() {
       return selector
@@ -92,31 +81,14 @@ export default {
         // }
       },
       sliderValue: [200, 300],
-      selectorValue: '',
-      selectorOptions: [
-        {
-          value: '1',
-          label: '选项1'
-        },
-        {
-          value: '2',
-          label: '选项2'
-        },
-        {
-          value: '3',
-          label: '选项3'
-        }
-      ]
     }
   }
 }
 </script>
 
 <style>
-.modifier-slider{
+.modifier-slider {
   margin: 0.2rem;
-  display: flex;
-  justify-content: space-between;
 }
 
 .el-tooltip__popper.is-dark {

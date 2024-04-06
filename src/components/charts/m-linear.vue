@@ -3,7 +3,7 @@ import {UUID} from "@/utils/string";
 import {formatNumber} from "@/utils/number";
 
 export default {
-  name: "ModifierLinear",
+  name: "MlinearChart",
   props: {
     id: {
       type: String,
@@ -28,25 +28,6 @@ export default {
   mounted() {
     this.loadChart();
   },
-  data() {
-    return {
-      selectorValue: '',
-      selectorOptions: [
-        {
-          value: '1',
-          label: '选项1'
-        },
-        {
-          value: '2',
-          label: '选项2'
-        },
-        {
-          value: '3',
-          label: '选项3'
-        }
-      ]
-    }
-  },
   methods: {
     loadChart() {
       const that = this;
@@ -61,7 +42,7 @@ export default {
           left: '1%',
           top: '8%',
           right: '1%',
-          bottom: '8%',
+          bottom: '15%',
           containLabel: true
         },
         xAxis: [
@@ -120,16 +101,11 @@ export default {
           {
             type: 'slider',
             xAxisIndex: 0,
+            bottom: '6%',
             filterMode: 'none',
-            bottom: '0%',
             minSpan: 50,     /*单位是百分比*/
             maxSpan: 50,     /*单位是百分比*/
           },
-          // {
-          //   type: 'inside',
-          //   xAxisIndex: 0,
-          //   filterMode: 'none'
-          // },
         ],
         series: [
           {
@@ -207,7 +183,6 @@ export default {
         option.dataZoom[0].minSpan = 100;
         option.dataZoom[0].maxSpan = 100;
       }
-
       /************数据填充结束************/
 
       /**************控制函数*************/
@@ -219,8 +194,8 @@ export default {
             };
           })
         });
+        chart.resize()
       }
-
       function showTooltip(dataIndex) {
         chart.dispatchAction({
           type: 'showTip',
@@ -228,13 +203,11 @@ export default {
           dataIndex: dataIndex
         });
       }
-
       function hideTooltip(dataIndex) {
         chart.dispatchAction({
           type: 'hideTip'
         });
       }
-
       function onPointDragging(dataIndex, pos) {
         // 获取新的坐标
         let newY = chart.convertFromPixel('grid', pos)[1];
@@ -261,7 +234,6 @@ export default {
           })
         });
       }
-
       function onPointDragEnd(dataIndex, pos) {
         // 获取新的坐标
         let newY = chart.convertFromPixel('grid', pos)[1];
@@ -278,32 +250,15 @@ export default {
           });
         }
       }
-
       /************控制函数结束***********/
 
       option && chart.setOption(option);
     }
   },
 }
-
 </script>
 
 <template>
-  <div class="modifier-linear">
-    <div class="modifier-linear-top">
-      <el-select v-model="selectorValue"
-                 placeholder="请选择"
-                 style="margin: 0.1rem">
-        <el-option
-            v-for="item in selectorOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-        </el-option>
-      </el-select>
-      <el-button type="primary" plain>重置</el-button>
-    </div>
-    <div :id="'modifier-linear-' + id" style="width: 100%; height: 100%">
-    </div>
+  <div :id="'modifier-linear-' + id" style="width: 100%; height: 100%">
   </div>
 </template>
