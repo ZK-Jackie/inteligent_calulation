@@ -10,20 +10,20 @@
       </li>
 
       <li>
-        <div class="all-box" style="height: 4.725rem">
-          <div class="all-title">政策热点词云图</div>
+        <Block title="政策词云热点图" height="4.725rem">
           <div class="image-container">
-            <img ref="image" src="@/assets/WordCloud.jpg" alt="词云图"/>
+            <WorldCloud />
           </div>
-          <div class="all-box-foot"></div>
-        </div>
+        </Block>
+
         <div class="all-box" style="height: 4.725rem">
-          <div class="all-title">热点政策报告</div>
-          <div style="position: relative">
-            <el-button icon="el-icon-search" circle size="small" @click="showSearchInput = !showSearchInput"></el-button>
-            <el-input v-if="showSearchInput" ref="searchInput" class="search-input" placeholder="请输入感兴趣的内容"
-                      prefix-icon="el-icon-search" v-model="input" ></el-input>
-          </div>
+          <div class="all-title">热门政策报告</div>
+<!--          <div class="boxStyle">-->
+<!--            <el-button icon="el-icon-search" circle size="small" @click="showSearchInput = !showSearchInput"></el-button>-->
+<!--            <el-input v-if="showSearchInput" ref="searchInput" class="search-input" placeholder="请输入感兴趣的内容"-->
+<!--                      prefix-icon="el-icon-search" v-model="input" ></el-input>-->
+<!--          </div>-->
+          <SearchBox class="SearchBoxStyle"/>
           <PopularDocument/>
           <div class="all-box-foot"></div>
         </div>
@@ -36,10 +36,13 @@
 <script>
 import * as echarts from "echarts";
 import PopularDocument from "@/views/PoliciesInfo/components/PopularDocument.vue";
+import Block from "@/components/block.vue";
+import WorldCloud  from "@/views/PoliciesInfo/components/WorldCloud.vue";
+import SearchBox  from "@/views/PoliciesInfo/components/SearchBox.vue";
 
 export default {
   components:{
-    PopularDocument
+    PopularDocument,Block,WorldCloud,SearchBox
   },
   data(){
     return{
@@ -155,14 +158,23 @@ export default {
   },
   mounted() {
     this.load();
-    this.$refs.image.onload = () => {
-      this.$refs.image.classList.add('loaded');
-    };
   }
 }
 </script>
 
 <style scoped>
+
+.SearchBoxStyle{
+  position: absolute;
+  z-index: 999;
+  top: 11%;
+  left:28%;
+}
+
+.boxStyle{
+  height:0.3rem
+}
+
 .main-box > ul {
 }
 
@@ -180,31 +192,14 @@ export default {
 }
 
  .image-container {
-   width: 830px;
-   height: 270px;
-   background-image: -webkit-radial-gradient(ellipse farthest-corner at center center, #1b44e4 0%, #020f3a 100%);
-   background-image: radial-gradient(ellipse farthest-corner at center center, #1b44e4 0%, #020f3a 100%);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   overflow: hidden;
+   width: 100%;
+   height: 96%;
  }
-.image-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  opacity: 0; /* 初始设置为透明 */
-  transition: opacity 1s; /* 添加透明度过渡效果，持续1秒 */
-}
-
-.image-container img.loaded {
-  opacity: 1; /* 加载完成后设置为完全不透明 */
-}
 
 .search-input {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 10%;
   transform: translate(-50%, -50%);
   z-index: 1000;
 }

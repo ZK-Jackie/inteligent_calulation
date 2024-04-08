@@ -83,6 +83,8 @@ export default {
 
 <style lang="scss" scoped>
 .seamless-warp {
+  position: absolute;
+  top:23%;
   height: 3.24rem;
   overflow: hidden;
 }
