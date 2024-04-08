@@ -46,8 +46,8 @@ const routes = [
         name: 'test2',
         component: () => import('@/views/reginInfo/settings/index.vue'),
         meta: {
-          title: '区域大屏信息',
-          miniTitle: '区域',
+          title: '养老测算',
+          miniTitle: '参数调配',
         }
       }
     ]
@@ -60,8 +60,8 @@ const routes = [
         name: 'test3',
         component: () => import('@/views/PoliciesInfo/index.vue'),
         meta: {
-          title: '政策信息',
-          miniTitle: '政策',
+          title: '养老政策信息',
+          miniTitle: '政策概况',
         }
       }
     ]
@@ -76,7 +76,7 @@ const routes = [
         component: () => import('@/views/MainScreen/index.vue'),
         meta: {
           title: '智算古稀——养老保险测算平台',
-          miniTitle: '主屏',
+          miniTitle: '首页',
         }
       }
     ]
@@ -91,7 +91,7 @@ const routes = [
         component: () => import('@/views/GDProvince/index.vue'),
         meta: {
           title: '广东省区域大屏信息',
-          miniTitle: '广东省',
+          miniTitle: '区域信息',
         }
       }
     ]

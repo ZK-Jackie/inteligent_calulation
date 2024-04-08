@@ -67,7 +67,7 @@ export default {
           textStyle: {
             color: "rgba(255,255,255,.6)"  // 激活时的颜色
           },
-          fontSize: '12',
+          fontSize: 12,
         },
         xAxis: [{
           type: 'category',
@@ -113,6 +113,7 @@ export default {
             },
           },
           splitLine: {
+            show:false,
             lineStyle: {
               color: "rgba(255,255,255,.1)",
             }
@@ -203,7 +204,7 @@ export default {
             color: that.options[1].dataColor[0],
             opacity: 1,
             borderRadius: 5,
-          }
+          },
         };
         if (that.options[1].isPredict) {
           let predictStyle = {
