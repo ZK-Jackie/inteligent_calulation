@@ -17,5 +17,6 @@ export { default as Error } from './error'
 
 export { default as Mlinear } from './m-linear'
 export { default as Mslider } from './m-slider'
+export { default as Mradio } from './m-radio'
 
 export { default as Loading } from './loading'

@@ -1,5 +1,5 @@
 <script>
-import {Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Loading} from "./charts"
+import {Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Mradio, Loading} from "./charts"
 import {removeNonLetters, capitalizeFirstLetter} from "@/utils/string";
 import {toOptions} from "@/utils/chart"
 
@@ -46,19 +46,7 @@ export default {
     },
   },
   mounted() {
-    // this.intervalId = setInterval(() => {
-    //   this.checkRefresh = !this.checkRefresh;
-    //   this.countdown++;
-    //   if(this.countdown > 5){
-    //     this.chartType = 'Error';
-    //     clearInterval(this.intervalId);
-    //   }else{
-    //     // this.chartType = 'Loading';
-    //   }
-    //   if(this.isPropsLoaded){
-    //     clearInterval(this.intervalId);
-    //   }
-    // }, 2000);
+
   },
   errorCaptured(err, vm, info) {
     console.log(err);
@@ -74,7 +62,7 @@ export default {
     init1() {
       // step1: get and formatter the type of the chart
       const chosenType = removeNonLetters(this.type.toLowerCase());
-      if (['bar', 'gauge', 'linear', 'ring', 'rose', 'mlinear', 'mslider'].includes(chosenType)) {
+      if (['bar', 'gauge', 'linear', 'ring', 'rose', 'mlinear', 'mslider', "mradio"].includes(chosenType)) {
         this.chartType = capitalizeFirstLetter(chosenType);
       } else {
         this.chartType = 'Error';
@@ -86,7 +74,7 @@ export default {
     }
   },
   components: {
-    Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Loading
+    Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Mradio, Loading
   },
   data() {
     return {
@@ -104,13 +92,13 @@ export default {
 <template>
   <div v-if="isPropsLoaded" style="width: 100%; height: 100%;">
     <div style="width: 100%; height: 100%;">
-      <component :is="chartType" :options="chartOption"/>
+      <component :is="chartType" :options="chartOption" />
     </div>
   </div>
-  <div v-else-if="chartType === 'Error'">
-    <component :is="'Error'" :options="chartOption" style="width: 100%; height: 100%;"/>
-  </div>
-<!--  <div v-else>-->
-<!--    <component :is="'Loading'" :options="chartOption" style="width: 100%; height: 100%;"/>-->
+<!--  <div v-else-if="chartType === 'Error'">-->
+<!--    <component :is="'Error'" :options="chartOption" style="width: 100%; height: 100%;"/>-->
 <!--  </div>-->
+    <div v-else>
+      <component :is="'Loading'" style="width: 100%; height: 100%;"/>
+    </div>
 </template>
