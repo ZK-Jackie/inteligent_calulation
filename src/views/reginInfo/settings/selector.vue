@@ -1,6 +1,6 @@
 <template>
   <div class="button-table">
-    <ul v-if="buttonList !== []">
+    <ul v-if="buttons !== [].slice()">
       <!--        <div class="underline" v-show="activeButtonIndex !== -1" :style="underlineStyle"></div>-->
       <!--按钮列表-->
       <li v-for="(buttonItem, index) in buttonList"
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-
 export default {
   name: "settings-param-select",
   props: {
@@ -31,16 +30,27 @@ export default {
   data() {
     return {
       activeButtonIndex: -1,
-      underlineStyle: ''
+      underlineStyle: '',
+      buttons: []
     }
   },
   watch: {
     activeButtonIndex() {
-      this.$emit('select', this.activeButtonIndex);
+      this.$store.commit('SET_TEMP_BUTTON', this.activeButtonIndex);
       this.moveUnderline(this.activeButtonIndex);
+    },
+    paramList() {
+      return this.$store.getters.paramScreenDetailList;
     }
   },
   methods: {
+    async init(){
+      try{
+        await this.$store.dispatch('GetParamScreenDetailList');
+      }catch (e) {
+        console.log(e);
+      }
+    },
     moveUnderline(index) {
       this.activeButtonIndex = index;
       const button = this.$refs.buttons[index];
@@ -54,6 +64,7 @@ export default {
     }
   },
   mounted() {
+    this.init();
   }
 }
 </script>

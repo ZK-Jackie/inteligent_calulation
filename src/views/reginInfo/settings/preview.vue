@@ -9,13 +9,9 @@
                width="4.182rem"
                :title="index.toString()"
         >
-          <Chart
-              :data="item"
-              :type="'bar'"
-              :name="index.toString()"
-              style="height: 100%"
-          >
-          </Chart>
+<!--          <Chart-->
+<!--          >-->
+<!--          </Chart>-->
         </Block>
       </li>
     </ul>
@@ -32,36 +28,6 @@ export default {
   },
   data() {
     return {
-      chartData: [{
-        series: 2,
-        seriesName: ['安卓', 'IOS'],
-        keys: ['01', '02', '03', '04', '05', '06'],
-        values: [[3, 4, 3, 4, 3, 4], [5, 3, 5, 6, 1, 5]]
-      },
-        {
-          series: 2,
-          seriesName: ['安卓', 'IOS'],
-          keys: ['01', '02', '03', '04', '05', '06'],
-          values: [[3, 4, 3, 4, 3, 4], [5, 3, 5, 6, 1, 5]]
-        },
-        {
-          series: 2,
-          seriesName: ['安卓', 'IOS'],
-          keys: ['01', '02', '03', '04', '05', '06'],
-          values: [[3, 4, 3, 4, 3, 4], [5, 3, 5, 6, 1, 5]]
-        },
-        {
-          series: 2,
-          seriesName: ['安卓', 'IOS'],
-          keys: ['01', '02', '03', '04', '05', '06'],
-          values: [[3, 4, 3, 4, 3, 4], [5, 3, 5, 6, 1, 5]]
-        },
-        {
-          series: 2,
-          seriesName: ['安卓', 'IOS'],
-          keys: ['01', '02', '03', '04', '05', '06'],
-          values: [[3, 4, 3, 4, 3, 4], [5, 3, 5, 6, 1, 5]]
-        }],
       activeButtonIndex: 0
     }
   },

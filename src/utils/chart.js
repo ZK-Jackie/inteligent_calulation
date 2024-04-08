@@ -1,8 +1,12 @@
+import {formatNumber} from "@/utils/number";
+import temp from "@/store/modules/temp";
+
 export function toOptions(details) {
   // 0. check if the data is basically valid
   isValid(details);
   let ret = [];
   if(details[0].chartOption.isInfo){
+    details[0].chartOption.isOK = true;
     ret.push(details[0].chartOption);
     return ret;
   }else if(details[0].chartOption.isDefault){
@@ -10,6 +14,7 @@ export function toOptions(details) {
     mergeData(details);
     modifyExtremum(details);
     details[0].chartOption.data = toEchartsData(details[0].chartOption.data, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
+    details[0].chartOption.isOK = true;
     ret.push(details[0].chartOption);
     return ret;
   }else{
@@ -22,14 +27,14 @@ export function toOptions(details) {
     // 4. modify extremum
     modifyExtremum(details);
     // 5. formatter the data that echarts can directly use
-    if(details[0].isInfo) return details[0].chartOption;
+    details[0].chartOption.isOK = true;
     details[0].chartOption.data = toEchartsData(details[0].chartOption.data, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
-    if (details[0].chartOption.isPredict && typeof details[0].chartOption.predictData !== null && typeof details[0].chartOption.predictData !== undefined)
+    if (details[0].chartOption.isPredict && details[0].chartOption.predictData !== undefined || details[0].chartOption.predictData !== null)
       details[0].chartOption.predictData = toEchartsData(details[0].chartOption.predictData, details[0].chartOption.xAxisTags, details[0].chartOption.numPrecision, details[0].chartOption.valueUnit);
     ret.push(details[0].chartOption);
     if (details.length === 2) {
       details[1].chartOption.data = toEchartsData(details[1].chartOption.data, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
-      if (details[0].chartOption.isPredict && typeof details[1].chartOption.predictData !== null && typeof details[1].chartOption.predictData !== undefined)
+      if (details[0].chartOption.isPredict && details[0].chartOption.predictData !== undefined || details[0].chartOption.predictData !== null)
         details[1].chartOption.predictData = toEchartsData(details[1].chartOption.predictData, details[0].chartOption.xAxisTags, details[1].chartOption.numPrecision, details[1].chartOption.valueUnit);
       ret.push(details[1].chartOption);
     }
@@ -39,7 +44,6 @@ export function toOptions(details) {
 
 export function toEchartsData(data, keyIndexMap, valuePrecision, valueUnit, isMapping = true) {
   if (data === undefined) return;
-
   let echartsData = [];
   let keys = data[0];
   let values = data[1];
@@ -113,7 +117,7 @@ function mergeData(details) {
 
 function extractPredict(details) {
   details.forEach((detail) => {
-    if(!detail.isPredict) return ;
+    if(!detail.chartOption.isPredict) return ;
     let start = detail.predictStartTime;
     let end = detail.predictEndTime;
     detail.chartOption.predictData = getBetweenKV(detail.chartOption.data, start, end, false, true);
@@ -167,4 +171,21 @@ function modifyExtremum(details) {
   if(details.length === 1)  return ;
   details[0].chartOption.maxValue = Math.max(details[0].chartOption.maxValue, details[1].chartOption.maxValue);
   details[0].chartOption.minValue = Math.min(details[0].chartOption.minValue, details[1].chartOption.minValue);
+}
+
+export function toDetail(detail) {
+  let ret = {};
+  ret = detail;
+  let tempArrKeys = [];
+  let tempArrValues = [];
+  // 1. 还原data
+  detail.data.forEach((item, index) => {
+    tempArrKeys.push(detail.xAxisTags[item[0]]);
+    tempArrValues.push(formatNumber(item[1], item[2]));
+  })
+  ret.data = [tempArrKeys, tempArrValues];
+  // 2. 删除ok标记和xAxisTags
+  delete ret.isOK;
+  delete ret.xAxisTags;
+  return ret;
 }

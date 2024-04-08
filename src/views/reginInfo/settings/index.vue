@@ -8,7 +8,7 @@
     </li>
     <li>
       <Block height="6rem" width="100%" title="计划预览">
-        <Preview/>
+<!--        <Preview/>-->
       </Block>
       <ul style="display: flex">
         <li style="width: 70%; margin-right: .15rem">
@@ -29,23 +29,23 @@
 <script>
 import Selector from "./selector.vue";
 import Preview from "./preview.vue";
-import Block from "@/components/block.vue";
-import Plan from "@/views/reginInfo/settings/plan.vue";
+import Plan from "./plan.vue";
+import Modifier from "./modifier.vue";
 
 export default {
   components: {
-    Block, Selector, Preview, Plan
+    Selector, Preview, Plan, Modifier
   },
   data() {
     return {
-      buttonList: [1, 2, 3, 4, 5, 5, 6, 7, 8],
+      buttonList: ['退休年龄', '参保率', '个人交费率', '企业交费率', '收缴率', '在岗平均工资',
+        '个账记账利率', '过渡系数', '养老金增长率', '城镇化率', '就业率', '总和生育率'],
       chooseIndex: 0,
-
     }
   },
   methods: {
     handleSelection(index) {
-      // console.log(index)
+      console.log(index)
     }
   },
   mounted() {
