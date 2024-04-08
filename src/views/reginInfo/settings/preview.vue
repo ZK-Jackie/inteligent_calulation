@@ -1,7 +1,7 @@
 <template>
   <div class="preview-views">
     <ul>
-      <li v-for="(item, index) in chartData"
+      <li v-for="(item, index) in chartDetails"
           :key="index"
       >
         <Block class="preview-charts"
@@ -9,9 +9,10 @@
                width="4.182rem"
                :title="index.toString()"
         >
-<!--          <Chart-->
-<!--          >-->
-<!--          </Chart>-->
+          <Chart :detail="item"
+                 :type="item[0].displayMode"
+          >
+          </Chart>
         </Block>
       </li>
     </ul>
@@ -19,20 +20,22 @@
 </template>
 
 <script>
-import Block from "@/components/block.vue";
+import {previewTestData} from "@/views/reginInfo/settings/TestDetail";
 import Chart from "@/components/chart.vue";
 
 export default {
   components: {
-    Block, Chart
+    Chart
   },
   data() {
     return {
+      chartDetails: [],
       activeButtonIndex: 0
     }
   },
   methods: {},
   mounted() {
+    this.chartDetails = previewTestData;
   }
 }
 </script>

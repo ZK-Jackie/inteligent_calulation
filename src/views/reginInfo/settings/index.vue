@@ -8,7 +8,7 @@
     </li>
     <li>
       <Block height="6rem" width="100%" title="计划预览">
-<!--        <Preview/>-->
+        <Preview/>
       </Block>
       <ul style="display: flex">
         <li style="width: 70%; margin-right: .15rem">
