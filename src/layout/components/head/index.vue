@@ -1,6 +1,19 @@
 <template>
   <div class="head">
-    <p>{{ breadcrumbList }}</p>
+<!--面包屑对应的位置-->
+    <div class="breadStyle"　>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index"  >
+          <span
+              style="color: #fff;font-size: 14px;cursor: pointer"
+              :class="{ 'active-breadcrumb': $route.path === item.path }"
+              @click="navigateTo(item.path)"
+          >
+            {{ item.meta.miniTitle }}
+          </span>
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <h1 class="title">{{ title }}</h1>
     <div class="right">
       <span class="time" v-html="formattedTime"></span>
@@ -14,7 +27,37 @@ export default {
     return {
       title: 'Intelligent Calculation Model',
       currentTime: new Date(),
-      breadcrumbList: [],
+      breadcrumbList: [
+        {
+          path: '/test4',
+          meta: {
+            title: '智算古稀——养老保险测算平台',
+            miniTitle: '首页',
+          }
+        },
+        {
+          path: '/test5',
+          meta: {
+            title: '广东省区域大屏信息',
+            miniTitle: '区域信息',
+          }
+        },
+        {
+          path: '/test3',
+          meta: {
+            title: '养老政策信息',
+            miniTitle: '政策概况',
+          }
+        },
+        {
+          path: '/test2',
+          meta: {
+            title: '养老测算',
+            miniTitle: '参数调配',
+          }
+        },
+
+      ],
       blink: false
     }
   },
@@ -34,15 +77,24 @@ export default {
   watch:{
     $route(){
       this.getTitle();
-      // this.getBreadcrumb();
+      //this.getBreadcrumb();
     }
   },
   methods: {
+    navigateTo(path) {
+      this.$router.push(path);
+    },
     getTitle(){
       this.title = this.$route.meta.title;
     },
-    getBreadcrumb(){
-      this.breadcrumbList = this.$route.matched.filter(item => item.meta.miniTitle);
+    getBreadcrumb() {
+      const pathSegments = this.$route.path.split('/');
+      let path = '';
+      this.breadcrumbList = pathSegments.map(segment => {
+        path += '/' + segment;
+        const route = this.$router.options.routes.find(r => r.path === path);
+        return route && route.meta && route.meta.miniTitle ? route : null;
+      }).filter(item => item !== null);
     },
     refreshClock() {
       setInterval(() => {
@@ -60,6 +112,18 @@ export default {
 </script>
 
 <style scoped>
+
+.active-breadcrumb {
+  font-weight: bold !important;
+  color: #d71d1d !important;
+}
+
+.breadStyle{
+  position: absolute;
+  top:35%;
+  left: 3%;
+}
+
 .head {
   height: 1.05rem;
   background: url(@/assets/head_bg.png) no-repeat center center;
