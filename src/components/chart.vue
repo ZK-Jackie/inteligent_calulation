@@ -33,7 +33,7 @@ export default {
       type: String,
       required: false,
       default: ''
-    }
+    },
   },
   computed: {
     isPropsLoaded() {
@@ -46,9 +46,25 @@ export default {
     },
   },
   mounted() {
-    setInterval(() => {
-      this.checkRefresh = !this.checkRefresh;
-    }, 2000);
+    // this.intervalId = setInterval(() => {
+    //   this.checkRefresh = !this.checkRefresh;
+    //   this.countdown++;
+    //   if(this.countdown > 5){
+    //     this.chartType = 'Error';
+    //     clearInterval(this.intervalId);
+    //   }else{
+    //     // this.chartType = 'Loading';
+    //   }
+    //   if(this.isPropsLoaded){
+    //     clearInterval(this.intervalId);
+    //   }
+    // }, 2000);
+  },
+  errorCaptured(err, vm, info) {
+    console.log(err);
+    console.log(vm);
+    console.log(info);
+    this.chartType = 'Error';
   },
   methods: {
     init() {
@@ -58,10 +74,10 @@ export default {
     init1() {
       // step1: get and formatter the type of the chart
       const chosenType = removeNonLetters(this.type.toLowerCase());
-      if (['bar', 'gauge', 'line', 'ring', 'rose', 'mlinear', 'mslider'].includes(chosenType)) {
+      if (['bar', 'gauge', 'linear', 'ring', 'rose', 'mlinear', 'mslider'].includes(chosenType)) {
         this.chartType = capitalizeFirstLetter(chosenType);
       } else {
-        this.chartType = 'ErrorChart';
+        this.chartType = 'Error';
       }
     },
     init2() {
@@ -77,7 +93,9 @@ export default {
       checkRefresh: false,
       chartData: '',
       chartOption: [],
-      chartType: 'ErrorChart'     /** 1. switching test type */
+      chartType: '',     /** 1. switching test type */
+      countdown: 0,
+      intervalId: 0,
     }
   },
 }
@@ -89,7 +107,10 @@ export default {
       <component :is="chartType" :options="chartOption"/>
     </div>
   </div>
-  <div v-else>
-    <component :is="'Loading'" :options="chartOption" style="width: 100%; height: 100%;"/>
+  <div v-else-if="chartType === 'Error'">
+    <component :is="'Error'" :options="chartOption" style="width: 100%; height: 100%;"/>
   </div>
+<!--  <div v-else>-->
+<!--    <component :is="'Loading'" :options="chartOption" style="width: 100%; height: 100%;"/>-->
+<!--  </div>-->
 </template>

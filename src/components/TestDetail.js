@@ -13,8 +13,8 @@ export const barData = [
       keyLabel: "x",
       keyUnit: "年",
       valueLabel: "y",
-      valueUnit: "元",
-      numPrecision: '1.0',
+      valueUnit: "%",
+      numPrecision: '100.0',
       maxValue: 600,
       minValue: 0,
       dataColor: ['#2f89cf'],
@@ -22,7 +22,7 @@ export const barData = [
       isInfo: false,
       data: [
         [2020, 2021, 2022, 2023, 2024, 2025, 2026],
-        [100, 200, 300, 400, 500, 600, 700]
+        [0.101, 0.232, 300, 400, 500, 600, 700]
       ],
       // 经过index.vue处理过后新增的属性，其中——
       // 1. xAxisTags只放在第0个数据中,
@@ -88,7 +88,7 @@ export const gaugeData = [
       isInfo: true,
       data: [
         ['安全指数'],
-        [0.8]
+        [0.2]
       ],
       xAxisTags: ['低', '中', '高', '极高'],
       // 经过index.vue处理过后，仅作基本的内容和合法性校验，数据层面不会发生任何变更
@@ -99,7 +99,7 @@ export const gaugeData = [
 export const lineData = [
   {
     dataId: 1,
-    displayMode: "line",
+    displayMode: "linear",
     startTime: "2020",
     endTime: "2026",
     predictStartTime: "2024",
@@ -135,7 +135,7 @@ export const lineData = [
   },
   {
     dataId: 2,
-    displayMode: "bar",
+    displayMode: "linear",
     startTime: "2020",
     endTime: "2026",
     predictStartTime: "2024",
@@ -216,7 +216,7 @@ export const mLineData = [
       keyLabel: "x",
       keyUnit: "年",
       valueLabel: "y",
-      valueUnit: "元",
+      valueUnit: "岁",
       numPrecision: '0.1',
       maxValue: 600,
       minValue: 0,
@@ -226,7 +226,7 @@ export const mLineData = [
       isDefault: true,
       data: [
         [2020, 2021, 2022, 2023, 2024, 2025, 2026],
-        [100, 200, 300, 400, 500, 600, 700]
+        [56, 65, 65, 400, 500, 600, 700]
       ],
       // 经过index.vue处理过后新增的属性，其中——
       // 1. xAxisTags只放在第0个数据中,
@@ -238,6 +238,12 @@ export const mLineData = [
       //   [500, 400, 300]
       // ]
     }
+  },
+  {
+    //2
+  },
+  {
+    //3
   }
 ]
 
@@ -257,17 +263,17 @@ export const mSliderData = [
       keyLabel: "x",
       keyUnit: "年",
       valueLabel: "y",
-      valueUnit: "元",
+      valueUnit: "年",
       numPrecision: '0.1',
-      maxValue: 600,
-      minValue: 0,
+      maxValue: 2030,
+      minValue: 2024,
       dataColor: ['#2f89cf'],
       isPredict: false,
       isInfo: false,
       isDefault: true,
       data: [
         ['起始年份', '终止年份'],
-        [2020, 2026]
+        [2024, 2025]
       ],
       // 经过index.vue处理过后新增的属性，其中——
       // 1. xAxisTags只放在第0个数据中,

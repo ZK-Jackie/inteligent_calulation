@@ -66,5 +66,5 @@ export default {
 </script>
 
 <template>
-  <div :class="'loading-'+ id" />
+  <div :class="'loading-'+ id" style="height: 100%; width: 100%"></div>
 </template>

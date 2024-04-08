@@ -29,7 +29,7 @@ export default {
     options: {
       type: Array,
       required: true
-    }
+    },
   },
   watch: {
     options: {
@@ -51,8 +51,8 @@ export default {
       tempArr.push(this.options[0].data[0][1] + 1);
       tempArr.push(this.options[0].data[1][1] - 1);
       this.sliderValue = tempArr;
-      this.sliderProps.min = this.options[0].data[0][1];
-      this.sliderProps.max = this.options[0].data[1][1];
+      this.sliderProps.min = this.options[0].minValue;
+      this.sliderProps.max = this.options[0].maxValue;
       this.sliderProps.step = Math.pow(1, countTrailingZeros(that.options[0].numPrecision));
     }
   },
@@ -80,7 +80,7 @@ export default {
         //   100: '100%'
         // }
       },
-      sliderValue: [200, 300],
+      sliderValue: [2024, 2030],
     }
   }
 }
