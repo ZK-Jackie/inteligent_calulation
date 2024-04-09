@@ -2,18 +2,14 @@
   <div class="main-box">
     <ul class="clearfix">
       <li>
-        <Block height="3.2rem" title="模块标题样式">
-          <div class="allnav" id="echart1" style="width: 100%; height: 100%"></div>
+        <Block height="3.4rem" title="不同生育模式下不同年龄的人数预测情况">
+
         </Block>
-        <Block height="3.2rem" title="模块标题样式">
-          <div class="allnav" id="echart2"  style="width: 100%; height: 100%"></div>
+        <Block height="3.2rem" title="广东省城镇养老保险未来收入和支出">
+          <Chart type="bar" :detail="income_and_expense"/>
         </Block>
-       　　<Block height="3.2rem">
-          <div style="height: 100%; width: 100%">
-            <div class="sy" id="fb1"></div>
-            <div class="sy" id="fb2"></div>
-            <div class="sy" id="fb3"></div>
-          </div>
+       　　<Block height="3.4rem" title="广东省城镇职工的参保人数">
+          <Chart type="linear" :detail="participants"/>
       </Block>
       </li>
       <li>
@@ -54,13 +50,22 @@
         </div>
       </li>
       <li>
-        <Block title="预测金额" height="3.4rem">
-          <Chart type="bar" :detail="barData"/>
+        <Block title="人均基本养老金情况" height="3.4rem">
+        <BasicPension/>
         </Block>
-        <Block title="预测" height="3.2rem">
-         <Chart type="rose" :detail="pieData_pension01"/>
+        <Block title="人均个人养老金情况" height="3.2rem">
+          <ul class="select-ul">
+            <ul class="select-ul">
+              <li  :class="{ active: activeItem === 1}" style="font-size: 12px" @click="handleItemClick(1)" >老中人</li>
+              <li  :class="{ active: activeItem === 2}" style="font-size: 12px" @click="handleItemClick(2)">新中人</li>
+              <li :class="{ active: activeItem === 3}"  style="font-size: 12px" @click="handleItemClick(3)">新人</li>
+            </ul>
+          </ul>
+          <Chart v-if="activeItem===1" type="rose" :detail="pieData_pension01"/>
+          <Chart v-if="activeItem===2" type="rose" :detail="pieData_pension02"/>
+          <Chart v-if="activeItem===3" type="rose" :detail="pieData_pension03"/>
         </Block>
-        <Block title="模块标题样式" height="3.4rem">
+        <Block title="人均过渡养老金情况" height="3.4rem">
           <Chart type="radar" :detail="RadarData"/>
         </Block>
       </li>
@@ -76,29 +81,35 @@ import Chart from '@/components/chart.vue';
 import {barData} from "@/components/TestDetail";
 import {lineData} from "@/components/TestDetail";
 import {pieData} from "@/components/TestDetail";
-import {pieData_pension01} from "@/components/TestDetail";
+import {pieData_pension01,pieData_pension02,pieData_pension03} from "@/components/TestDetail";
 import {RadarData1}  from "@/components/TestDetail";
+import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
+import {income_and_expense01,participants01} from '@/views/reginInfo/settings/gdData.js';
 
 export default {
-  components: {Chart,Block,Guangdong},
+  components: {Chart,Block,Guangdong,BasicPension},
   data() {
     return{
+      activeItem:3,//默认激活的项是'3'
+      participants:participants01,
       RadarData:RadarData1,
       pieData: pieData,
       barData: barData,
       lineData:lineData,
       pieData_pension01:pieData_pension01,
+      pieData_pension02:pieData_pension02,
+      pieData_pension03:pieData_pension03,
       num1: 0,
       num2: 0,
       maxNum1: 38581413,//有关最终养老金收入和支出的情况
       maxNum2: 33136439,//有关最终养老金收入和支出的情况
       showElement: false,
-
+      income_and_expense: income_and_expense01,
     }
   },
   methods: {
-    pieData_pension() {
-      return pieData_pension
+    handleItemClick(index) {
+      this.activeItem = index; // 将 activeItem 设置为被点击的项目的索引
     },
     startCounter() {
       let time = 0;
@@ -122,371 +133,8 @@ export default {
         }
       }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
-    echarts_1() {
-      var that = this;
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('echart1'));
-
-      var option = {
-        //  backgroundColor: '#00265f',
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        grid: {
-          left: '0%',
-          top: '10px',
-          right: '0%',
-          bottom: '4%',
-          containLabel: true
-        },
-        xAxis: [{
-          type: 'category',
-          data: ['商超门店', '教育培训', '房地产', '生活服务', '汽车销售', '旅游酒店', '五金建材'],
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-              width: 1,
-              type: "solid"
-            },
-          },
-
-          axisTick: {
-            show: false,
-          },
-          axisLabel: {
-            interval: 0,
-            // rotate:50,
-            show: true,
-            splitNumber: 15,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-        }],
-        yAxis: [{
-          type: 'value',
-          axisLabel: {
-            //formatter: '{value} %'
-            show: true,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-          axisTick: {
-            show: false,
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1	)",
-              width: 1,
-              type: "solid"
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-            }
-          }
-        }],
-        series: [
-          {
-            type: 'bar',
-            data: [200, 300, 300, 900, 1500, 1200, 600],
-            barWidth: '35%', //柱子宽度
-            // barGap: 1, //柱子之间间距
-            itemStyle: {
-              normal: {
-                color: '#2f89cf',
-                opacity: 1,
-                barBorderRadius: 5,
-              }
-            }
-          }
-
-        ]
-      };
-
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-    echarts_2() {
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('echart2'));
-
-      var option = {
-        //  backgroundColor: '#00265f',
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {type: 'shadow'}
-        },
-        grid: {
-          left: '0%',
-          top: '10px',
-          right: '0%',
-          bottom: '4%',
-          containLabel: true
-        },
-        xAxis: [{
-          type: 'category',
-          data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽'],
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-              width: 1,
-              type: "solid"
-            },
-          },
-
-          axisTick: {
-            show: false,
-          },
-          axisLabel: {
-            interval: 0,
-            // rotate:50,
-            show: true,
-            splitNumber: 15,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-        }],
-        yAxis: [{
-          type: 'value',
-          axisLabel: {
-            //formatter: '{value} %'
-            show: true,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-          axisTick: {
-            show: false,
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1	)",
-              width: 1,
-              type: "solid"
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-            }
-          }
-        }],
-        series: [
-          {
-
-            type: 'bar',
-            data: [1500, 1200, 600, 200, 300, 300, 900],
-            barWidth: '35%', //柱子宽度
-            // barGap: 1, //柱子之间间距
-            itemStyle: {
-              normal: {
-                color: '#27d08a',
-                opacity: 1,
-                barBorderRadius: 5,
-              }
-            }
-          }
-
-        ]
-      };
-
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-    echarts_31() {
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('fb1'));
-      var option = {
-        title: [{
-          text: '年龄分布',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: '16'
-          }
-        }],
-        tooltip: {
-          trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
-          position: function (p) {   //其中p为当前鼠标的位置
-            return [p[0] + 10, p[1] - 10];
-          }
-        },
-        legend: {
-          top: '70%',
-          itemWidth: 10,
-          itemHeight: 10,
-          data: ['0岁以下', '20-29岁', '30-39岁', '40-49岁', '50岁以上'],
-          textStyle: {
-            color: 'rgba(255,255,255,.5)',
-            fontSize: '12',
-          }
-        },
-        series: [
-          {
-            name: '年龄分布',
-            type: 'pie',
-            center: ['50%', '42%'],
-            radius: ['40%', '60%'],
-            color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
-            label: {show: false},
-            labelLine: {show: false},
-            data: [
-              {value: 1, name: '0岁以下'},
-              {value: 4, name: '20-29岁'},
-              {value: 2, name: '30-39岁'},
-              {value: 2, name: '40-49岁'},
-              {value: 1, name: '50岁以上'},
-            ]
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-    echarts_32() {
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('fb2'));
-      var option = {
-        title: [{
-          text: '职业分布',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: '16'
-          }
-        }],
-        tooltip: {
-          trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
-          position: function (p) {   //其中p为当前鼠标的位置
-            return [p[0] + 10, p[1] - 10];
-          }
-        },
-        legend: {
-          top: '70%',
-          itemWidth: 10,
-          itemHeight: 10,
-          data: ['电子商务', '教育', 'IT/互联网', '金融', '学生', '其他'],
-          textStyle: {
-            color: 'rgba(255,255,255,.5)',
-            fontSize: '12',
-          }
-        },
-        series: [
-          {
-            name: '年龄分布',
-            type: 'pie',
-            center: ['50%', '42%'],
-            radius: ['40%', '60%'],
-            color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
-            label: {show: false},
-            labelLine: {show: false},
-            data: [
-              {value: 5, name: '电子商务'},
-              {value: 1, name: '教育'},
-              {value: 6, name: 'IT/互联网'},
-              {value: 2, name: '金融'},
-              {value: 1, name: '学生'},
-              {value: 1, name: '其他'},
-            ]
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-    echarts_33() {
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('fb3'));
-      var option = {
-        title: [{
-          text: '兴趣分布',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: '16'
-          }
-        }],
-        tooltip: {
-          trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
-          position: function (p) {   //其中p为当前鼠标的位置
-            return [p[0] + 10, p[1] - 10];
-          }
-        },
-        legend: {
-          top: '70%',
-          itemWidth: 10,
-          itemHeight: 10,
-          data: ['汽车', '旅游', '财经', '教育', '软件', '其他'],
-          textStyle: {
-            color: 'rgba(255,255,255,.5)',
-            fontSize: '12',
-          }
-        },
-        series: [
-          {
-            name: '兴趣分布',
-            type: 'pie',
-            center: ['50%', '42%'],
-            radius: ['40%', '60%'],
-            color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
-            label: {show: false},
-            labelLine: {show: false},
-            data: [
-              {value: 2, name: '汽车'},
-              {value: 3, name: '旅游'},
-              {value: 1, name: '财经'},
-              {value: 4, name: '教育'},
-              {value: 8, name: '软件'},
-              {value: 1, name: '其他'},
-            ]
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小
-      setTimeout(()=>{
-        this.echarts_1();
-        this.echarts_2();
-        this.echarts_31();
-        this.echarts_32();
-        this.echarts_33();
-      },2000)
       setTimeout(() => {
         this.showElement = true;
       }, 500);
@@ -500,6 +148,29 @@ export default {
 </script>
 
 <style scoped>
+
+.select-ul {
+  position: absolute;
+  width: 1rem;
+  top: 1rem;
+  right: 0;
+  z-index: 999;
+}
+
+.select-ul>li {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  padding-left: 10px;
+  box-sizing: border-box;
+  background-color: rgba(14, 148, 234, 0.2);
+  cursor: default;
+  color: #cdddf7;
+}
+
+.select-ul>li.active{
+  color: white;
+  background: #0e94eb;
+}
 .fade-enter-active {
   animation: zoomInOut .5s;
 }

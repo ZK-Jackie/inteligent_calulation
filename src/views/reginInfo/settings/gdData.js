@@ -1,6 +1,5 @@
-export const income_and_expense01 = [
+export const income_and_expense01 = [//第一套广东省城镇养老保险未来收入和支出，柱形图
     {
-        detailId: 1,
         dataId: 1,
         displayMode: "bar",
         startTime: "2022",
@@ -15,7 +14,7 @@ export const income_and_expense01 = [
             keyUnit: "年",
             valueLabel: "y",
             valueUnit: "亿元",
-            numPrecision: '1',
+            numPrecision: '100.00',
             maxValue: 8000,
             minValue: 3000,
             dataColor: ['#2f89cf'],
@@ -28,7 +27,6 @@ export const income_and_expense01 = [
         }
     },
     {
-        detailId: 1,
         dataId: 2,
         displayMode: "bar",
         startTime: "2020",
@@ -43,7 +41,7 @@ export const income_and_expense01 = [
             keyUnit: "年",
             valueLabel: "y",
             valueUnit: "亿元",
-            numPrecision: '1',
+            numPrecision: '100.00',
             maxValue: 8000,
             minValue: 3000,
             dataColor: ['#27d08a'],
@@ -57,7 +55,7 @@ export const income_and_expense01 = [
     }
 ]
 
-export const income_and_expense02 = [
+export const income_and_expense02 = [//第二套广东省城镇养老保险未来收入和支出，柱形图
     {
         detailId: 2,
         dataId: 1,
@@ -477,7 +475,7 @@ export const L_population02 = [
     }
 ]
 
-export const participants01 = [
+export const participants01 = [//第一套广东省城镇职工参保人数，折线图
     {
         detailId: 9,
         dataId: 1,
