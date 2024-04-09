@@ -87,6 +87,10 @@ export default {
         },
         options:[
           {
+            title: {
+              text: '审图号：GS京(2022)1061号',
+              top:13,
+            },
             series: [
               {
                 name: '广东省各市养老保险收入情况',

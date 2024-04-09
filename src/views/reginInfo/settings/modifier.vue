@@ -12,8 +12,10 @@
             :value="item.value">
         </el-option>
       </el-select>
-      <el-button type="primary" plain
-                 @click="reset">
+      <el-button type="primary"
+                 plain
+                 @click="reset"
+                 style="margin-left: 0.1rem">
         重置
       </el-button>
       <el-button type="success" plain
@@ -97,6 +99,7 @@ export default {
           label: item.chartOption.defaultIndex
         });
       });
+      this.selectorOptions = [];
       this.selectorOptions = tempArr.slice();
       // 2. 更新起始图表
       this.chartType = this.$store.getters.paramDetails[this.activeButton][this.selectorValue].displayMode;

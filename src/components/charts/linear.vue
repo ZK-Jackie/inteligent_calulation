@@ -113,7 +113,7 @@ export default {
       // 填充数据
       /***************纵坐标轴***************/
       // 单位
-      // option.yAxis[0].axisLabel.formatter += that.options[0].valueUnit
+      option.yAxis[0].axisLabel.formatter += that.options[0].valueUnit
       // 最值
       option.yAxis[0].min = that.options[0].minValue;
       option.yAxis[0].max = that.options[0].maxValue;

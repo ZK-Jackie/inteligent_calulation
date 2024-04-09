@@ -2,14 +2,11 @@
   <div class="main-box">
     <ul class="clearfix">
       <li>
-          <Block height="4.9rem" title="模块标题样式">
-            <div class="allnav" id="echart1" style="width: 100%; height: 100%"></div>
+          <Block height="5.1rem" title="模块标题样式">
+            <div class="allnav" id="echart1" style="width: 100%; height: 100%" @click="handleClick"></div>
           </Block>
-        <Block height="4.3 rem" title="养老基金安全指数">
-          <!--展示有关广东地图的活动-->
-<!--          <Guangdong/>-->
-          <Gauge :data="gaugeData"></Gauge>
-          <!-- 导入对应的模块，给对应的echart方法，便于个性化线性不同省份的情况-->
+        <Block height="4.3rem" title="养老基金安全指数">
+          <Chart type="gauge" :detail="gaugeData" />
         </Block>
       </li>
       <li>
@@ -52,13 +49,10 @@
       </li>
 
       <li>
-        <Block height="4.9 rem" title="舆情资讯动态展示">
+        <Block height="4.8 rem" title="舆情资讯动态展示">
           <PublicSentiment/>
-          <!--展示有关词语图，简单实验一下-->
-          <!-- 结果表明如果小部分使用词云图，要么效果突兀，要么就是字体无法渲染-->
-          <!--          <WorldCloud/>-->
         </Block>
-        <Block height="4.3rem" title="专业养老保险公司年金业务情况">
+        <Block height="4.2rem" title="专业养老保险公司年金业务情况">
           <Annuity_bar/>
         </Block>
       </li>
@@ -71,40 +65,17 @@ import * as echarts from "echarts";
 import PublicSentiment from "@/views/MainScreen/components/PublicSentiment.vue";
 import Annuity_bar from "@/views/MainScreen/components/Annuity_bar.vue";
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
+import Block from "@/components/block.vue";
 import Map from '@/views/MainScreen/components/Map.vue';
-import Gauge from '@/components/charts/gauge.vue';
+import Chart from '@/components/chart.vue';
+import {gaugeData} from "@/components/TestDetail";
+
 
 export default {
-  components: {Gauge,Map,Guangdong, Annuity_bar, PublicSentiment},
+  components: {Chart,Map,Block,Guangdong, Annuity_bar, PublicSentiment},
   data()　{
     return {
-      gaugeData: {
-        dataId: 1,
-        displayMode: "gauge",
-        startTime: null,
-        endTime: null,
-        predictStartTime: null,
-        predictEndTime: null,
-        chartOption: {
-          dataId: 1,
-          dataName: "gauge1",
-          displayableMode: ["gauge"],
-          keyLabel: null,
-          keyUnit: null,
-          valueLabel: null,
-          valueUnit: null,
-          numPrecision: 1.0,
-          maxValue: 100,
-          minValue: 0,
-          dataColor: ['#7CFFB2', '#58D9F9', '#FDDD60', '#FF6E76'],
-          isPredict: true,
-          isInfo: false,
-          data: [
-            ["2024-3-28T00:25:52"],
-            [80]
-          ]
-        }
-      },
+      gaugeData: gaugeData,
       counter1: 0,
       counter2: 0,
       maxCounter1: 125811899,//有关最终养老金收入和支出的情况
@@ -232,6 +203,11 @@ export default {
         myChart.resize();
       });
     },
+    handleClick(){
+      this.$router.push({
+        name:'test3'
+      })
+    },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小
       setTimeout(()=>{
@@ -250,6 +226,14 @@ export default {
 </script>
 
 <style scoped>
+
+.numberStyle{
+  color: #ffeb7b;
+  width: 100%;
+  height:0.5rem;
+  position: absolute;
+  top:0;
+}
 
 .fade-enter-active {
   animation: zoomInOut .5s;

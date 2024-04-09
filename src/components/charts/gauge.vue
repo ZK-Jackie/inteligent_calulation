@@ -38,30 +38,35 @@ export default {
       this.loadChart();
     },
     loadChart() {
-      alert()
+      // alert()
       const that = this;
       const chart = this.$echarts.init(document.getElementById('chart-item-gauge-' + that.id));
       const option = {
+        tooltip: {
+          formatter: '{a} <br/>{b} : {c}'
+        },
         series: [
           {
             type: 'gauge',
+            name:  '安全指数',
             startAngle: 180,
             endAngle: 0,
-            center: ['50%', '75%'],
+            center: ['50%', '70%'],
             radius: '90%',
             min: 0,
             max: 1,
             splitNumber: 8,
             axisLine: {
               lineStyle: {
-                width: 6,
+                width: 7,
                 color: [] // 设置项1：色系
+                //对应轴线的色系
               }
             },
             pointer: {
               icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
               length: '12%',
-              width: 20,
+              width: 18,
               offsetCenter: [0, '-60%'],
               itemStyle: {
                 color: 'auto'
@@ -71,7 +76,7 @@ export default {
               length: 12,
               lineStyle: {
                 color: 'auto',
-                width: 2
+                width: 2.5
               }
             },
             splitLine: {
@@ -83,18 +88,19 @@ export default {
             },
             axisLabel: {
               color: 'rgba(255,255,255,.6)',
-              fontSize: 20,
-              distance: -60,
+              fontSize: 22,
+              distance: -55,
               rotate: 'tangential',
               formatter: ''  // 设置项2：刻度标签
             },
-            title: {
-              offsetCenter: [0, '-10%'],
-              fontSize: 20
+            progress: {
+              show: true,
+              overlap: true,
+              roundCap: true
             },
             detail: {
-              fontSize: 30,
-              offsetCenter: [0, '-35%'],
+              fontSize: 35,
+              offsetCenter: [0, '-30%'],
               valueAnimation: true,
               formatter: function (value) {
                 return Math.round(value * 100) + '';
@@ -130,7 +136,7 @@ export default {
       option.series[0].data = [
         {
           value: formatNumber(that.options[0].data[1], that.options[0].numPrecision),
-          name: that.options[0].data[0]
+          name: that.options[0].data[0]　
         }
       ];
       // 使用刚指定的配置项和数据显示图表

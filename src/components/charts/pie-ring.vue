@@ -83,8 +83,8 @@ export default {
       option.series.push({
         name: that.options[0].dataName,
         type: 'pie',
-        center: ['50%', '42%'],
-        radius: ['40%', '60%'],
+        center: ['50%', '55%'],
+        radius: ['40%', '65%'],
         color: that.options[0].dataColor,
         label: {
           show: false

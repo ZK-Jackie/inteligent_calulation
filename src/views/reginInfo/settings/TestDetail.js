@@ -8,7 +8,7 @@ export const barData = [
     predictEndTime: "2026",
     chartOption: {
       dataId: 1,
-      dataName: "收入",
+      dataName: "series1",
       displayableMode: ["bar", "line"],
       keyLabel: "x",
       keyUnit: "年",
@@ -44,7 +44,7 @@ export const barData = [
     predictEndTime: "2026",
     chartOption: {
       dataId: 2,
-      dataName: "支出",
+      dataName: "series2",
       displayableMode: ["bar", "line"],
       keyLabel: "x",
       keyUnit: "年",
@@ -59,7 +59,7 @@ export const barData = [
       data: [
         [2020, 2021, 2022, 2023, 2024, 2025, 2026],
         [700, 600, 500, 400, 300, 200, 100]
-      ],
+      ]
     }
   }
 ]
@@ -289,3 +289,4 @@ export const mSliderData = [
 ]
 
 export const testData= [barData, gaugeData, lineData, pieData, mLineData, mSliderData];
+export const previewTestData= [barData, gaugeData, lineData, pieData];

@@ -1,13 +1,10 @@
 <template>
   <div id="china-map">
-<!--    <div>-->
-<!--      审图号：GS（2024）0568号-->
-<!--    </div>-->
   </div>
 </template>
 
 <script>
-import china from '@/assets/china';
+import china from '@/assets/中华人民共和国.json';
 
 //展示有关广东养老保险相关的数据
 export default {
@@ -88,6 +85,10 @@ export default {
         },
         options: [
           {
+            title: {
+              text: '审图号：GS京(2022)1061号',
+              top:25,
+            },
             series: [
               {
                 name: '中国各省养老保险收入情况',
@@ -616,5 +617,13 @@ export default {
   height: 9rem;
   width: 100%;
   z-index: 10;
+}
+.ApprovalNum{
+  font-size: 18px;
+  color: red;
+  position: absolute;
+  top: 0;
+  letf:10;
+  z-index: 999;
 }
 </style>

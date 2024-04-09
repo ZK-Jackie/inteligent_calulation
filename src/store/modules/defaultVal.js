@@ -426,9 +426,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2025,
     detailId: 10,
     dataId: 13,
     displayMode: "mlinear",
@@ -437,6 +435,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2025,
       dataId: 13,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -497,9 +496,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2026,
     detailId: 10,
     dataId: 14,
     displayMode: "mlinear",
@@ -508,6 +505,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2026,
       dataId: 14,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -569,9 +567,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2027,
     detailId: 10,
     dataId: 15,
     displayMode: "mlinear",
@@ -580,6 +576,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2027,
       dataId: 15,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -640,9 +637,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2028,
     detailId: 10,
     dataId: 16,
     displayMode: "mlinear",
@@ -651,6 +646,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2028,
       dataId: 16,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -711,9 +707,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2029,
     detailId: 10,
     dataId: 17,
     displayMode: "mlinear",
@@ -722,6 +716,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2029,
       dataId: 17,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -782,9 +777,7 @@ export const urbanRate  = [
       ],
     }
   },
-
   {
-    defaultIndex: 2030,
     detailId: 10,
     dataId: 18,
     displayMode: "mlinear",
@@ -793,6 +786,7 @@ export const urbanRate  = [
     predictStartTime: null,
     predictEndTime: null,
     chartOption: {
+      defaultIndex: 2030,
       dataId: 18,
       dataName: "urbanRate",
       displayableMode: [ "mlinear"],
@@ -856,7 +850,6 @@ export const urbanRate  = [
 //employmentRate仅为广东省的数据
 export const employmentRate   = [
   {
-    defaultIndex: "男",
     detailId: 11,
     dataId: 19,
     displayMode: "mlinear",
@@ -984,6 +977,42 @@ export const employmentRate   = [
     }
   },
 ]
+export const fertilityPattern = [
+  {
+    detailId: 12,
+    dataId: 20,
+    displayMode: "mradio",
+    startTime: null,
+    endTime: null,
+    predictStartTime: null,
+    predictEndTime: null,
+    chartOption: {
+      defaultIndex: "生育模式",
+      dataId: 20,
+      dataName: "fertility_pattern",
+      displayableMode: ["mradio"],
+      keyLabel: "x",
+      keyUnit: null,
+      valueLabel: "y",
+      valueUnit: null,
+      numPrecision: null,
+      maxValue: null,
+      minValue: null,
+      dataColor: ['#2f89cf'],
+      isPredict: false,
+      isInfo: false,
+      isDefault: true,
+      data: [
+        [
+          "高生育模式", "中生育模式", "低生育模式"
+        ],
+        [
+          0, 1, 2
+        ]
+      ],
+    }
+  },
+]
 
 //汇总
 export const modifierDefaultData = [
@@ -998,6 +1027,7 @@ export const modifierDefaultData = [
   growth,
   urbanRate,
   employmentRate,
+  fertilityPattern
 ]
 
 export const paramScreenDetailList = [
