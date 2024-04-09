@@ -49,6 +49,7 @@ export default {
         },
         legend: {
           top: '0%',
+          x: 'left', // 设置图例水平位置为居中
           // itemWidth: 10,
           // itemHeight: 10,
           data: [],               /**设置项2：图例**/
@@ -83,15 +84,15 @@ export default {
       option.series.push({
         name: that.options[0].dataName,
         type: 'pie',
-        center: ['50%', '40%'],
-        radius: ['20%', '70%'],
+        center: ['50%', '53%'],
+        radius: ['20%', '80%'],
         color: that.options[0].dataColor,
         roseType: 'area',
         label: {
           show: false
         },
         labelLine: {
-          show: false
+          show: true
         },
         itemStyle:{
           borderRadius: 10,

@@ -58,10 +58,10 @@
           <Chart type="bar" :detail="barData"/>
         </Block>
         <Block title="预测" height="3.2rem">
-         <Chart type="line" :detail="lineData"/>
+         <Chart type="rose" :detail="pieData_pension01"/>
         </Block>
-        <Block title="模块标题样式" height="2.7rem">
-          <Chart type="ring" :detail="pieData"/>
+        <Block title="模块标题样式" height="3.4rem">
+          <Chart type="radar" :detail="RadarData"/>
         </Block>
       </li>
     </ul>
@@ -76,14 +76,18 @@ import Chart from '@/components/chart.vue';
 import {barData} from "@/components/TestDetail";
 import {lineData} from "@/components/TestDetail";
 import {pieData} from "@/components/TestDetail";
+import {pieData_pension01} from "@/components/TestDetail";
+import {RadarData1}  from "@/components/TestDetail";
 
 export default {
   components: {Chart,Block,Guangdong},
   data() {
     return{
+      RadarData:RadarData1,
       pieData: pieData,
       barData: barData,
       lineData:lineData,
+      pieData_pension01:pieData_pension01,
       num1: 0,
       num2: 0,
       maxNum1: 38581413,//有关最终养老金收入和支出的情况
@@ -93,6 +97,9 @@ export default {
     }
   },
   methods: {
+    pieData_pension() {
+      return pieData_pension
+    },
     startCounter() {
       let time = 0;
       setInterval(() => {

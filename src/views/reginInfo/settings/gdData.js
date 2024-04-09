@@ -538,3 +538,5 @@ export const participants02 = [
         }
     },
 ]
+
+export const gdData=[income_and_expense01,income_and_expense02,H_population01,H_population02,L_population01,L_population02,M_population01,M_population02,participants01,participants02]
