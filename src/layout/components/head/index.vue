@@ -82,7 +82,11 @@ export default {
   },
   methods: {
     navigateTo(path) {
-      this.$router.push(path);
+      if(this.$route.path.includes("test2")){
+        this.$router.push("/gd2")
+      }else{
+        this.$router.push(path);
+      }
     },
     getTitle(){
       this.title = this.$route.meta.title;
