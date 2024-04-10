@@ -48,11 +48,11 @@ export default {
             itemStyle: {
               opacity: 0.5
             },
-            // emphasis: {
-            //   itemStyle: {
-            //     opacity: 1
-            //   }
-            // },
+            emphasis: {
+              itemStyle: {
+                opacity: 1
+              }
+            },
             data: [1820, 1380, 1420, 930, 1180],
             z: 10
           },
@@ -62,32 +62,37 @@ export default {
             barGap: '-80%',
             symbolPosition: 'end',
             symbolSize: 50,
-            symbolOffset: [0, '-130%'],
+            symbolOffset: [0, '-135%'],
             data: [
               {
                 value: 1820,
                 symbol: pathSymbols.养老保险,
-                symbolSize: [50, 50]
+                symbolSize: [50, 50],
+                symbolOffset: [-10, -60]
               },
               {
                 value: 1380,
                 symbol: pathSymbols.企业,
-                symbolSize: [50, 45]
+                symbolSize: [50, 45],
+                symbolOffset: [-10, -60]
               },
               {
                 value: 1420,
                 symbol: pathSymbols.职工,
-                symbolSize: [50, 40]
+                symbolSize: [50, 40],
+                symbolOffset: [-10, -40]
               },
               {
-                value: 930,
+                value: 950,
                 symbol: pathSymbols.养老金,
-                symbolSize: [50, 40]
+                symbolSize: [50, 50],
+                symbolOffset: [-20, -60]
               },
               {
                 value: 1180,
                 symbol: pathSymbols.个人账户,
-                symbolSize: [50, 35]
+                symbolSize: [50, 45],
+                symbolOffset: [-10, -55]
               }
             ]
           }

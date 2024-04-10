@@ -18,7 +18,7 @@ export const H_population201 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 55000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -47,7 +47,7 @@ export const H_population201 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 50000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -77,7 +77,7 @@ export const M_population202 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 50000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -106,7 +106,7 @@ export const M_population202 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 55000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -136,7 +136,7 @@ export const L_population203 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 50000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -165,7 +165,7 @@ export const L_population203 = [
       numPrecision: '1',
       maxValue: 65000000,
       minValue: 55000000,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -196,7 +196,7 @@ export const income_and_expense02 = [//第二套广东省城镇养老保险未�
       numPrecision: '1',
       maxValue: 8000,
       minValue: 3000,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#800080'],
       isPredict: true,
       isInfo: false,
       data: [
@@ -254,7 +254,7 @@ export const participants02 = [
       numPrecision: '1.00',
       maxValue: 1.4,
       minValue: 1.0,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#800080'],
       isPredict: true,
       isInfo: false,
       data: [
@@ -284,7 +284,7 @@ export const lineData_basic01 = [//第二套基础养老金数据
       numPrecision: '1.00',
       maxValue: 4500,
       minValue: 800,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#800080'],
       isPredict: true,
       isInfo: false,
       data: [
@@ -342,7 +342,7 @@ export const pieData_pension201 = [//第二套有关个人养老金的数据
       numPrecision: '1.00',
       maxValue: 4500,
       minValue: 0,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -371,7 +371,7 @@ export const pieData_pension202 = [//第二套有关人均个人养老金的数�
       numPrecision: '1.00',
       maxValue: 4500,
       minValue: 0,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -400,7 +400,7 @@ export const pieData_pension203 = [//第二套有关个人养老金的数据
       numPrecision: '1.00',
       maxValue: 20000,
       minValue: 0,
-      dataColor: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab'],
+      dataColor: ['#800080', '#9932CC', '#9400D3', '#8A2BE2', '#9370DB', '#BA55D3', '#D8BFD8', '#DDA0DD', '#EE82EE'],
       isPredict: false,
       isInfo: false,
       data: [
@@ -426,7 +426,7 @@ export const RadarData2 = [//第二套每年人均过度养老金的数据
       numPrecision: '100.00',
       maxValue: 50000,
       minValue: 0,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#FF0000'],
       isPredict: true,
       isInfo: false,
       data: [
@@ -457,7 +457,7 @@ export const RadarData2 = [//第二套每年人均过度养老金的数据
       numPrecision: '100.00',
       maxValue: 20000,
       minValue: 0,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#27d08a'],
       isPredict: true,
       isInfo: false,
       data: [

@@ -141,6 +141,12 @@ export default {
       ];
       // 使用刚指定的配置项和数据显示图表
       chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        //并改变对应的安全系数的值
+        option.series[0].data[0].value = formatNumber(Math.random(), that.options[0].numPrecision)
+        chart.setOption(option);
+      }, 5000); // 每5秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });

@@ -28,7 +28,7 @@ export default {
           timeline: {
             axisType: 'category',
             autoPlay: true,
-            playInterval: 1500,
+            playInterval: 3000,
             left:'15%',
             animationDurationUpdate: 1000, // 动画的持续时间，单位为毫秒
             animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -107,6 +107,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  right:20,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -216,6 +223,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  right:20,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -325,6 +339,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  right:20,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -434,6 +455,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  right:20,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -543,6 +571,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  right:20,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -652,6 +687,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -768,12 +810,33 @@ export default {
         playState: true
       });
     },
+    handleTimelineChange() {
+      // 获取所有的省份
+      const provinces = this.myChart.getOption().series[0].data.map(item => item.name);
+      // 随机选择一个省份
+      const randomProvince = provinces[Math.floor(Math.random() * provinces.length)];
+      // 显示这个省份的提示框
+      this.myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: provinces.indexOf(randomProvince)
+      });
+      // 触发 'click' 事件
+      this.myChart.dispatchAction({
+        type: 'click',
+        seriesIndex: 0,
+        dataIndex: provinces.indexOf(randomProvince)
+      });
+    },
   },
   mounted() {
     this.$nextTick(() => {
       this.map();
       this.myChart.on('mouseover',this.handleMouseOver);
       this.myChart.on('mouseout',this.handleMouseOut);
+      setInterval(() => {
+        this.handleTimelineChange();
+      }, 3000); // 每隔3秒执行一次
     });
   }
 }

@@ -3,7 +3,10 @@
     <ul class="clearfix">
       <li>
           <Block height="5.1rem" title="政策关键词词频统计图">
-            <PictorialBar />
+            <div @click="handleClick">
+              <PictorialBar/>
+            </div>
+
           </Block>
         <Block height="4.3rem" title="养老基金安全指数">
           <Chart type="gauge" :detail="gaugeData" />
@@ -107,10 +110,8 @@ export default {
         }
       }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
-    handleClick(){
-      this.$router.push({
-        name:'test3'
-      })
+    handleClick() {
+      this.$router.push({path: '/test3'})
     },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小
