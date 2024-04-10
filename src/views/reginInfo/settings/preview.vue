@@ -201,7 +201,7 @@ export default {
   },
   data() {
     return {
-      stage: 3,
+      stage: 1,
       chartDetails: [],
       activeButtonIndex: 0,
       activeItem2: 1,//默认激活的项是'1'
