@@ -101,6 +101,21 @@ const routes = [
     component: Layout,
     children: [
       {
+        path: '/gd2',
+        name: 'gd2',
+        component: () => import('@/views/GDProvince/index2.vue'),
+        meta: {
+          title: '广东省区域大屏信息',
+          miniTitle: '区域信息',
+        }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      {
         path: '/test',
         name: 'test',
         component: () => import('@/views/reginInfo/settings/index.vue'),
