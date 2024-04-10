@@ -22,18 +22,18 @@
               </li>
             </ul>
           </ul>
-          <Chart v-if="activeItem3===1 && activeItem2===1" type="ring" :detail="population11"/>
-          <Chart v-else-if="activeItem3===1 && activeItem2===2" type="ring" :detail="population12"/>
-          <Chart v-else-if="activeItem3===1 && activeItem2===3" type="ring" :detail="population13"/>
-          <Chart v-else-if="activeItem3===2 && activeItem2===1" type="ring" :detail="population21"/>
-          <Chart v-else-if="activeItem3===2 && activeItem2===2" type="ring" :detail="population22"/>
-          <Chart v-else-if="activeItem3===2 && activeItem2===3" type="ring" :detail="population23"/>
+          <Chart v-if="activeItem3===1 && activeItem2===1" type="ring" :detail="population31"/>
+          <Chart v-else-if="activeItem3===1 && activeItem2===2" type="ring" :detail="population32"/>
+          <Chart v-else-if="activeItem3===1 && activeItem2===3" type="ring" :detail="population33"/>
+          <Chart v-else-if="activeItem3===2 && activeItem2===1" type="ring" :detail="population41"/>
+          <Chart v-else-if="activeItem3===2 && activeItem2===2" type="ring" :detail="population42"/>
+          <Chart v-else-if="activeItem3===2 && activeItem2===3" type="ring" :detail="population43"/>
         </Block>
         <Block height="3.2rem" title="广东省城镇养老保险未来收入和支出">
-          <Chart type="bar" :detail="income_and_expense"/>
+          <Chart type="bar" :detail="income_and_expense2"/>
         </Block>
         <Block height="3.4rem" title="广东省城镇职工的参保人数">
-          <Chart type="linear" :detail="participants"/>
+          <Chart type="linear" :detail="participants2"/>
         </Block>
       </li>
       <li>
@@ -74,23 +74,21 @@
         </div>
       </li>
       <li>
-        <Block title="人均基本养老金情况" height="3.4rem">
-          <BasicPension/>
+        <Block class="preview-charts" title="人均基本养老金情况" height="3.4rem">
+          <Chart type="linear" :detail="lineData_basic01" :key="2"/>
         </Block>
         <Block title="人均个人养老金情况" height="3.2rem">
           <ul class="select-ul">
-            <ul class="select-ul">
-              <li :class="{ active: activeItem === 1}" style="font-size: 12px" @click="handleItemClick(1)">老中人</li>
-              <li :class="{ active: activeItem === 2}" style="font-size: 12px" @click="handleItemClick(2)">新中人</li>
-              <li :class="{ active: activeItem === 3}" style="font-size: 12px" @click="handleItemClick(3)">新人</li>
-            </ul>
+            <li :class="{ active: activeItem === 1}" style="font-size: 12px" @click="handleItemClick(1)">老中人</li>
+            <li :class="{ active: activeItem === 2}" style="font-size: 12px" @click="handleItemClick(2)">新中人</li>
+            <li :class="{ active: activeItem === 3}" style="font-size: 12px" @click="handleItemClick(3)">新人</li>
           </ul>
-          <Chart v-if="activeItem===1" type="rose" :detail="pieData_pension01"/>
-          <Chart v-else-if="activeItem===2" type="rose" :detail="pieData_pension02"/>
-          <Chart v-else-if="activeItem===3" type="rose" :detail="pieData_pension03"/>
+          <Chart v-if="activeItem===1" type="rose" :detail="pieData_pension04"/>
+          <Chart v-else-if="activeItem===2" type="rose" :detail="pieData_pension05"/>
+          <Chart v-else-if="activeItem===3" type="rose" :detail="pieData_pension06"/>
         </Block>
         <Block title="人均过渡养老金情况" height="3.4rem">
-          <Chart type="radar" :detail="RadarData"/>
+          <Chart type="radar" :detail="RadarData2"/>
         </Block>
       </li>
     </ul>
@@ -98,60 +96,61 @@
 </template>
 
 <script>
-import * as echarts from "echarts";
-import Block from "@/components/block.vue";
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 import Chart from '@/components/chart.vue';
-import {barData} from "@/components/TestDetail";
-import {lineData} from "@/components/TestDetail";
-import {pieData} from "@/components/TestDetail";
-import {pieData_pension01, pieData_pension02, pieData_pension03} from "@/components/TestDetail";
-import {RadarData1} from "@/components/TestDetail";
-import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
-import {income_and_expense01, participants01} from '@/views/GDProvince/gdData.js';
-import {H_population101, M_population102, L_population103} from '@/views/GDProvince/gdData1.js';
+import {
+  income_and_expense02,
+  participants02,
+  H_population201,
+  L_population203,
+  M_population202,
+  pieData_pension201,
+  RadarData2,
+  pieData_pension202,
+  pieData_pension203,
+  lineData_basic01
+} from "@/views/GDProvince/gdData2";
 
-let tempArr11 = [];
-tempArr11.push(H_population101[0]);
-let tempArr12 = [];
-tempArr12.push(M_population102[0]);
-let tempArr13 = [];
-tempArr13.push(L_population103[0]);
-let tempArr21 = [];
-tempArr21.push(H_population101[1]);
-let tempArr22 = [];
-tempArr22.push(M_population102[2]);
-let tempArr23 = [];
-tempArr23.push(L_population103[3]);
+
+let tempArr31 = [];
+tempArr31.push(H_population201[0]);
+let tempArr32 = [];
+tempArr32.push(M_population202[0]);
+let tempArr33 = [];
+tempArr33.push(L_population203[0]);
+let tempArr41 = [];
+tempArr41.push(H_population201[1]);
+let tempArr42 = [];
+tempArr42.push(M_population202[2]);
+let tempArr43 = [];
+tempArr43.push(L_population203[3]);
 
 
 export default {
-  components: {Chart, Block, Guangdong, BasicPension},
+  components: {Chart, Guangdong},
   data() {
     return {
       activeItem2: 1,//默认激活的项是'1'
       activeItem: 3,//默认激活的项是'3'
       activeItem3: 1,//默认激活的项是'1'
-      participants: participants01,
-      RadarData: RadarData1,
-      pieData: pieData,
-      barData: barData,
-      lineData: lineData,
-      pieData_pension01: pieData_pension01,
-      pieData_pension02: pieData_pension02,
-      pieData_pension03: pieData_pension03,
-      population11: tempArr11,
-      population12: tempArr12,
-      population13: tempArr13,
-      population21: tempArr21,
-      population22: tempArr22,
-      population23: tempArr23,
+      population31: tempArr31,
+      population32: tempArr32,
+      population33: tempArr33,
+      population41: tempArr41,
+      population42: tempArr42,
+      population43: tempArr43,
+      income_and_expense2: income_and_expense02,
+      participants2: participants02,
+      pieData_pension04: pieData_pension201,
+      pieData_pension05: pieData_pension202,
+      pieData_pension06: pieData_pension203,
+      RadarData2: RadarData2,
+      lineData_basic01: lineData_basic01,
       num1: 0,
       num2: 0,
       maxNum1: 38581413,//有关最终养老金收入和支出的情况
       maxNum2: 33136439,//有关最终养老金收入和支出的情况
       showElement: false,
-      income_and_expense: income_and_expense01,
     }
   },
   methods: {

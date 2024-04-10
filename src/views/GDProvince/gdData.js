@@ -8,13 +8,13 @@ export const income_and_expense01 = [//第一套广东省城镇养老保险未�
         predictEndTime: "2026",
         chartOption: {
             dataId: 1,
-            dataName: "income",
-            displayableMode: ["bar", "line"],
+            dataName: "收入",
+            displayableMode: ["bar", "linear"],
             keyLabel: "x",
             keyUnit: "年",
             valueLabel: "y",
             valueUnit: "亿元",
-            numPrecision: '100.00',
+            numPrecision: '1',
             maxValue: 8000,
             minValue: 3000,
             dataColor: ['#2f89cf'],
@@ -29,19 +29,19 @@ export const income_and_expense01 = [//第一套广东省城镇养老保险未�
     {
         dataId: 2,
         displayMode: "bar",
-        startTime: "2020",
+        startTime: "2022",
         endTime: "2026",
         predictStartTime: "2024",
         predictEndTime: "2026",
         chartOption: {
             dataId: 2,
-            dataName: "expense",
+            dataName: "支出",
             displayableMode: ["bar", "line"],
             keyLabel: "x",
             keyUnit: "年",
             valueLabel: "y",
             valueUnit: "亿元",
-            numPrecision: '100.00',
+            numPrecision: '1',
             maxValue: 8000,
             minValue: 3000,
             dataColor: ['#27d08a'],
@@ -66,7 +66,7 @@ export const income_and_expense02 = [//第二套广东省城镇养老保险未�
         predictEndTime: "2026",
         chartOption: {
             dataId: 1,
-            dataName: "income",
+            dataName: "收入",
             displayableMode: ["bar", "line"],
             keyLabel: "x",
             keyUnit: "年",
@@ -93,7 +93,7 @@ export const income_and_expense02 = [//第二套广东省城镇养老保险未�
         predictEndTime: "2026",
         chartOption: {
             dataId: 2,
-            dataName: "expense",
+            dataName: "支出",
             displayableMode: ["bar", "line"],
             keyLabel: "x",
             keyUnit: "年",
@@ -143,7 +143,6 @@ export const H_population01 = [
             ],
         }
     },
-
     {
         detailId: 3,
         dataId: 2,
@@ -173,7 +172,6 @@ export const H_population01 = [
         }
     }
 ]
-
 export const M_population01 = [
     {
         detailId: 4,
@@ -203,7 +201,6 @@ export const M_population01 = [
             ],
         }
     },
-
     {
         detailId: 4,
         dataId: 2,
@@ -233,7 +230,6 @@ export const M_population01 = [
         }
     }
 ]
-
 export const L_population01 = [
     {
         detailId: 5,
@@ -263,7 +259,6 @@ export const L_population01 = [
             ],
         }
     },
-
     {
         detailId: 5,
         dataId: 2,
@@ -324,7 +319,6 @@ export const H_population02 = [
             ],
         }
     },
-
     {
         detailId: 6,
         dataId: 2,
@@ -354,7 +348,6 @@ export const H_population02 = [
         }
     }
 ]
-
 export const M_population02 = [
     {
         detailId: 7,
@@ -384,7 +377,6 @@ export const M_population02 = [
             ],
         }
     },
-
     {
         detailId: 7,
         dataId: 2,
@@ -414,7 +406,6 @@ export const M_population02 = [
         }
     }
 ]
-
 export const L_population02 = [
     {
         detailId: 8,
@@ -444,7 +435,6 @@ export const L_population02 = [
             ],
         }
     },
-
     {
         detailId: 8,
         dataId: 2,
@@ -486,14 +476,14 @@ export const participants01 = [//第一套广东省城镇职工参保人数，�
         predictEndTime: "2028",
         chartOption: {
             dataId: 1,
-            dataName: "participants",
-            displayableMode: ["bar", "line"],
+            dataName: "参保人数",
+            displayableMode: ["bar", "linear"],
             keyLabel: "x",
             keyUnit: "年",
             valueLabel: "y",
             valueUnit: "亿人",
-            numPrecision: '0.01',
-            maxValue: 2.5,
+            numPrecision: '1.00',
+            maxValue: 1.4,
             minValue: 1.0,
             dataColor: ['#2f89cf'],
             isPredict: true,

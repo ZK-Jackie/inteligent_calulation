@@ -11,16 +11,16 @@
         <Preview/>
       </Block>
       <ul style="display: flex">
-        <li style="width: 70%; margin-right: .15rem">
+        <li style="width: 100%; margin-right: .15rem">
           <Block height="2.85rem" title="参数调配">
             <Modifier class="modifier"/>
           </Block>
         </li>
-        <li style="width: 30%">
-          <Block height="2.85rem" title="计划调配">
-            <Plan/>
-          </Block>
-        </li>
+<!--        <li style="width: 30%">-->
+<!--          <Block height="2.85rem" title="计划调配">-->
+<!--            <Plan/>-->
+<!--          </Block>-->
+<!--        </li>-->
       </ul>
     </li>
   </ul>

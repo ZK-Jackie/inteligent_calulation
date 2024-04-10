@@ -351,7 +351,7 @@ export const RadarData1 = [//第一套每年人均过度养老金的数据
       ]
     }
   }
-  ]
+]
 
 export const RadarData2 = [//第二套每年人均过度养老金的数据
   {
