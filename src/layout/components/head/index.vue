@@ -14,7 +14,7 @@
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title">{{title}}</h1>
     <div class="right">
       <span class="time" v-html="formattedTime"></span>
     </div>
@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      title: 'Intelligent Calculation Model',
+      title: '智算古稀－养老保险测算大数据平台',
       currentTime: new Date(),
       breadcrumbList: [
         {
@@ -83,9 +83,11 @@ export default {
   methods: {
     navigateTo(path) {
       if(this.$route.path.includes("test2")){
-        this.$router.push("/gd2")
+        window.location.href="http://localhost:8080/#/gd2";
+        window.location.reload();
       }else{
-        this.$router.push(path);
+        window.location.href="http://localhost:8080/#"+path;
+        window.location.reload();
       }
     },
     getTitle(){
@@ -111,6 +113,11 @@ export default {
   },
   mounted() {
     this.refreshClock();
+    if(this.$route.path.includes("")) {
+      this.title = "智算古稀－养老保险测算大数据平台";
+    }else{
+      this.getTitle();
+    }
   }
 }
 </script>

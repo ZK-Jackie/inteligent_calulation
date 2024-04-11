@@ -368,7 +368,7 @@ export const RadarData2 = [//第二套每年人均过度养老金的数据
       numPrecision: '100.00',
       maxValue: 50000,
       minValue: 0,
-      dataColor: ['#2f89cf'],
+      dataColor: ['#FF0000'],
       isPredict: true,
       isInfo: false,
       data: [
@@ -709,4 +709,4 @@ export const lineData_basic01 = [//第二套基础养老金数据
   },
 ]
 
-export const testData= [barData, gaugeData, lineData, pieData, mLineData, mSliderData,RadarData1,RadarData2,pieData_pension01,pieData_pension02,pieData_pension03,pieData_pension04,pieData_pension05,pieData_pension06,lineData_basic,lineData_basic01]
+export const testData= [barData, gaugeData, lineData, pieData, mLineData, mSliderData,RadarData2,pieData_pension01,pieData_pension02,pieData_pension03,pieData_pension04,pieData_pension05,pieData_pension06,lineData_basic,lineData_basic01,RadarData1]

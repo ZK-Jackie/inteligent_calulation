@@ -614,12 +614,8 @@ export default {
       var data = params.data;//获取用户点击的对象信息
       if (data.name == '广东省') {
         //利用获取到的数据试着进行路由的跳转
-        this.$router.push({
-          name: 'test5',
-          params: {
-            province: data.name
-          }
-        })
+        window.location.href="http://localhost:8080/#/test5";
+        window.location.reload();
       }
     },
     handleMouseOver() {

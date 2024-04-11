@@ -144,7 +144,7 @@
 import {previewTestData} from "@/views/reginInfo/settings/TestDetail";
 import Chart from "@/components/chart.vue";
 import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
-import {H_population101, M_population102, L_population103} from '@/views/GDProvince/gdData1.js';
+import {H_population101, M_population102, L_population103,RadarData1} from '@/views/GDProvince/gdData1.js';
 import {income_and_expense01, participants01} from "@/views/GDProvince/gdData";
 import {
   income_and_expense02,
@@ -165,7 +165,6 @@ import {
   pieData_pension01,
   pieData_pension02,
   pieData_pension03,
-  RadarData1
 } from "@/components/TestDetail";
 
 let tempArr11 = [];
@@ -209,6 +208,7 @@ export default {
       activeItem3: 1,//默认激活的项是'1'
       participants: participants01,
       RadarData: RadarData1,
+      RadarData2: RadarData2,
       pieData_pension01: pieData_pension01,
       pieData_pension02: pieData_pension02,
       pieData_pension03: pieData_pension03,
@@ -230,7 +230,6 @@ export default {
       pieData_pension04: pieData_pension201,
       pieData_pension05: pieData_pension202,
       pieData_pension06: pieData_pension203,
-      RadarData2: RadarData2,
       lineData_basic01: lineData_basic01
     }
   },
@@ -246,10 +245,10 @@ export default {
     this.chartDetails = previewTestData;
     setTimeout(() => {
       this.stage = 2;
-    }, 5000);
+    }, 15000);//8秒后进入加载状态
     setTimeout(() => {
       this.stage = 3;
-    }, 10000);
+    }, 18000);//加载5秒进入新页面
   }
 }
 </script>

@@ -30,7 +30,7 @@
           <Chart v-else-if="activeItem3===2 && activeItem2===3" type="ring" :detail="population23"/>
         </Block>
         <Block height="3.2rem" title="广东省城镇养老保险未来收入和支出">
-          <Chart type="bar" :detail="income_and_expense"/>
+          <Chart type="bar" :detail="income_and_expense" />
         </Block>
         <Block height="3.4rem" title="广东省城镇职工的参保人数">
           <Chart type="linear" :detail="participants"/>

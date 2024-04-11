@@ -75,7 +75,7 @@ const routes = [
         name: 'test4',
         component: () => import('@/views/MainScreen/index.vue'),
         meta: {
-          title: '智算古稀——养老保险测算平台',
+          title: '智算古稀——养老保险测算可视化平台',
           miniTitle: '首页',
         }
       }

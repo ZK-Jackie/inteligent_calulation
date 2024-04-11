@@ -111,7 +111,8 @@ export default {
       }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
     handleClick() {
-      this.$router.push({path: '/test3'})
+      window.location.href="http://localhost:8080/#/test3";
+      window.location.reload();
     },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小
