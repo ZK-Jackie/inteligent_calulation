@@ -51,18 +51,24 @@ export default{
     // var canvasBackgroundColor = window.getComputedStyle(canvas).backgroundImage;
     // var colorsAndPositions = extractColorsAndPositions(canvasBackgroundColor);
     // var svgGradient = createSvgGradient(colorsAndPositions);
-
+　　this.$nextTick(() => {
     var chart = anychart.tagCloud(this.tagwords);
     chart.container("container");
-    chart.normal().fontWeight(580);
+    chart.normal().fontWeight(600);
+    // var customColorScale = anychart.scales.linearColor();
+    // customColorScale.colors('#87CEEB', '#9370DB', '#BDB76B', '#EEE8AA');
+    // chart.colorScale(customColorScale);
+    //chart.colorRange().enabled(true);
+    chart.background().fill("rgb(0,0,0,0)");
     // chart.container().background({
     //   image: svgGradient,
     //   mode: "fit"
     // });
     chart.draw();
-    setTimeout(function() {
+    setTimeout(function () {
       $('.anychart-credits').remove();
     }, 100);
+  });
   }
 }
 </script>

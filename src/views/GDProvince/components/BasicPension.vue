@@ -104,7 +104,9 @@ export default {
         },
         series: seriesList
       };
+      this.myChart.showLoading();
       this.myChart.setOption(option);
+      this.myChart.hideLoading();
     }
   }
 };
