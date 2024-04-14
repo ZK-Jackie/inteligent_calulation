@@ -95,6 +95,10 @@ export default {
       /******************设置项1：雷达图的指示器******************/
       option.radar.indicator=that.options[0].indicator;
       chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        chart.setOption(option);
+      }, 5000); // 每5秒刷新一次图表
     }
   }
 }

@@ -276,6 +276,10 @@ export default {
 
       console.log(option)
       chart && chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        chart.setOption(option);
+      }, 5000); // 每5秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });

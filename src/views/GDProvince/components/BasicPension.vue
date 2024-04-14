@@ -104,9 +104,14 @@ export default {
         },
         series: seriesList
       };
-      this.myChart.showLoading();
       this.myChart.setOption(option);
-      this.myChart.hideLoading();
+      setInterval(() => {
+        this.myChart.clear(); // 清除当前图表
+        this.myChart.setOption(option);
+      }, 5000); // 每7秒刷新一次图表
+      window.addEventListener("resize", function () {
+        this.myChart.resize();
+      });
     }
   }
 };

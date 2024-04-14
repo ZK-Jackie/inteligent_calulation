@@ -231,6 +231,10 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        chart.setOption(option);
+      }, 5000); // 每5秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });

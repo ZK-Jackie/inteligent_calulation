@@ -12,6 +12,18 @@ export default{
       tagwords: WordFrequency,
     }
   },
+  methods:{
+    drawChart(){
+      var chart = anychart.tagCloud(this.tagwords);
+      chart.container("container");
+      chart.normal().fontWeight(600);
+      chart.background().fill("rgb(0,0,0,0)");
+      chart.draw();
+      setTimeout(function () {
+        $('.anychart-credits').remove();
+      }, 100);
+    }
+  },
   // methods:{
   //   extractColorsAndPositions(gradient) {//从 CSS 渐变色字符串中提取出所有的颜色值和它们的位置
   //     var regex = /rgb\((\d+), (\d+), (\d+)\) (\d+)%/g;
@@ -46,29 +58,14 @@ export default{
   //       return 'url(data:image/svg+xml;base64,' + btoa(svg.outerHTML) + ')';
   //    }
   // },
-  mounted(){
+  mounted() {
     // var canvas = document.querySelector('.canvas');
     // var canvasBackgroundColor = window.getComputedStyle(canvas).backgroundImage;
     // var colorsAndPositions = extractColorsAndPositions(canvasBackgroundColor);
     // var svgGradient = createSvgGradient(colorsAndPositions);
-　　this.$nextTick(() => {
-    var chart = anychart.tagCloud(this.tagwords);
-    chart.container("container");
-    chart.normal().fontWeight(600);
-    // var customColorScale = anychart.scales.linearColor();
-    // customColorScale.colors('#87CEEB', '#9370DB', '#BDB76B', '#EEE8AA');
-    // chart.colorScale(customColorScale);
-    //chart.colorRange().enabled(true);
-    chart.background().fill("rgb(0,0,0,0)");
-    // chart.container().background({
-    //   image: svgGradient,
-    //   mode: "fit"
-    // });
-    chart.draw();
-    setTimeout(function () {
-      $('.anychart-credits').remove();
-    }, 100);
-  });
+    this.$nextTick(() => {
+      this.drawChart();
+    });
   }
 }
 </script>
