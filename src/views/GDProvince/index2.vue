@@ -361,7 +361,7 @@ export default {
 
 .map {
   position: relative;
-  height: 7.3rem;
+  height: 8.8rem;
   z-index: 9;
 }
 

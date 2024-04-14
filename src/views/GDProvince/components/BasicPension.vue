@@ -108,10 +108,7 @@ export default {
       setInterval(() => {
         this.myChart.clear(); // 清除当前图表
         this.myChart.setOption(option);
-      }, 5000); // 每7秒刷新一次图表
-      window.addEventListener("resize", function () {
-        this.myChart.resize();
-      });
+      }, 10000); // 每10秒刷新一次图表
     }
   }
 };

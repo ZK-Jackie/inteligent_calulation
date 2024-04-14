@@ -29,7 +29,7 @@ export default {
             axisType: 'category',
             autoPlay: true,
             playInterval: 3000,
-            left:'15%',
+            left:'13%',
             animationDurationUpdate: 1000, // 动画的持续时间，单位为毫秒
             animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
             data: [

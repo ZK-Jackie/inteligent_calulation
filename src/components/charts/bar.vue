@@ -234,7 +234,7 @@ export default {
       setInterval(() => {
         chart.clear(); // 清除当前图表
         chart.setOption(option);
-      }, 5000); // 每5秒刷新一次图表
+      }, 10000); // 每10秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });
