@@ -5,6 +5,33 @@
 <head>
     <title>养老保险测算大数据平台</title>
     <link rel="stylesheet" href="./style.css">
+
+    <script>
+        window.addEventListener('beforeunload', function() {
+            var myCanvas = document.getElementById('mycanvas');
+            var ctx = myCanvas.getContext('2d');
+
+            ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+            // 创建 iframe 来显示另一个 HTML 文件中的动画
+            var iframe = document.createElement('iframe');
+            iframe.src = 'src/views/animation/animate.html'; // 动画所在的 HTML 文件路径
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+
+            // 等待动画加载完成
+            iframe.onload = function() {
+                // 动画加载完成后可以执行一些操作
+                console.log('Animation loaded and ready to play.');
+            };
+
+            document.body.appendChild(iframe);
+        });
+    </script>
+
 </head>
 
 <body>
@@ -15,10 +42,10 @@
         </div>
         <div class="nav-link">
             <ul>
-                <li><router-link to="">首页</router-link></li>
-                <li><router-link to="">区域信息</router-link></li>
-                <li><router-link to="">政策概况</router-link></li>
-                <li><router-link to="">参数调配</router-link></li>
+                <li><router-link to="/home">首页</router-link></li>
+                <li><router-link to="/home">区域信息</router-link></li>
+                <li><router-link to="/home">政策概况</router-link></li>
+                <li><router-link to="/home">参数调配</router-link></li>
             </ul>
         </div>
     </nav>
