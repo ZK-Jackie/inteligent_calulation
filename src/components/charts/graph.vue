@@ -128,10 +128,7 @@ export default {
 </script>
 
 <template>
-  <Block height='7rem'>
     <div class="chart-item-map"
          :id="'chart-item-map-'+ id"
          style="width: 100%; height: 100%;"></div>
-  </Block>
-
 </template>
