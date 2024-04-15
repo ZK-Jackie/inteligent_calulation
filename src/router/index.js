@@ -75,7 +75,7 @@ const routes = [
         name: 'test4',
         component: () => import('@/views/MainScreen/index.vue'),
         meta: {
-          title: '智算古稀——养老保险测算平台',
+          title: '智算古稀——养老保险测算可视化平台',
           miniTitle: '首页',
         }
       }
@@ -89,6 +89,21 @@ const routes = [
         path: '/test5',
         name: 'test5',
         component: () => import('@/views/GDProvince/index.vue'),
+        meta: {
+          title: '广东省区域大屏信息',
+          miniTitle: '区域信息',
+        }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      {
+        path: '/gd2',
+        name: 'gd2',
+        component: () => import('@/views/GDProvince/index2.vue'),
         meta: {
           title: '广东省区域大屏信息',
           miniTitle: '区域信息',

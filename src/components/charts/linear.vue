@@ -4,12 +4,12 @@ import {formatNumber} from "@/utils/number";
 
 export default {
   name: 'LinearChart',
+  data(){
+    return {
+      id: UUID()
+    }
+  },
   props: {
-    id: {
-      type: String,
-      required: false,
-      default: UUID()
-    },
     /**
      * the specific data and style of the chart
      * @type {Array} Need an array consists of max to two JSON elements
@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     this.loadChartData();
+    this.id = UUID();
   },
   methods: {
     loadChartData() {
@@ -207,7 +208,7 @@ export default {
       /************数据系列1结束************/
 
       /*************数据系列2*************/
-      if (that.options[1] !== undefined || that.options[1] !== null) {
+      if (that.options.length > 1) {
         // 1. 系列名字
         option.legend.data.push(that.options[1].dataName);
         // 2. 系列样式及数据
@@ -272,7 +273,13 @@ export default {
         }
       }
       /************数据系列2结束************/
+
+      console.log(option)
       chart && chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        chart.setOption(option);
+      }, 10000); // 每10秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });

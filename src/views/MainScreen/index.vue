@@ -2,8 +2,11 @@
   <div class="main-box">
     <ul class="clearfix">
       <li>
-          <Block height="5.1rem" title="模块标题样式">
-            <div class="allnav" id="echart1" style="width: 100%; height: 100%" @click="handleClick"></div>
+          <Block height="5.1rem" title="政策关键词词频统计图">
+            <div @click="handleClick">
+              <PictorialBar/>
+            </div>
+
           </Block>
         <Block height="4.3rem" title="养老基金安全指数">
           <Chart type="gauge" :detail="gaugeData" />
@@ -69,10 +72,11 @@ import Block from "@/components/block.vue";
 import Map from '@/views/MainScreen/components/Map.vue';
 import Chart from '@/components/chart.vue';
 import {gaugeData} from "@/components/TestDetail";
+import PictorialBar  from "@/views/MainScreen/components/Pictorial Bar.vue";
 
 
 export default {
-  components: {Chart,Map,Block,Guangdong, Annuity_bar, PublicSentiment},
+  components: {Chart,Map,Block,Guangdong, Annuity_bar, PublicSentiment,PictorialBar},
   data()　{
     return {
       gaugeData: gaugeData,
@@ -106,113 +110,12 @@ export default {
         }
       }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
-    echarts_1() {
-      var that = this;
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('echart1'));
-
-      var option = {
-        //  backgroundColor: '#00265f',
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        grid: {
-          left: '0%',
-          top: '10px',
-          right: '0%',
-          bottom: '4%',
-          containLabel: true
-        },
-        xAxis: [{
-          type: 'category',
-          data: ['商超门店', '教育培训', '房地产', '生活服务', '汽车销售', '旅游酒店', '五金建材'],
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-              width: 1,
-              type: "solid"
-            },
-          },
-
-          axisTick: {
-            show: false,
-          },
-          axisLabel: {
-            interval: 0,
-            // rotate:50,
-            show: true,
-            splitNumber: 15,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-        }],
-        yAxis: [{
-          type: 'value',
-          axisLabel: {
-            //formatter: '{value} %'
-            show: true,
-            textStyle: {
-              color: "rgba(255,255,255,.6)",
-              fontSize: '12',
-            },
-          },
-          axisTick: {
-            show: false,
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: "rgba(255,255,255,.1	)",
-              width: 1,
-              type: "solid"
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              color: "rgba(255,255,255,.1)",
-            }
-          }
-        }],
-        series: [
-          {
-            type: 'bar',
-            data: [200, 300, 300, 900, 1500, 1200, 600],
-            barWidth: '35%', //柱子宽度
-            // barGap: 1, //柱子之间间距
-            itemStyle: {
-              normal: {
-                color: '#2f89cf',
-                opacity: 1,
-                barBorderRadius: 5,
-              }
-            }
-          }
-
-        ]
-      };
-
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-    handleClick(){
-      this.$router.push({
-        name:'test3'
-      })
+    handleClick() {
+      window.location.href="http://localhost:8080/#/test3";
+      window.location.reload();
     },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小
-      setTimeout(()=>{
-        this.echarts_1();
-      },1000)
         setTimeout(() => {
           this.showElement = true;
         }, 500);

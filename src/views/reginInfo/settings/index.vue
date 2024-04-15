@@ -11,16 +11,16 @@
         <Preview/>
       </Block>
       <ul style="display: flex">
-        <li style="width: 70%; margin-right: .15rem">
+        <li style="width: 100%; margin-right: .15rem">
           <Block height="2.85rem" title="参数调配">
             <Modifier class="modifier"/>
           </Block>
         </li>
-        <li style="width: 30%">
-          <Block height="2.85rem" title="计划调配">
-            <Plan/>
-          </Block>
-        </li>
+<!--        <li style="width: 30%">-->
+<!--          <Block height="2.85rem" title="计划调配">-->
+<!--            <Plan/>-->
+<!--          </Block>-->
+<!--        </li>-->
       </ul>
     </li>
   </ul>
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      buttonList: ['退休年龄', '参保率', '个人交费率', '企业交费率', '收缴率', '在岗平均工资',
+      buttonList: ['退休年龄', '参保率', '个人缴费率', '企业缴费率', '收缴率', '在岗平均工资',
         '个账记账利率', '过渡系数', '养老金增长率', '城镇化率', '就业率', '总和生育率'],
       chooseIndex: 0,
     }

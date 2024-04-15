@@ -1,9 +1,9 @@
 <template>
   <div class="head">
-<!--面包屑对应的位置-->
-    <div class="breadStyle"　>
+    <!--面包屑对应的位置-->
+    <div class="breadStyle" 　>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index"  >
+        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
           <span
               style="color: #fff;font-size: 14px;cursor: pointer"
               :class="{ 'active-breadcrumb': $route.path === item.path }"
@@ -14,7 +14,7 @@
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title">{{title}}</h1>
     <div class="right">
       <span class="time" v-html="formattedTime"></span>
     </div>
@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      title: 'Intelligent Calculation Model',
+      title: '智算古稀－养老保险测算大数据平台',
       currentTime: new Date(),
       breadcrumbList: [
         {
@@ -74,17 +74,23 @@ export default {
       return y + "年" + mt + "月" + day + "日" + " " + w + " " + h + ":" + m + (this.blink ? ":" : "<span style='opacity: 0;'>:</span>") + s;
     }
   },
-  watch:{
-    $route(){
+  watch: {
+    $route() {
       this.getTitle();
       //this.getBreadcrumb();
     }
   },
   methods: {
     navigateTo(path) {
-      this.$router.push(path);
+      if(this.$route.path.includes("test2")){
+        window.location.href="http://localhost:8080/#/gd2";
+        window.location.reload();
+      }else{
+        window.location.href="http://localhost:8080/#"+path;
+        window.location.reload();
+      }
     },
-    getTitle(){
+    getTitle() {
       this.title = this.$route.meta.title;
     },
     getBreadcrumb() {
@@ -107,6 +113,11 @@ export default {
   },
   mounted() {
     this.refreshClock();
+    if(this.$route.path.includes("")) {
+      this.title = "智算古稀－养老保险测算大数据平台";
+    }else{
+      this.getTitle();
+    }
   }
 }
 </script>
@@ -118,9 +129,9 @@ export default {
   color: #d71d1d !important;
 }
 
-.breadStyle{
+.breadStyle {
   position: absolute;
-  top:35%;
+  top: 35%;
   left: 3%;
 }
 

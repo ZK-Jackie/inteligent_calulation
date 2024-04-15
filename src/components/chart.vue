@@ -1,5 +1,6 @@
 <script>
 import {Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Mradio, Loading} from "./charts"
+import Radar from "@/components/charts/radar.vue";
 import {removeNonLetters, capitalizeFirstLetter} from "@/utils/string";
 import {toOptions} from "@/utils/chart"
 
@@ -62,7 +63,7 @@ export default {
     init1() {
       // step1: get and formatter the type of the chart
       const chosenType = removeNonLetters(this.type.toLowerCase());
-      if (['bar', 'gauge', 'linear', 'ring', 'rose', 'mlinear', 'mslider', "mradio"].includes(chosenType)) {
+      if (['bar', 'gauge', 'linear', 'ring', 'rose', 'mlinear', 'mslider', "mradio","radar"].includes(chosenType)) {
         this.chartType = capitalizeFirstLetter(chosenType);
       } else {
         this.chartType = 'Error';
@@ -74,7 +75,7 @@ export default {
     }
   },
   components: {
-    Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Mradio, Loading
+    Bar, Gauge, Linear, Ring, Rose, Error, Mlinear, Mslider, Mradio, Loading, Radar
   },
   data() {
     return {

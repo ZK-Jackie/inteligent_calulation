@@ -25,9 +25,9 @@ export default {
           timeline: {
             axisType: 'category',
             autoPlay: true,
-            playInterval: 1500,
-            bottom:'23%',
-            left:'15%',
+            playInterval: 3000,
+            bottom: '23%',
+            left: '15%',
             animationDurationUpdate: 1000, // 动画的持续时间，单位为毫秒
             animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
             data: [
@@ -42,10 +42,10 @@ export default {
                 return new Date(s).getFullYear();
               }
             },
-            controlStyle:{
+            controlStyle: {
               showNextBtn: false,
               showPrevBtn: false,//是否展示时间轴左右的箭头
-              itemSize:30,//设置暂停键的大小
+              itemSize: 30,//设置暂停键的大小
               itemGap: 35,//设置暂停键与时间轴之间的间距
             }
           },
@@ -87,7 +87,7 @@ export default {
           {
             title: {
               text: '审图号：GS京(2022)1061号',
-              top:25,
+              top: 25,
             },
             series: [
               {
@@ -105,6 +105,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -171,14 +178,14 @@ export default {
                     name: '宁夏回族自治区', value: 268.8
                   }, {
                     name: '新疆维吾尔自治区', value: 1041.7
-                  },{
-                    name:'台湾省',value: 169.78
-                  },{
-                    name:'香港特别行政区',value: 427.68
-                  },{
-                    name:'澳门特别行政区',value:450.3
-                  },{
-                    name:'南海诸岛',value:128.8
+                  }, {
+                    name: '台湾省', value: 169.78
+                  }, {
+                    name: '香港特别行政区', value: 427.68
+                  }, {
+                    name: '澳门特别行政区', value: 450.3
+                  }, {
+                    name: '南海诸岛', value: 128.8
                   }
                 ]
               }
@@ -201,6 +208,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -268,13 +282,13 @@ export default {
                   }, {
                     name: '新疆维吾尔自治区', value: 1137.1
                   }, {
-                    name:'台湾省',value: 339.38
+                    name: '台湾省', value: 339.38
                   }, {
-                    name:'香港特别行政区',value: 578.96
-                  },{
-                    name:'澳门特别行政区',value:500.68
-                  },{
-                    name:'南海诸岛',value:298.7
+                    name: '香港特别行政区', value: 578.96
+                  }, {
+                    name: '澳门特别行政区', value: 500.68
+                  }, {
+                    name: '南海诸岛', value: 298.7
                   }
                 ]
               }
@@ -297,6 +311,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -364,13 +385,13 @@ export default {
                   }, {
                     name: '新疆维吾尔自治区', value: 1087.9
                   }, {
-                    name:'台湾省',value: 254.9
+                    name: '台湾省', value: 254.9
                   }, {
-                    name:'香港特别行政区',value: 439.68
-                  },{
-                    name:'澳门特别行政区',value:480.3
-                  },{
-                    name:'南海诸岛',value:108.8
+                    name: '香港特别行政区', value: 439.68
+                  }, {
+                    name: '澳门特别行政区', value: 480.3
+                  }, {
+                    name: '南海诸岛', value: 108.8
                   }
                 ]
               }
@@ -393,6 +414,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -460,13 +488,13 @@ export default {
                   }, {
                     name: '新疆维吾尔自治区', value: 1336.5
                   }, {
-                    name:'台湾省',value:390.6
-                  },{
-                    name:'香港特别行政区',value: 478.96
-                  },{
-                    name:'澳门特别行政区',value:405.68
-                  },{
-                    name:'南海诸岛',value:238.7
+                    name: '台湾省', value: 390.6
+                  }, {
+                    name: '香港特别行政区', value: 478.96
+                  }, {
+                    name: '澳门特别行政区', value: 405.68
+                  }, {
+                    name: '南海诸岛', value: 238.7
                   }
                 ]
               }
@@ -489,6 +517,13 @@ export default {
                   formatter: '{b}<br/>{c} (亿元)',
                   showDelay: 0,
                   transitionDuration: 2,
+                  backgroundColor: 'rgba(0,0,0,0)', // 设置背景颜色为透明
+                  right:20,
+                  textStyle: {
+                    fontSize: 12,
+                    color:'#fff',
+                    fontWeight: 'bold'
+                  }
                 },
                 animationDurationUpdate: 2000, // 动画的持续时间，单位为毫秒
                 animationEasingUpdate: 'cubicInOut', // 动画的缓动效果
@@ -556,13 +591,13 @@ export default {
                   }, {
                     name: '新疆维吾尔自治区', value: 1407.8
                   }, {
-                    name:'台湾省',value:350.6
-                  },{
-                    name:'香港特别行政区',value: 278.96
-                  },{
-                    name:'澳门特别行政区',value:300.68
-                  },{
-                    name:'南海诸岛',value:198.7
+                    name: '台湾省', value: 350.6
+                  }, {
+                    name: '香港特别行政区', value: 278.96
+                  }, {
+                    name: '澳门特别行政区', value: 300.68
+                  }, {
+                    name: '南海诸岛', value: 198.7
                   }
                 ]
               }
@@ -577,14 +612,10 @@ export default {
     },
     handleChartClick(params) {
       var data = params.data;//获取用户点击的对象信息
-      if(data.name=='广东省') {
+      if (data.name == '广东省') {
         //利用获取到的数据试着进行路由的跳转
-        this.$router.push({
-          name: 'test5',
-          params: {
-            province: data.name
-          }
-        })
+        window.location.href="http://localhost:8080/#/test5";
+        window.location.reload();
       }
     },
     handleMouseOver() {
@@ -599,15 +630,36 @@ export default {
         playState: true
       });
     },
+    handleTimelineChange() {
+      // 获取所有的省份
+      const provinces = this.myChart.getOption().series[0].data.map(item => item.name);
+      // 随机选择一个省份
+      const randomProvince = provinces[Math.floor(Math.random() * provinces.length)];
+      // 显示这个省份的提示框
+      this.myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: provinces.indexOf(randomProvince)
+      });
+      // 触发 'click' 事件
+      this.myChart.dispatchAction({
+        type: 'click',
+        seriesIndex: 0,
+        dataIndex: provinces.indexOf(randomProvince)
+      });
+    },
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.map();
-      this.myChart.on('click', this.handleChartClick);
-      this.myChart.on('mouseover',this.handleMouseOver);
-      this.myChart.on('mouseout',this.handleMouseOut);
-    });
-  }
+    mounted() {
+      this.$nextTick(() => {
+        this.map();
+        this.myChart.on('click', this.handleChartClick);
+        this.myChart.on('mouseover', this.handleMouseOver);
+        this.myChart.on('mouseout', this.handleMouseOut);
+        setInterval(() => {
+          this.handleTimelineChange();
+        }, 3000); // 每隔5秒执行一次
+      });
+    }
 }
 
 </script>

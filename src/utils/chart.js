@@ -93,7 +93,7 @@ function truncateKeys(details) {
 
 function mergeData(details) {
   if(details.length === 1){
-    details[0].chartOption.xAxisTags = details[0].chartOption.data[0];
+    details[0].chartOption.xAxisTags = details[0].chartOption.data[0].slice();
     return ;
   }
   // merge keys
@@ -111,7 +111,7 @@ function mergeData(details) {
     // 使用Set对象去除重复的元素
     let unique = new Set(combined);
     // 将Set对象转为数组并返回
-    return Array.from(unique);
+    return Array.from(unique).slice();
   }
 }
 

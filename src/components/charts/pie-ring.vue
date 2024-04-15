@@ -101,6 +101,10 @@ export default {
       /**************数据系列**************/
 
       chart && chart.setOption(option);
+      setInterval(() => {
+        chart.clear(); // 清除当前图表
+        chart.setOption(option);
+      }, 10000); // 每10秒刷新一次图表
       window.addEventListener("resize", function () {
         chart.resize();
       });
