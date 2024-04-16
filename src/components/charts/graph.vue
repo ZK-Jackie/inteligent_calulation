@@ -19,12 +19,22 @@ export default {
   data() {
     return {
       chart: null,
+      currentStep: 0,  // 新增的属性
     };
   },
   mounted() {
     this.loadChart();
+    this.timer = setInterval(this.handleTimer, 2000);
   },
   methods: {
+    handleTimer() {
+      if (this.currentStep < graph.nodes.length) {
+        this.currentStep++;
+        this.loadChart();
+      } else {
+        clearInterval(this.timer);  // 如果所有节点都已经显示，那么清除定时器
+      }
+    },
     loadChart() {
       const that = this;
       const chart = this.$echarts.init(document.getElementById('chart-item-map-' + this.id));
@@ -34,7 +44,11 @@ export default {
           text: '养老保险政策',
           subtext: 'Default layout',
           top: 'bottom',
-          left: 'right'
+          left: 'right',
+          textStyle: {
+            fontSize: 20,  // 设置标题的字体大小
+            color:'#66b3ff',
+          }
         },
         tooltip: {
           formatter: function (params) {
@@ -57,12 +71,12 @@ export default {
             }),
             inactiveColor: 'rgba(255,255,255,.2)',  // 未激活时的颜色
             textStyle: {
-              color: "rgba(255,255,255,.6)"  // 激活时的颜色
+              color: "#66b3ff"  // 激活时的颜色
             },
             fontSize: 12,
           }
         ],
-        animationDuration: 1500,
+        animationDuration: 1800,
         animationEasingUpdate: 'quinticInOut',
         series: [
           {
@@ -74,8 +88,10 @@ export default {
               edgeLength: 10,
               layoutAnimation: true
             },
-            data: graph.nodes,
-            links: graph.links,
+            // data: graph.nodes,
+            // links: graph.links,
+            data: graph.nodes.slice(0, this.currentStep),  // 只显示前 currentStep 个节点
+            links: graph.links.slice(0, this.currentStep),  // 只显示前 currentStep 个边
             categories: graph.categories,
             roam: true,
             label: {
@@ -106,7 +122,11 @@ export default {
               formatter: function (params) {
                 return params.data.name;  // 显示边的 name 属性
               },
-              color: 'rgba(255,255,255,.6)'  // 边的标签颜色
+              textStyle: {
+                color: 'rgba(0,255,255,.8)',
+                fontSize: 13,
+                fontWeight: 'bold'
+              }
             },
             lineStyle: {
               color: 'source',
