@@ -97,7 +97,7 @@ export default {
             label: {
               show: true,
               position: 'inside',
-              color: 'rgba(255,255,255,.6)',
+              color: 'rgba(255,255,255,.8)',
               formatter: function (params) {
                 let name = params.data.name;
                 let formattedName = '';
