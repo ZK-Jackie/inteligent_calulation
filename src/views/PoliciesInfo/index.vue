@@ -5,10 +5,10 @@
         <Block title="养老政策知识图谱" >
 <!--          <KnowledgeGraph />-->
 
-          <PinchZoom style="background-color: rgb(0,0,0,0); height: 8.7rem">
+          <div style="background-color: rgb(0,0,0,0); height: 8.7rem">
             <Graph />
 <!--            <img src="@/assets/policyGraph.svg" alt="养老保险政策知识图谱"/>-->
-          </PinchZoom>
+          </div>
         </Block>
       </li>
 
