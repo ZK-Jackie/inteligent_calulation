@@ -118,10 +118,41 @@ const routes = [
       {
         path: '/test',
         name: 'test',
-        component: () => import('@/views/reginInfo/settings/index.vue'),
+        component: () => import('@/components/charts/graph.vue'),
         meta: {
           title: '测试专用',
           miniTitle: '测试',
+        }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: FirstPage,
+    children: [
+      {
+        path: '/first',
+        name: '1',
+        component: () => import('@/views/firstPage.vue'),
+        meta: {
+          title: '智算古稀——养老保险测算可视化平台',
+          miniTitle: '首界面',
+        }
+      }
+    ]
+  },
+
+  {
+    path: '/',
+    component: Animation,
+    children: [
+      {
+        path: '/animation',
+        name: 'animation',
+        component: () => import('@/views/animation/animate.vue'),
+        meta: {
+          title: '智算古稀——养老保险测算可视化平台',
+          miniTitle: '首界面',
         }
       }
     ]

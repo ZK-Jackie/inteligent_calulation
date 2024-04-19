@@ -4,9 +4,11 @@
       <li>
         <Block title="养老政策知识图谱" >
 <!--          <KnowledgeGraph />-->
-          <PinchZoom style="background-color: rgb(0,0,0,0); height: 8.7rem">
-            <img src="@/assets/policyGraph.svg" alt="养老保险政策知识图谱"/>
-          </PinchZoom>
+
+          <div style="background-color: rgb(0,0,0,0); height: 8.7rem">
+            <Graph />
+<!--            <img src="@/assets/policyGraph.svg" alt="养老保险政策知识图谱"/>-->
+          </div>
         </Block>
       </li>
 
@@ -41,10 +43,11 @@ import Block from "@/components/block.vue";
 import WorldCloud  from "@/views/PoliciesInfo/components/WorldCloud.vue";
 import SearchBox  from "@/views/PoliciesInfo/components/SearchBox.vue";
 import KnowledgeGraph  from "@/views/PoliciesInfo/components/Knowledge Graph.vue";
+import Graph from "@/components/charts/graph.vue";
 
 export default {
   components:{
-    PopularDocument,Block,WorldCloud,SearchBox,PinchZoom,KnowledgeGraph
+    PopularDocument,Block,WorldCloud,SearchBox,PinchZoom,KnowledgeGraph,Graph
   },
   data(){
     return{
