@@ -5,6 +5,8 @@ Vue.use(VueRouter)
 
 /* Layout */
 import Layout from '@/layout/index.vue'
+import FirstPage from '@/layout/components/firstPage/firstPage.vue'
+import Animation from '@/layout/components/animation/animate.vue'
 
 const routes = [
   {
