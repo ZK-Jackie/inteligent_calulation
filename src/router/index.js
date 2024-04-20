@@ -154,7 +154,7 @@ const routes = [
         component: () => import('@/views/animation/animate.vue'),
         meta: {
           title: '智算古稀——养老保险测算可视化平台',
-          miniTitle: '首界面',
+          miniTitle: '动画',
         }
       }
     ]
