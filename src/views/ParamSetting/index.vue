@@ -45,11 +45,19 @@ export default {
   },
   methods: {
     handleSelection(index) {
-      console.log(index)
+      // console.log(index)
     }
   },
   mounted() {
-  }
+    this.$nextTick(() => {
+      if (!sessionStorage.getItem('modifier-reloaded')) {
+        sessionStorage.setItem('modifier-reloaded', true);
+        location.reload();
+      } else {
+        sessionStorage.removeItem('modifier-reloaded');
+      }
+    });
+  },
 }
 </script>
 

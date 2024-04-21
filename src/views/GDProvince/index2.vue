@@ -190,9 +190,17 @@ export default {
     }
   },
   mounted() {
+    this.$nextTick(() => {
+      if (!sessionStorage.getItem('gd2-reloaded')) {
+        sessionStorage.setItem('gd2-reloaded', true);
+        location.reload();
+      } else {
+        sessionStorage.removeItem('gd2-reloaded');
+      }
+    });
     this.load();
     this.startCounter();
-  }
+  },
 }
 </script>
 

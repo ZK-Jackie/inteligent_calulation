@@ -191,9 +191,17 @@ export default {
     }
   },
   mounted() {
+    this.$nextTick(() => {
+      if (!sessionStorage.getItem('gd1-reloaded')) {
+        sessionStorage.setItem('gd1-reloaded', true);
+        location.reload();
+      } else {
+        sessionStorage.removeItem('gd1-reloaded');
+      }
+    });
     this.load();
     this.startCounter();
-  }
+  },
 }
 </script>
 

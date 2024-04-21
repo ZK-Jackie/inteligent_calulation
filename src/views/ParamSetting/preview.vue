@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import {previewTestData} from "@/views/reginInfo/settings/TestDetail";
+import {previewTestData} from "@/views/ParamSetting/TestDetail";
 import Chart from "@/components/chart.vue";
 import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
 import {H_population101, M_population102, L_population103,RadarData1} from '@/views/GDProvince/gdData1.js';
