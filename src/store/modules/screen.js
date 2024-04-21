@@ -33,7 +33,6 @@ const screen = {
           detailIds: [1, 2, 3, 4, 5, 6, 7]
         }
         commit('SET_TEMPLATE', res)
-        console.log(1)
         // TODO 预留axios请求位置
         // getTemplate().then(res => {
         //   commit('SET_TEMPLATE', res)
@@ -73,7 +72,6 @@ const screen = {
             }
           ]
         }]
-        console.log(2)
         commit('SET_DETAIL', res);
         // TODO 预留axios请求位置
         // getDetail(detailIds).then(res => {
@@ -129,7 +127,6 @@ const screen = {
             ]
           }
         ]
-        console.log(3)
         console.log(res)
         commit('SET_DETAIL_DATA', res);
         commit('SET_DATA', res);
