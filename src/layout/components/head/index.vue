@@ -1,7 +1,7 @@
 <template>
   <div class="head">
     <!--面包屑对应的位置-->
-    <div class="breadStyle" 　>
+    <div class="breadStyle">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
           <span
