@@ -12,7 +12,7 @@
 <script>
 import {UUID} from "@/utils/string";
 import {countTrailingZeros} from "@/utils/number";
-import selector from "@/views/reginInfo/settings/selector.vue";
+import selector from "@/views/ParamSetting/selector.vue";
 
 export default {
   name: 'MsliderChart',

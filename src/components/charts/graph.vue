@@ -26,6 +26,9 @@ export default {
     this.loadChart();
     this.timer = setInterval(this.handleTimer, 2000);
   },
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
   methods: {
     handleTimer() {
       if (this.currentStep < graph.nodes.length) {
