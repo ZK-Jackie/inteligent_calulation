@@ -7,10 +7,10 @@
         </div>
         <div class="nav-link">
           <ul>
-            <li><router-link to="/test4">首页</router-link></li>
-            <li><router-link to="/test5">区域信息</router-link></li>
-            <li><router-link to="/test3">政策概况</router-link></li>
-            <li><router-link to="/test2">参数调配</router-link></li>
+            <li><router-link to="/nation">首页</router-link></li>
+            <li><router-link to="/regin">区域信息</router-link></li>
+            <li><router-link to="/policy">政策概况</router-link></li>
+            <li><router-link to="/modify">参数调配</router-link></li>
           </ul>
         </div>
       </nav>
