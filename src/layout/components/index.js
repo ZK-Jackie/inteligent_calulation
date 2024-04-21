@@ -1,5 +1,0 @@
-export { default as MainApp } from './MainApp'
-export { default as Background } from './background'
-export { default as Head } from './head'
-// export { default as iframeToggle } from './IframeToggle'
-export { default as Tail } from './tail'

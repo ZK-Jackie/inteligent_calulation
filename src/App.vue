@@ -3,22 +3,19 @@
     <Head/>
     <Background class="background"/>
     <transition name="fade-transform" mode="out-in">
-      <router-view class="main-box"/>
+      <router-view class="main-box" :key="$route.fullPath"/>
     </transition>
   </div>
 </template>
 
 <script>
-import {Background, Head, MainApp} from "@/layout/components";
-import layout from '@/layout'
+import {Background, Head} from "@/layout";
 
 
 export default {
   name: 'App',
   components: {
-    layout,
     Background,
-    MainApp,
     Head,
   },
   methods: {

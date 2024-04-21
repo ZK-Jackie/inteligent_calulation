@@ -4,74 +4,62 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 /* Layout */
-import Layout from '@/layout/index.vue'
-import FirstPage from '@/layout/components/firstPage/firstPage.vue'
-import Animation from '@/layout/components/animation/animate.vue'
+import FirstPage from '@/layout/firstPage/firstPage.vue'
+import Animation from '@/layout/animation/animate.vue'
 
 const routes = [
   {
-    path: '/home',
-    name: 'home',
-    component: () => Layout,
-    meta: {
-      title: '智算古稀——养老保险测算平台',
-      miniTitle: '平台',
-    }
-  },
-  {
-
-    path: '/test1',
-    name: 'test1',
-    component: () => import('@/views/reginInfo/index.vue'),
-    meta: {
-      title: '区域大屏信息',
-      miniTitle: '区域',
-    }
-
-  },
-  {
-    path: '/test2',
-    name: 'test2',
-    component: () => import('@/views/reginInfo/settings/index.vue'),
-    meta: {
-      title: '养老测算',
-      miniTitle: '参数调配',
-    }
-  },
-  {
-    path: '/test3',
-    name: 'test3',
-    component: () => import('@/views/PoliciesInfo/index.vue'),
-    meta: {
-      title: '养老政策信息',
-      miniTitle: '政策概况',
-    }
-  },
-  {
-    path: '/test4',
-    name: 'test4',
+    path: '/nation',
+    name: 'nation',
     component: () => import('@/views/MainScreen/index.vue'),
     meta: {
       title: '智算古稀——养老保险测算可视化平台',
       miniTitle: '首页',
+      hidden: false,
+      reload: false
     }
   },
   {
-    path: '/test5',
-    name: 'test5',
+    path: '/policy',
+    name: 'policy',
+    component: () => import('@/views/PoliciesInfo/index.vue'),
+    meta: {
+      title: '养老政策信息',
+      miniTitle: '政策概况',
+      hidden: false,
+      reload: false
+    }
+  },
+  {
+    path: '/regin',
+    name: 'regin',
     component: () => import('@/views/GDProvince/index.vue'),
     meta: {
       title: '广东省区域大屏信息',
       miniTitle: '区域信息',
+      hidden: false,
+      reload: true
     }
   },
   {
-    path: '/gd2',
-    name: 'gd2',
+    path: '/modify',
+    name: 'modify',
+    component: () => import('@/views/ParamSetting/index.vue'),
+    meta: {
+      title: '养老测算',
+      miniTitle: '参数调配',
+      hidden: false,
+      reload: true
+    }
+  },
+  {
+    path: '/gd',
+    name: 'gd',
     component: () => import('@/views/GDProvince/index2.vue'),
     meta: {
       title: '广东省区域大屏信息',
       miniTitle: '区域信息',
+      hidden: true,
     }
   },
   {
@@ -81,6 +69,7 @@ const routes = [
     meta: {
       title: '测试专用',
       miniTitle: '测试',
+      hidden: true
     }
   },
   {
@@ -90,6 +79,7 @@ const routes = [
     meta: {
       title: '智算古稀——养老保险测算可视化平台',
       miniTitle: '首界面',
+      hidden: true
     }
   },
 
@@ -100,12 +90,14 @@ const routes = [
     meta: {
       title: '智算古稀——养老保险测算可视化平台',
       miniTitle: '动画',
+      hidden: true
     }
   },
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 })
 
 export default router

@@ -3,11 +3,11 @@
     <!--面包屑对应的位置-->
     <div class="breadStyle">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
+        <el-breadcrumb-item v-for="(item, index) in $router.options.routes" :key="index" v-if="!item.meta.hidden">
           <span
               style="color: #fff;font-size: 14px;cursor: pointer"
               :class="{ 'active-breadcrumb': $route.path === item.path }"
-              @click="navigateTo(item.path)"
+              @click="$router.push(item.path)"
           >
             {{ item.meta.miniTitle }}
           </span>
@@ -81,15 +81,6 @@ export default {
     }
   },
   methods: {
-    navigateTo(path) {
-      if(this.$route.path.includes("test2")){
-        window.location.href="http://localhost:8080/#/gd2";
-        window.location.reload();
-      }else{
-        window.location.href="http://localhost:8080/#"+path;
-        window.location.reload();
-      }
-    },
     getTitle() {
       this.title = this.$route.meta.title;
     },
