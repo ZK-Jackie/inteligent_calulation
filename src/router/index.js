@@ -21,7 +21,7 @@ const routes = [
     component: () => import('@/views/MainScreen/index.vue'),
     meta: {
       title: '智算古稀——养老保险测算可视化平台',
-      miniTitle: '首页',
+      miniTitle: '全国概况',
       hidden: false,
       reload: false,
       headHidden: true,
@@ -33,7 +33,7 @@ const routes = [
     component: () => import('@/views/PoliciesInfo/index.vue'),
     meta: {
       title: '养老政策信息',
-      miniTitle: '政策概况',
+      miniTitle: '政策资讯',
       hidden: false,
       reload: false,
       headHidden: true,

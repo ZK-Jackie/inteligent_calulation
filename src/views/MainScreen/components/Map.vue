@@ -612,10 +612,8 @@ export default {
     },
     handleChartClick(params) {
       var data = params.data;//获取用户点击的对象信息
-      if (data.name == '广东省') {
-        //利用获取到的数据试着进行路由的跳转
-        window.location.href="http://localhost:8080/#/test5";
-        window.location.reload();
+      if (data.name ==='广东省') {
+        this.$router.push('/regin')
       }
     },
     handleMouseOver() {

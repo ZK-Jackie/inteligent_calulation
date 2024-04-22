@@ -56,7 +56,7 @@
           <PublicSentiment/>
         </Block>
         <Block height="4.2rem" title="专业养老保险公司年金业务情况">
-          <Annuity_bar/>
+          <Annuity_bar @click="handleClick"/>
         </Block>
       </li>
     </ul>
@@ -111,8 +111,7 @@ export default {
       }, 100) // 注意这里的时间间隔已经改为100毫秒，因为我们现在是以0.1秒为单位增加时间
     },
     handleClick() {
-      window.location.href="http://localhost:8080/#/test3";
-      window.location.reload();
+      this.$router.push('/policy')
     },
     load(){
       // 延迟初始化图表，直到可以确定DOM元素已经有了正确的大小

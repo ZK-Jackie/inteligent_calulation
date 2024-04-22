@@ -19,10 +19,10 @@ router.beforeEach((to, from, next) => {
 
     next('/animation');
 
-    // 设置定时器，2秒后跳转
+    // 设置定时器，2.5秒后跳转
     timer = setTimeout(() => {
       router.push(to.fullPath);
-    }, 2000);
+    }, 2500);
     return;
   } else {
     next();
