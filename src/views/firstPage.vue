@@ -94,7 +94,7 @@ nav{
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100; /* 确保导航栏在上方 */
+  z-index: 100;
 }
 
 nav img {
@@ -132,17 +132,19 @@ nav img {
 }
 
 .nav-brand {
-  color: #FFFFFF;
   flex: 1;
   text-align: left;
   font-size: 30px;
 }
 
+.nav-brand span, .text-box h1 {
+  color: #FFFFFF;
+}
+
 .text-box {
   width: 90%;
-  color: #FFFFFF;
   position: absolute;
-  top: 20%; /* 根据需要调整 */
+  top: 20%;
   left: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
@@ -156,7 +158,7 @@ nav img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 80px; /* 根据需要调整 */
+  margin-top: 80px;
 }
 
 .box {

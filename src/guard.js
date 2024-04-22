@@ -26,15 +26,15 @@ router.beforeEach((to, from, next) => {
 
   clearTimeout(timer);
 
-  if (from.fullPath === '/first' && to.fullPath === '/nation') {
+  if (from.fullPath === '/' && to.fullPath === '/nation') {
 
     next({ path: '/animation' });
 
-    // 设置定时器，5秒后跳转
+    // 设置定时器，3秒后跳转
     timer = setTimeout(() => {
       router.push('/nation');
     }, 3000);
-  } else  if (from.fullPath === '/first' && to.fullPath === '/regin') {
+  } else  if (from.fullPath === '/' && to.fullPath === '/regin') {
 
     next({ path: '/animation' });
 
@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
     timer = setTimeout(() => {
       router.push('/regin');
     }, 3000);
-  } else  if (from.fullPath === '/first' && to.fullPath === '/policy') {
+  } else  if (from.fullPath === '/' && to.fullPath === '/policy') {
 
     next({ path: '/animation' });
 
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
     timer = setTimeout(() => {
       router.push('/policy');
     }, 3000);
-  } else  if (from.fullPath === '/first' && to.fullPath === '/modify') {
+  } else  if (from.fullPath === '/' && to.fullPath === '/modify') {
 
     next({ path: '/animation' });
 
