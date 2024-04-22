@@ -6,6 +6,16 @@ Vue.use(VueRouter)
 const routes = [
 
   {
+    path: '/',
+    redirect: '/home',// 设置默认重定向到/home
+    meta:{
+      hidden: true,
+      reload: false,
+      headHidden: true,
+    }
+  },
+
+  {
     path: '/nation',
     name: 'nation',
     component: () => import('@/views/MainScreen/index.vue'),
@@ -76,7 +86,7 @@ const routes = [
     }
   },
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: () => import('@/views/firstPage.vue'),
     meta: {
@@ -99,6 +109,7 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: 'history'
+
 })
 
 export default router
