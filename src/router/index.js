@@ -3,11 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-/* Layout */
-import FirstPage from '@/layout/firstPage/firstPage.vue'
-import Animation from '@/layout/animation/animate.vue'
-
 const routes = [
+
   {
     path: '/nation',
     name: 'nation',
@@ -16,7 +13,8 @@ const routes = [
       title: '智算古稀——养老保险测算可视化平台',
       miniTitle: '首页',
       hidden: false,
-      reload: false
+      reload: false,
+      headHidden: true,
     }
   },
   {
@@ -27,7 +25,8 @@ const routes = [
       title: '养老政策信息',
       miniTitle: '政策概况',
       hidden: false,
-      reload: false
+      reload: false,
+      headHidden: true,
     }
   },
   {
@@ -38,7 +37,8 @@ const routes = [
       title: '广东省区域大屏信息',
       miniTitle: '区域信息',
       hidden: false,
-      reload: true
+      reload: true,
+      headHidden: true,
     }
   },
   {
@@ -49,7 +49,8 @@ const routes = [
       title: '养老测算',
       miniTitle: '参数调配',
       hidden: false,
-      reload: true
+      reload: true,
+      headHidden: true,
     }
   },
   {
@@ -60,6 +61,7 @@ const routes = [
       title: '广东省区域大屏信息',
       miniTitle: '区域信息',
       hidden: true,
+      headHidden: true,
     }
   },
   {
@@ -69,28 +71,27 @@ const routes = [
     meta: {
       title: '测试专用',
       miniTitle: '测试',
-      hidden: true
+      hidden: true,
+      headHidden: true,
     }
   },
   {
-    path: '/first',
-    name: '1',
+    path: '/',
+    name: 'home',
     component: () => import('@/views/firstPage.vue'),
     meta: {
-      title: '智算古稀——养老保险测算可视化平台',
-      miniTitle: '首界面',
-      hidden: true
+      hidden: true,
+      headHidden: false,
     }
   },
 
   {
     path: '/animation',
     name: 'animation',
-    component: () => import('@/views/animation/animate.vue'),
+    component: () => import('@/views/animation/index.vue'),
     meta: {
-      title: '智算古稀——养老保险测算可视化平台',
-      miniTitle: '动画',
-      hidden: true
+      hidden: true,
+      headHidden: true,
     }
   },
 ]
