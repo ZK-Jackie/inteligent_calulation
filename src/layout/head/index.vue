@@ -14,7 +14,7 @@
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <h1 class="title">{{title}}</h1>
+    <h1 class="title">{{ title }}</h1>
     <div class="right">
       <span class="time" v-html="formattedTime"></span>
     </div>
@@ -27,39 +27,11 @@ export default {
     return {
       title: '智算古稀－养老保险测算大数据平台',
       currentTime: new Date(),
-      breadcrumbList: [
-        {
-          path: '/test4',
-          meta: {
-            title: '智算古稀——养老保险测算平台',
-            miniTitle: '首页',
-          }
-        },
-        {
-          path: '/test5',
-          meta: {
-            title: '广东省区域大屏信息',
-            miniTitle: '区域信息',
-          }
-        },
-        {
-          path: '/test3',
-          meta: {
-            title: '养老政策信息',
-            miniTitle: '政策概况',
-          }
-        },
-        {
-          path: '/test2',
-          meta: {
-            title: '养老测算',
-            miniTitle: '参数调配',
-          }
-        },
-
-      ],
       blink: false
     }
+  },
+  created() {
+    this.getTitle();
   },
   computed: {
     formattedTime() {
@@ -75,9 +47,8 @@ export default {
     }
   },
   watch: {
-    $route() {
+    '$route': function (to, from) {
       this.getTitle();
-      //this.getBreadcrumb();
     }
   },
   methods: {
@@ -104,11 +75,7 @@ export default {
   },
   mounted() {
     this.refreshClock();
-    if(this.$route.path.includes("")) {
-      this.title = "智算古稀－养老保险测算大数据平台";
-    }else{
-      this.getTitle();
-    }
+    this.getTitle();
   }
 }
 </script>
