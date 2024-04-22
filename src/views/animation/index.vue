@@ -143,7 +143,7 @@ body
   color:rgba(255,255,255,0.5);
   font-family:"Open sans";
   font-weight:700;
-  font-size:40px;
+  font-size:70px;
   whitespace:nowrap;
   letter-spacing:1.5em;
   animation:zoom 1s infinite linear;
