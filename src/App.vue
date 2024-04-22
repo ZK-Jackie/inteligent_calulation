@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Head/>
-    <Background class="background"/>
+    <Head v-if="showHeadAndBackground"/>
+    <Background class="background" v-show="showHeadAndBackground"/>
     <transition name="fade-transform" mode="out-in">
       <router-view class="main-box" :key="$route.fullPath"/>
     </transition>
@@ -18,6 +18,19 @@ export default {
     Background,
     Head,
   },
+  data() {
+    return {
+      showHeadAndBackground: false,
+    }
+  },
+  watch: {
+    '$route': function(to, from) {
+      this.showHeadAndBackground = to.meta.headHidden;
+    }
+  },
+  created() {
+    this.showHeadAndBackground = this.$route.meta.headHidden;
+  },
   methods: {
     resizeFont() {
       let width = window.innerWidth;
@@ -27,6 +40,7 @@ export default {
   mounted() {
     this.resizeFont();
     window.addEventListener('resize', this.resizeFont);
+    console.log(this.$route)
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.resizeFont);
