@@ -7,16 +7,16 @@
         </div>
         <div class="nav-link">
           <ul>
-            <li><router-link to="/nation">首页</router-link></li>
+            <li><router-link to="/nation">全国概述</router-link></li>
             <li><router-link to="/regin">区域信息</router-link></li>
-            <li><router-link to="/policy">政策概况</router-link></li>
+            <li><router-link to="/policy">政策资讯</router-link></li>
             <li><router-link to="/modify">参数调配</router-link></li>
           </ul>
         </div>
       </nav>
 
       <div class="text-box">
-        <h1>养老保险测算大数据平台</h1>
+        <h1>基于测算模型的养老保险可视化平台</h1>
       </div>
 
       <div class="container">
@@ -54,13 +54,13 @@ export default {
         },
         {
           icon: 'fa fa-google',
-          title: '提供知识图谱构建和可视化展示',
+          title: '可视化图表展示和知识图谱的构建',
           description: '基于养老金相关政策文件，该平台构建养老知识图谱。该知识图谱包括各种养老金相关政策、法规以及其之间的关系。通过应用自然语言处理和知识图谱技术，可以对政策文件进行语义分析和关系建模，形成结构化的知识图谱，并进行可视化展示，帮助用户更好地理解养老金政策和相应的规定。',
           isFlipped: false,
         },
         {
           icon: 'fa fa-windows',
-          title: '提供实时数据分析和监控',
+          title: '提供实时测算服务',
           description: '该平台结合实时数据处理和分析技术，能够及时收集和处理养老保险相关数据，并实时更新养老基金的运行情况。通过对关键指标的监控和预警系统的建立，平台可以及时发现潜在的风险和异常情况，为政府和保险公司提供决策参考和风险控制手段。',
           isFlipped: false,
         },
@@ -82,7 +82,7 @@ export default {
 
         this.currentBoxIndex = (this.currentBoxIndex + 1) % this.boxes.length;
         this.toggleFlip(this.currentBoxIndex);
-      }, 1500);
+      }, 3000);
     },
   },
   mounted() {

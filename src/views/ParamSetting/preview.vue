@@ -245,10 +245,10 @@ export default {
     this.chartDetails = previewTestData;
     setTimeout(() => {
       this.stage = 2;
-    }, 15000);//8秒后进入加载状态
+    }, 20000);//8秒后进入加载状态
     setTimeout(() => {
       this.stage = 3;
-    }, 18000);//加载5秒进入新页面
+    }, 25000);//加载5秒进入新页面
   }
 }
 </script>
