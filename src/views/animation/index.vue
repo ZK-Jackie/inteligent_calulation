@@ -100,13 +100,16 @@ export default {
 
 #app
 {
-  width: 100%;
-  height: 100%;
-  -webkit-filter:brightness(1)  saturate(0.9);
-  position:absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    -webkit-filter:brightness(1)  saturate(0.9);
+    position:absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
 }
 
 #canvas
@@ -135,18 +138,22 @@ body
 }
 #text
 {
-  transform:translateY(-50%);
-  top:50%;
-  text-align:center;
-  width:100%;
-  position:absolute;
-  color:rgba(255,255,255,0.5);
-  font-family:"Open sans";
-  font-weight:700;
-  font-size:70px;
-  whitespace:nowrap;
-  letter-spacing:1.5em;
-  animation:zoom 1s infinite linear;
+  color: #fff;
+  font-size: 70px;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 76px;
+  outline: none;
+  --c: lightseagreen;
+  text-shadow: 0 0 10px var(--c),
+  0 0 20px var(--c),
+  0 0 40px var(--c),
+  0 0 80px var(--c),
+  0 0 160px var(--c);
+  animation: animate 2s linear infinite;
 }
 @-webkit-keyframes zoom
 {
@@ -172,6 +179,12 @@ body
   100%{
     opacity:0;
     transform:scale(2);
+  }
+}
+
+@keyframes animate {
+  to {
+    filter: hue-rotate(360deg);
   }
 }
 
