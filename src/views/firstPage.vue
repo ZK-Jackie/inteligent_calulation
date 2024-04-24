@@ -20,7 +20,11 @@
       </div>
 
       <div class="container">
-        <div class="box" v-for="(box, index) in boxes" :key="index">
+        <div
+            class="box"
+            v-for="(box, index) in boxes"
+            :key="index"
+            :class="{ 'is-flipped':box.isFlipped}">
           <div class="front">
             <div class="icon">
               <i :class="box.icon"></i>
@@ -45,20 +49,50 @@ export default {
         {
           icon: 'fa fa-apple',
           title: '采用大数据挖掘和分析技术',
-          description: '该平台利用大数据技术进行数据的收集、处理和分析，通过对海量的历史数据进行挖掘，揭示其中的关联性和趋势变化。通过应用数据挖掘算法，统计分析方法和机器学习算法，平台可以提取有价值的信息，并用于预测和决策支持。'
+          description: '该平台利用大数据技术进行数据的收集、处理和分析，通过对海量的历史数据进行挖掘，揭示其中的关联性和趋势变化。通过应用数据挖掘算法，统计分析方法和机器学习算法，平台可以提取有价值的信息，并用于预测和决策支持。',
+          isFlipped: false,
         },
         {
           icon: 'fa fa-google',
           title: '提供知识图谱构建和可视化展示',
-          description: '基于养老金相关政策文件，该平台构建养老知识图谱。该知识图谱包括各种养老金相关政策、法规以及其之间的关系。通过应用自然语言处理和知识图谱技术，可以对政策文件进行语义分析和关系建模，形成结构化的知识图谱，并进行可视化展示，帮助用户更好地理解养老金政策和相应的规定。'
+          description: '基于养老金相关政策文件，该平台构建养老知识图谱。该知识图谱包括各种养老金相关政策、法规以及其之间的关系。通过应用自然语言处理和知识图谱技术，可以对政策文件进行语义分析和关系建模，形成结构化的知识图谱，并进行可视化展示，帮助用户更好地理解养老金政策和相应的规定。',
+          isFlipped: false,
         },
         {
           icon: 'fa fa-windows',
           title: '提供实时数据分析和监控',
-          description: '该平台结合实时数据处理和分析技术，能够及时收集和处理养老保险相关数据，并实时更新养老基金的运行情况。通过对关键指标的监控和预警系统的建立，平台可以及时发现潜在的风险和异常情况，为政府和保险公司提供决策参考和风险控制手段。'
-        }
-      ]
+          description: '该平台结合实时数据处理和分析技术，能够及时收集和处理养老保险相关数据，并实时更新养老基金的运行情况。通过对关键指标的监控和预警系统的建立，平台可以及时发现潜在的风险和异常情况，为政府和保险公司提供决策参考和风险控制手段。',
+          isFlipped: false,
+        },
+      ],
+      currentBoxIndex:2,
+      flipInterval: null,
     };
+  },
+  methods: {
+    toggleFlip(index) {
+      this.boxes[index].isFlipped = !this.boxes[index].isFlipped;
+    },
+    startFlipping() {
+      this.flipInterval = setInterval(() => {
+
+        if (this.boxes[this.currentBoxIndex].isFlipped) {
+          this.toggleFlip(this.currentBoxIndex);
+        }
+
+        this.currentBoxIndex = (this.currentBoxIndex + 1) % this.boxes.length;
+        this.toggleFlip(this.currentBoxIndex);
+      }, 1500);
+    },
+  },
+  mounted() {
+    this.startFlipping();
+  },
+  beforeDestroy() {
+
+    if (this.flipInterval) {
+      clearInterval(this.flipInterval);
+    }
   },
 };
 </script>
@@ -252,8 +286,18 @@ nav img {
 }
 
 .box .front .title {
-  font-size: 24px; /* 调整文字大小 */
-  text-align: center; /* 文字居中 */
+  font-size: 24px;
+  text-align: center;
+}
+
+.is-flipped .front {
+  opacity: 0;
+  transform: translateY(-110px) rotateX(90deg);
+}
+
+.is-flipped .back {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
 }
 </style>
 
