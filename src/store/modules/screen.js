@@ -1,5 +1,4 @@
-//import {getCharts} from "@/api/charts";
-//import {getTemplate} from "@/api/template";
+
 
 const screen = {
   state: {
@@ -33,14 +32,6 @@ const screen = {
           detailIds: [1, 2, 3, 4, 5, 6, 7]
         }
         commit('SET_TEMPLATE', res)
-        // TODO 预留axios请求位置
-        // getTemplate().then(res => {
-        //   commit('SET_TEMPLATE', res)
-        //
-        //   resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
         dispatch('GetDetail',res.detailIds).then(r => resolve(r)).catch(e => reject(e));
       })
     },
@@ -73,15 +64,6 @@ const screen = {
           ]
         }]
         commit('SET_DETAIL', res);
-        // TODO 预留axios请求位置
-        // getDetail(detailIds).then(res => {
-        //   commit('SET_TEMPLATE', res)
-        //
-        //   resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
-        // TODO 根据detailSpot排序后再请求表格数据
         dispatch('GetCharts',extractDataIds(res)).then(r => resolve(r)).catch(e => reject(e));
       })
     },
@@ -130,14 +112,6 @@ const screen = {
         console.log(res)
         commit('SET_DETAIL_DATA', res);
         commit('SET_DATA', res);
-        // TODO 预留axios请求位置
-        // getDetail(dataIds).then(res => {
-        //   commit('SET_DATA', res)
-        //
-        //   resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
         resolve(res)
       })
     }
