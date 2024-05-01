@@ -1,4 +1,4 @@
-//import {getParam} from "@/api/charts";
+
 import {paramScreenDetailList, modifierDefaultData} from "@/store/modules/defaultVal";
 
 const param = {
@@ -27,14 +27,6 @@ const param = {
       return new Promise((resolve, reject) => {
         const res = paramScreenDetailList;
         commit('SET_PARAM_SCREEN_DETAIL_LIST', res)
-        // TODO 预留axios请求位置
-        // getParamList().then(res => {
-        //   commit('SET_PARAM', res)
-        //
-        //   resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
         resolve(res)
       })
     },
@@ -42,14 +34,6 @@ const param = {
       return new Promise((resolve, reject) => {
         const res = modifierDefaultData;
         commit('SET_PARAM_DETAILS', res);
-        // TODO 预留axios请求位置
-        // getDetail(detailIds).then(res => {
-        //   commit('SET_TEMPLATE', res)
-        //
-        //   resolve(res)
-        // }).catch(error => {
-        //   reject(error)
-        // })
         resolve(res)
       })
     },
