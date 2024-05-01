@@ -13,13 +13,6 @@ const temp = {
     },
     calNowPlan({ commit }) {
       return new Promise((resolve, reject) =>{
-        // TODO 预留axios请求位置
-        // calPlan().then(res => {
-        //   commit('SET_NOW_PLAN', res)
-        //   resolve()
-        // }).catch(error => {
-        //   reject(error)
-        // })
 
       })
     }
