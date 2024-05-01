@@ -1,5 +1,5 @@
 <script >
-import {BasicPension} from "@/views/GDProvince/components/BasicPension";
+import {getRawData} from "@/api/charts";
 export default {
   data() {
     return {
@@ -7,8 +7,10 @@ export default {
     };
   },
   mounted() {
-    this.myChart = this.$echarts.init(document.getElementById('basicPension'));
-    this.run(BasicPension);
+    getRawData().then((res) => {
+      this.myChart = this.$echarts.init(document.getElementById('basicPension'));
+      this.run(res.data);
+    });
   },
   methods: {
     run(_rawData) {

@@ -4,13 +4,18 @@
 
 <script>
 import anychart from 'anychart';
-import {WordFrequency}  from "@/views/PoliciesInfo/components/WordFrequency";
+import {getWordFrequencyData} from "@/api/charts";
 
 export default{
   data(){
-    return{
-      tagwords: WordFrequency,
-    }
+    return {
+      tagwords: [],
+    };
+  },
+  created() {
+    getWordFrequencyData().then(response => {
+      this.tagwords = response.data;
+    });
   },
   methods:{
     drawChart(){

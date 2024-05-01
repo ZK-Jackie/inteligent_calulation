@@ -1,10 +1,12 @@
 <script>
-import {Policies} from "@/views/PoliciesInfo/components/Policies.js";
+import {getPoliciesData} from "@/api/charts";
 export default{
   data(){
-    return{
-      PoliciesRelation: Policies,
-    }
+    getPoliciesData().then(res=>{
+      return{
+        PoliciesRelation: res.data,
+      }
+    })
   },
   methods:{
      echarts(){
