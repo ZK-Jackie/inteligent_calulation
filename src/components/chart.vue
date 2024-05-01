@@ -14,7 +14,9 @@ export default {
     detail: {
       type: Array,
       required: true,
-      default: []
+      default: function() {
+        return []  // 使用工厂函数返回默认值
+      }
     },
     /**
      * the type of the chart,
