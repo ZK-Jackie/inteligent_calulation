@@ -98,60 +98,75 @@
 <script>
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 import Chart from '@/components/chart.vue';
-import {
-  income_and_expense02,
-  participants02,
-  H_population201,
-  L_population203,
-  M_population202,
-  pieData_pension201,
-  RadarData2,
-  pieData_pension202,
-  pieData_pension203,
-  lineData_basic01
-} from "@/views/GDProvince/gdData2";
-
-
-let tempArr31 = [];
-tempArr31.push(H_population201[0]);
-let tempArr32 = [];
-tempArr32.push(M_population202[0]);
-let tempArr33 = [];
-tempArr33.push(L_population203[0]);
-let tempArr41 = [];
-tempArr41.push(H_population201[1]);
-let tempArr42 = [];
-tempArr42.push(M_population202[2]);
-let tempArr43 = [];
-tempArr43.push(L_population203[3]);
-
+import {getGDData} from "@/api/charts";
 
 export default {
   components: {Chart, Guangdong},
   data() {
     return {
-      activeItem2: 1,//默认激活的项是'1'
-      activeItem: 3,//默认激活的项是'3'
-      activeItem3: 1,//默认激活的项是'1'
-      population31: tempArr31,
-      population32: tempArr32,
-      population33: tempArr33,
-      population41: tempArr41,
-      population42: tempArr42,
-      population43: tempArr43,
-      income_and_expense2: income_and_expense02,
-      participants2: participants02,
-      pieData_pension04: pieData_pension201,
-      pieData_pension05: pieData_pension202,
-      pieData_pension06: pieData_pension203,
-      RadarData2: RadarData2,
-      lineData_basic01: lineData_basic01,
+      activeItem2: [],
+      activeItem: [],
+      activeItem3: [],
+      population31: [],
+      population32: [],
+      population33: [],
+      population41: [],
+      population42: [],
+      population43: [],
+      income_and_expense2: [],
+      participants2: [],
+      pieData_pension04: [],
+      pieData_pension05: [],
+      pieData_pension06: [],
+      RadarData2: [],
+      lineData_basic01: [],
       num1: 0,
       num2: 0,
       maxNum1: 38581413,//有关最终养老金收入和支出的情况
       maxNum2: 33136439,//有关最终养老金收入和支出的情况
       showElement: false,
+
+
+      tempArr31: [],
+      tempArr32: [],
+      tempArr33: [],
+      tempArr41: [],
+      tempArr42: [],
+      tempArr43: [],
     }
+  },
+  created() {
+    getGDData().then(res => {
+      this.activeItem2 = 1;//默认激活的项是'1'
+      this.activeItem = 3;//默认激活的项是'3'
+      this.activeItem3 = 1;//默认激活的项是'1'
+      this.population31.push(res.data.H_population101[0]);
+      this.population32.push(res.data.M_population102[0]);
+      this.population33.push(res.data.L_population103[0]);
+      this.population41.push(res.data.H_population101[1]);
+      this.population42.push(res.data.M_population102[2]);
+      this.population43.push(res.data.L_population103[3]);
+
+      this.income_and_expense2 = res.data.income_and_expense02;
+      this.participants2 = res.data.participants02;
+      this.pieData_pension04 = res.data.pieData_pension201;
+      this.pieData_pension05 = res.data.pieData_pension202;
+      this.pieData_pension06 = res.data.pieData_pension203;
+      this.RadarData2 = res.data.RadarData2;
+      this.lineData_basic01 = res.data.lineData_basic01;
+      this.num1 = 0;
+      this.num2 = 0;
+      this.maxNum1 = 38581413;//有关最终养老金收入和支出的情况
+      this.maxNum2 = 33136439;//有关最终养老金收入和支出的情况
+      this.showElement = false;
+
+      this.tempArr31.push(res.data.H_population101[0]);
+      this.tempArr32.push(res.data.M_population102[0]);
+      this.tempArr33.push(res.data.L_population103[0]);
+      this.tempArr41.push(res.data.H_population101[1]);
+      this.tempArr42.push(res.data.M_population102[2]);
+      this.tempArr43.push(res.data.L_population103[3]);
+    })
   },
   methods: {
     handleItemClick(index) {

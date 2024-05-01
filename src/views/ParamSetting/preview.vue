@@ -141,57 +141,9 @@
 </template>
 
 <script>
-import {previewTestData} from "@/views/ParamSetting/TestDetail";
 import Chart from "@/components/chart.vue";
 import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
-import {H_population101, M_population102, L_population103,RadarData1} from '@/views/GDProvince/gdData1.js';
-import {income_and_expense01, participants01} from "@/views/GDProvince/gdData";
-import {
-  income_and_expense02,
-  participants02,
-  H_population201,
-  L_population203,
-  M_population202,
-  pieData_pension201,
-  RadarData2,
-  pieData_pension202,
-  pieData_pension203,
-  lineData_basic01
-} from "@/views/GDProvince/gdData2";
-import {
-  barData,
-  lineData,
-  pieData,
-  pieData_pension01,
-  pieData_pension02,
-  pieData_pension03,
-} from "@/components/TestDetail";
-
-let tempArr11 = [];
-tempArr11.push(H_population101[0]);
-let tempArr12 = [];
-tempArr12.push(M_population102[0]);
-let tempArr13 = [];
-tempArr13.push(L_population103[0]);
-let tempArr21 = [];
-tempArr21.push(H_population101[1]);
-let tempArr22 = [];
-tempArr22.push(M_population102[2]);
-let tempArr23 = [];
-tempArr23.push(L_population103[3]);
-
-let tempArr31 = [];
-tempArr31.push(H_population201[0]);
-let tempArr32 = [];
-tempArr32.push(M_population202[0]);
-let tempArr33 = [];
-tempArr33.push(L_population203[0]);
-let tempArr41 = [];
-tempArr41.push(H_population201[1]);
-let tempArr42 = [];
-tempArr42.push(M_population202[2]);
-let tempArr43 = [];
-tempArr43.push(L_population203[3]);
+import {getPopulationData, getPreviewData} from "@/api/charts";
 
 export default {
   components: {
@@ -203,35 +155,95 @@ export default {
       stage: 1,
       chartDetails: [],
       activeButtonIndex: 0,
-      activeItem2: 1,//默认激活的项是'1'
-      activeItem: 3,//默认激活的项是'3'
-      activeItem3: 1,//默认激活的项是'1'
-      participants: participants01,
-      RadarData: RadarData1,
-      RadarData2: RadarData2,
-      pieData_pension01: pieData_pension01,
-      pieData_pension02: pieData_pension02,
-      pieData_pension03: pieData_pension03,
-      population11: tempArr11,
-      population12: tempArr12,
-      population13: tempArr13,
-      population21: tempArr21,
-      population22: tempArr22,
-      population23: tempArr23,
-      income_and_expense: income_and_expense01,
-      population31: tempArr31,
-      population32: tempArr32,
-      population33: tempArr33,
-      population41: tempArr41,
-      population42: tempArr42,
-      population43: tempArr43,
-      income_and_expense2: income_and_expense02,
-      participants2: participants02,
-      pieData_pension04: pieData_pension201,
-      pieData_pension05: pieData_pension202,
-      pieData_pension06: pieData_pension203,
-      lineData_basic01: lineData_basic01
+      activeItem2: [],
+      activeItem: [],
+      activeItem3: [],
+      participants: [],
+      RadarData: [],
+      RadarData2: [],
+      pieData_pension01: [],
+      pieData_pension02: [],
+      pieData_pension03: [],
+      population11: [],
+      population12: [],
+      population13: [],
+      population21: [],
+      population22: [],
+      population23: [],
+      income_and_expense: [],
+      population31: [],
+      population32: [],
+      population33: [],
+      population41: [],
+      population42: [],
+      population43: [],
+      income_and_expense2: [],
+      participants2: [],
+      pieData_pension04: [],
+      pieData_pension05: [],
+      pieData_pension06: [],
+      lineData_basic01: [],
+
+      tempArr11: [],
+      tempArr12: [],
+      tempArr13: [],
+      tempArr21: [],
+      tempArr22: [],
+      tempArr23: [],
+      tempArr31: [],
+      tempArr32: [],
+      tempArr33: [],
+      tempArr41: [],
+      tempArr42: [],
+      tempArr43: [],
     }
+  },
+  created() {
+    getPopulationData().then(res => {
+      this.tempArr11.push(res.data.H_population101[0]);
+      this.tempArr12.push(res.data.M_population102[0]);
+      this.tempArr13.push(res.data.L_population103[0]);
+      this.tempArr21.push(res.data.H_population101[1]);
+      this.tempArr22.push(res.data.M_population102[2]);
+      this.tempArr23.push(res.data.L_population103[3]);
+      this.tempArr31.push(res.data.H_population201[0]);
+      this.tempArr32.push(res.data.M_population202[0]);
+      this.tempArr33.push(res.data.L_population203[0]);
+      this.tempArr41.push(res.data.H_population201[1]);
+      this.tempArr42.push(res.data.M_population202[2]);
+      this.tempArr43.push(res.data.L_population203[3]);
+
+      this.activeItem2 = 1;//默认激活的项是'1'
+      this.activeItem = 3;//默认激活的项是'3'
+      this.activeItem3 = 1;//默认激活的项是'1'
+      this.population11.push(res.data.H_population101[0]);
+      this.population12.push(res.data.M_population102[0]);
+      this.population13.push(res.data.L_population103[0]);
+      this.population21.push(res.data.H_population101[1]);
+      this.population22.push(res.data.M_population102[2]);
+      this.population23.push(res.data.L_population103[3]);
+      this.population31.push(res.data.H_population201[0]);
+      this.population32.push(res.data.M_population202[0]);
+      this.population33.push(res.data.L_population203[0]);
+      this.population41.push(res.data.H_population201[1]);
+      this.population42.push(res.data.M_population202[2]);
+      this.population43.push(res.data.L_population203[3]);
+
+      this.income_and_expense = res.data.income_and_expense01;
+      this.participants = res.data.participants01;
+      this.pieData_pension01 = res.data.pieData_pension01;
+      this.pieData_pension02 = res.data.pieData_pension02;
+      this.pieData_pension03 = res.data.pieData_pension03;
+
+      this.RadarData = res.data.RadarData1;
+      this.RadarData2 = res.data.RadarData2;
+      this.income_and_expense2 = res.data.income_and_expense02;
+      this.participants2 = res.data.participants02;
+      this.pieData_pension04 = res.data.pieData_pension201;
+      this.pieData_pension05 = res.data.pieData_pension202;
+      this.pieData_pension06 = res.data.pieData_pension203;
+      this.lineData_basic01 = res.data.lineData_basic01;
+    });
   },
   methods: {
     handleItemClick(index) {
@@ -242,7 +254,9 @@ export default {
     },
   },
   mounted() {
-    this.chartDetails = previewTestData;
+    getPreviewData().then(res => {
+      this.chartDetails = res.data;
+    });
     setTimeout(() => {
       this.stage = 2;
     }, 20000);//8秒后进入加载状态
