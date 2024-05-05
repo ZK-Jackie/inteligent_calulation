@@ -34,3 +34,15 @@ export function removeNonLetters(str) {
 export function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+/**
+ * @param {string} str 字符串
+ * @return {boolean} 首字母大写的字符串
+ * */
+export function parseBoolean(str){
+  if(str.toLowerCase() === "true"){
+    return true;
+  }else if(str.toLowerCase() === "false"){
+    return false;
+  }
+}

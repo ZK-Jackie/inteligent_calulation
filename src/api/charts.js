@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import {parseBoolean} from "@/utils/string";
 // 用自己做的axios封装从后端获取路由信息
 import {BasicPension} from "@/api/data/BasicPension";
 import {Policies} from "@/api/data/Policies.js";
@@ -28,7 +29,7 @@ import {lineData} from "@/api/data/TestDetail2";
 import {pieData} from "@/api/data/TestDetail2";
 
 
-const isOffline = process.env.VUE_APP_IS_OFFLINE
+const isOffline = parseBoolean(process.env.VUE_APP_IS_OFFLINE);
 
 // 查询区域大屏的数据
 export function getBasicPension() {
