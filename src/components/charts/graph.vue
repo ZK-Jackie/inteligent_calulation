@@ -1,7 +1,6 @@
 <script>
 import {UUID} from "@/utils/string";
-import {graph} from "@/components/graph_data";
-import {testGraph} from "@/components/TestGraph";
+import {graph} from "@/api/data/graph_data";
 
 export default {
   name: 'Graph',
@@ -39,7 +38,6 @@ export default {
       }
     },
     loadChart() {
-      const that = this;
       const chart = this.$echarts.init(document.getElementById('chart-item-map-' + this.id));
 
       const option = {

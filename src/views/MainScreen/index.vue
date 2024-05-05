@@ -71,7 +71,7 @@ import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 import Block from "@/components/block.vue";
 import Map from '@/views/MainScreen/components/Map.vue';
 import Chart from '@/components/chart.vue';
-import {gaugeData} from "@/components/TestDetail";
+import {gaugeData} from "@/api/data/TestDetail2";
 import PictorialBar  from "@/views/MainScreen/components/Pictorial Bar.vue";
 
 

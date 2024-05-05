@@ -98,7 +98,7 @@
 <script>
 import Guangdong from "@/views/GDProvince/components/Guangdong.vue";
 import Chart from '@/components/chart.vue';
-import {getGDData} from "@/api/charts";
+import {getRegionData} from "@/api/charts";
 
 export default {
   components: {Chart, Guangdong},
@@ -136,7 +136,7 @@ export default {
     }
   },
   created() {
-    getGDData().then(res => {
+    getRegionData().then(res => {
       this.activeItem2 = 1;//默认激活的项是'1'
       this.activeItem = 3;//默认激活的项是'3'
       this.activeItem3 = 1;//默认激活的项是'1'

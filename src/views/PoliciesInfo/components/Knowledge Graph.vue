@@ -1,8 +1,8 @@
 <script>
-import {getPoliciesData} from "@/api/charts";
+import {getPolicyGraph} from "@/api/charts";
 export default{
   data(){
-    getPoliciesData().then(res=>{
+    getPolicyGraph().then(res=>{
       return{
         PoliciesRelation: res.data,
       }

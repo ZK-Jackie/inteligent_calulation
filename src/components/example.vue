@@ -6,7 +6,7 @@
 
 <script>
 import Chart from '@/components/chart.vue'
-import {lineData} from "@/components/TestDetail";
+import {lineData} from "@/api/data/TestDetail2";
 
 export default {
   components: {Chart},

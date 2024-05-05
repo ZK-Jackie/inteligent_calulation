@@ -4,7 +4,7 @@
 
 <script>
 import anychart from 'anychart';
-import {getWordFrequencyData} from "@/api/charts";
+import {getPensionWordFreq} from "@/api/charts";
 
 export default{
   data(){
@@ -13,7 +13,7 @@ export default{
     };
   },
   created() {
-    getWordFrequencyData().then(response => {
+    getPensionWordFreq().then(response => {
       this.tagwords = response.data;
     });
   },

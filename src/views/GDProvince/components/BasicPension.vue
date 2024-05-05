@@ -1,5 +1,5 @@
 <script >
-import {getRawData} from "@/api/charts";
+import {getBasicPension} from "@/api/charts";
 export default {
   data() {
     return {
@@ -7,7 +7,7 @@ export default {
     };
   },
   mounted() {
-    getRawData().then((res) => {
+    getBasicPension().then((res) => {
       this.myChart = this.$echarts.init(document.getElementById('basicPension'));
       this.run(res.data);
     });

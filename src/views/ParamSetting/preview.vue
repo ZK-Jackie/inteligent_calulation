@@ -143,7 +143,7 @@
 <script>
 import Chart from "@/components/chart.vue";
 import BasicPension from "@/views/GDProvince/components/BasicPension.vue";
-import {getPopulationData, getPreviewData} from "@/api/charts";
+import {getCalPreview, getNowPreview} from "@/api/charts";
 
 export default {
   components: {
@@ -199,7 +199,7 @@ export default {
     }
   },
   created() {
-    getPopulationData().then(res => {
+    getCalPreview().then(res => {
       this.tempArr11.push(res.data.H_population101[0]);
       this.tempArr12.push(res.data.M_population102[0]);
       this.tempArr13.push(res.data.L_population103[0]);
@@ -254,7 +254,7 @@ export default {
     },
   },
   mounted() {
-    getPreviewData().then(res => {
+    getNowPreview().then(res => {
       this.chartDetails = res.data;
     });
     setTimeout(() => {

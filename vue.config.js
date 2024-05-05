@@ -9,6 +9,8 @@ function resolve(dir) {
 }
 
 module.exports = defineConfig({
+    // 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上
+    publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
     transpileDependencies: true,
     devServer: {
         host: '0.0.0.0',
@@ -16,6 +18,7 @@ module.exports = defineConfig({
         open: true,
         client: {
             webSocketURL: 'auto://0.0.0.0:0', // 关闭主机检查
+            overlay: false, // 不要全屏报错
         },
         proxy: {
             //反向代理，前端解决跨域问题

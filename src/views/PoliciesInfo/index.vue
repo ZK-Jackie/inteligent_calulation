@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import PinchZoom from "vue-pinch-zoom";
 import PopularDocument from "@/views/PoliciesInfo/components/PopularDocument.vue";
 import Block from "@/components/block.vue";
 import WorldCloud  from "@/views/PoliciesInfo/components/WorldCloud.vue";
@@ -47,7 +46,7 @@ import Graph from "@/components/charts/graph.vue";
 
 export default {
   components:{
-    PopularDocument,Block,WorldCloud,SearchBox,PinchZoom,KnowledgeGraph,Graph
+    PopularDocument,Block,WorldCloud,SearchBox,KnowledgeGraph,Graph
   },
   data(){
     return{
